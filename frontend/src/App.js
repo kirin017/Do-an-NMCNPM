@@ -16,13 +16,13 @@ const App = () => {
                 </Route>
                 <Route exact path="/login">
                     <Narbar />
-                    <div style={{ marginTop: '60px' }}>
+                    <div style={{ marginTop: '170px' }}>
                             Giao diện đăng nhập
                     </div>
                 </Route>
                 <Route exact path="/signup">
                     <Narbar />
-                    <div style={{ marginTop: '60px' }}>
+                    <div style={{ marginTop: '170px' }}>
                             Giao diện đăng ký
                     </div>
                 </Route>
