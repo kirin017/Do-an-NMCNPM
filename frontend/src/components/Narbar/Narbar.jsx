@@ -17,8 +17,12 @@ const Narbar = () => {
                         Shop
                     </Typography>
                     <div className={classes.grow} />
-                    <Button component={Link} to="/login">Đăng nhập</Button>
-                    <Button component={Link} to="/signup">Đăng ký</Button>
+                    <Button component={Link} to="/login" style={{ marginRight: "20px" }}>
+                        Đăng nhập
+                    </Button>
+                    <Button component={Link} to="/signup" style={{ marginRight: "20px" }}>
+                        Đăng ký
+                    </Button>
                     <div className={classes.button}>
                         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
                             <Badge badgeContent={2} color='secondary'></Badge>
@@ -27,14 +31,16 @@ const Narbar = () => {
                     </div>
                 </Toolbar>
                 <Toolbar>
-                    <Button>Trang chủ</Button>
+                    <div style={{ marginLeft: "30px" }}/>
+                    <Button component={Link} to="/">
+                        Trang chủ
+                    </Button>
                     <SubMenu></SubMenu>
                     <Button>ABOUT US</Button>
                     <Button>Liên hệ</Button>
                     <Button>FanPage</Button>
                 </Toolbar>
             </AppBar>
-
         </>
     );
 };
