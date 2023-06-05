@@ -1,8 +1,8 @@
 import React from 'react';
 import { AppBar, Toolbar, IconButton, Badge,  Typography, Button } from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
-import useStyles from './styles'
-import SubMenu from './Menu/SubMenu'
+import useStyles from './styles';
+import SubMenu from './Menu/SubMenu';
 import { Link } from 'react-router-dom';
 
 const Narbar = () => {

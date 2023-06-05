@@ -11,7 +11,7 @@ export default makeStyles(() => ({
     },
     cardActions: {
         display: 'flex',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end'
     },
     cardContent: {
         display: 'flex',
@@ -23,4 +23,7 @@ export default makeStyles(() => ({
         textOverflow: 'ellipsis',
         maxWidth: 250,
     },
+    button: {
+        border: '1px solid #000',
+    }
 }));

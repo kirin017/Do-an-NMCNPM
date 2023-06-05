@@ -2,6 +2,7 @@ import React from 'react';
 import Products from './components/Products/Products';
 import Narbar from './components/Narbar/Narbar';
 import SideBar from './components/SideBar/SideBar';
+import ProductDetail from './components/ProductDetail/ProductDetail';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
@@ -32,10 +33,10 @@ const App = () => {
                             Giao diện giỏ hàng
                     </div>
                 </Route>
-                <Route exact path="/id">
-                    <Narbar />
-                    <div style={{ marginTop: '60px' }}>
-                            Giao diện chi tiết sản phẩm
+                <Route exact path="/product/:id">
+                    <Narbar/>
+                    <div style={{ marginTop: '170px' }}>
+                            <ProductDetail></ProductDetail>
                     </div>
                 </Route>
                 <Route exact path="/admin">
