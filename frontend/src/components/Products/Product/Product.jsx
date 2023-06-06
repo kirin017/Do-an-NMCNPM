@@ -15,9 +15,6 @@ const Product = ({ product }) => {
                     <Typography className={classes.cardNameAndDescription} variant='h8' gutterBottom>
                         {product.name}
                     </Typography>
-                    {/* <Typography variant='h8' >
-                        {product.price}
-                    </Typography> */}
                 </div>
                 <Typography className={classes.cardNameAndDescription} variant='body1' color='textSecondary'>{product.description}</Typography>
             </CardContent>
