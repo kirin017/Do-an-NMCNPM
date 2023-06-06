@@ -4,7 +4,7 @@ import Narbar from './components/Narbar/Narbar';
 import SideBar from './components/SideBar/SideBar';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import Login from './components/Login/Login';
 const App = () => {
     return (
         <Router>
@@ -18,7 +18,7 @@ const App = () => {
                 <Route exact path="/login">
                     <Narbar />
                     <div style={{ marginTop: '170px' }}>
-                            Giao diện đăng nhập
+                        <Login />
                     </div>
                 </Route>
                 <Route exact path="/signup">
