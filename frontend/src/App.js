@@ -5,6 +5,7 @@ import SideBar from './components/SideBar/SideBar';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
+import AccountManagement from './components/Account/test'
 const App = () => {
     return (
         <Router>
@@ -24,49 +25,49 @@ const App = () => {
                 <Route exact path="/signup">
                     <Narbar />
                     <div style={{ marginTop: '170px' }}>
-                            Giao diện đăng ký
+                        Giao diện đăng ký
                     </div>
                 </Route>
                 <Route exact path="/cart">
                     <Narbar />
                     <div style={{ marginTop: '60px' }}>
-                            Giao diện giỏ hàng
+                        Giao diện giỏ hàng
                     </div>
                 </Route>
                 <Route exact path="/product/:id">
-                    <Narbar/>
+                    <Narbar />
                     <div style={{ marginTop: '170px' }}>
-                            <ProductDetail></ProductDetail>
+                        <ProductDetail></ProductDetail>
                     </div>
                 </Route>
                 <Route exact path="/admin">
                     <SideBar></SideBar>
-                    <div style={{ marginTop: '120px', marginLeft: '250px'}}>
-                            Giao diện trang chủ admin
+                    <div style={{ marginTop: '120px', marginLeft: '250px' }}>
+                        Giao diện trang chủ admin
                     </div>
                 </Route>
                 <Route exact path="/admin/product">
                     <SideBar></SideBar>
-                    <div style={{ marginTop: '120px', marginLeft: '250px'}}>
-                            Giao diện sản phẩm cho admin
+                    <div style={{ marginTop: '120px', marginLeft: '250px' }}>
+                        Giao diện sản phẩm cho admin
                     </div>
                 </Route>
                 <Route exact path="/admin/order">
                     <SideBar></SideBar>
-                    <div style={{ marginTop: '120px', marginLeft: '250px'}}>
-                            Giao diện các đơn hàng cho admin
+                    <div style={{ marginTop: '120px', marginLeft: '250px' }}>
+                        Giao diện các đơn hàng cho admin
                     </div>
                 </Route>
                 <Route exact path="/admin/account">
                     <SideBar></SideBar>
-                    <div style={{ marginTop: '120px', marginLeft: '250px'}}>
-                            Giao diện các quản lý tài khoản cho admin
+                    <div style={{ marginTop: '120px', marginLeft: '250px' }}>
+                        <AccountManagement />
                     </div>
                 </Route>
                 <Route exact path="/admin/statistic">
                     <SideBar></SideBar>
-                    <div style={{ marginTop: '120px', marginLeft: '250px'}}>
-                            Giao diện các thống kê tổng sản phẩm, doanh thu
+                    <div style={{ marginTop: '120px', marginLeft: '250px' }}>
+                        Giao diện các thống kê tổng sản phẩm, doanh thu
                     </div>
                 </Route>
             </Switch>
