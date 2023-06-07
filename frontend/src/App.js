@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import Products from './components/Products/Products';
 import Narbar from './components/Narbar/Narbar';
 import SideBar from './components/SideBar/SideBar';
@@ -6,7 +6,9 @@ import ProductDetail from './components/ProductDetail/ProductDetail';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
 import AccountManagement from './components/Account/test'
+
 const App = () => {
+    // const [typeUser, settypeUser] = useState(0);
     return (
         <Router>
             <Switch>
@@ -48,8 +50,8 @@ const App = () => {
                 </Route>
                 <Route exact path="/admin/product">
                     <SideBar></SideBar>
-                    <div style={{ marginTop: '120px', marginLeft: '250px' }}>
-                        Giao diện sản phẩm cho admin
+                    <div style={{ marginTop: '40px', marginLeft: '190px' }}>
+                        <Products></Products>
                     </div>
                 </Route>
                 <Route exact path="/admin/order">

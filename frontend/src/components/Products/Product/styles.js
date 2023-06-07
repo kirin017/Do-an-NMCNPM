@@ -4,9 +4,10 @@ export default makeStyles(() => ({
     root: {
         maxWidth: '100%',
     },
-    media: {
-        height: 0,
-        paddingTop: '50%',
+    image: {
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
     },
     cardActions: {
         display: 'flex',

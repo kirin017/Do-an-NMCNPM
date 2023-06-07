@@ -23,12 +23,15 @@ const Narbar = () => {
                     <Button component={Link} to="/signup" style={{ marginRight: "20px" }}>
                         Đăng ký
                     </Button>
-                    <div className={classes.button}>
+                    <div className={classes.button} style={{ marginRight: "10px" }}>
                         <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
                             <Badge badgeContent={2} color='secondary'></Badge>
                                 <ShoppingCart/>
                         </IconButton>
                     </div>
+                    <Button>
+                        Đăng xuất
+                    </Button>
                 </Toolbar>
                 <Toolbar>
                     <div style={{ marginLeft: "30px" }}/>
