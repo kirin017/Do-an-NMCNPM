@@ -6,6 +6,7 @@ import ProductDetail from './components/ProductDetail/ProductDetail';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
 import AccountManagement from './components/Account/test'
+// import Cart from './components/Cart/Cart';
 
 const App = () => {
     // const [typeUser, settypeUser] = useState(0);
@@ -33,7 +34,7 @@ const App = () => {
                 <Route exact path="/cart">
                     <Narbar />
                     <div style={{ marginTop: '60px' }}>
-                        Giao diện giỏ hàng
+                        {/* <Cart></Cart> */}
                     </div>
                 </Route>
                 <Route exact path="/product/:id">
