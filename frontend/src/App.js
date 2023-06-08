@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
 import AccountManagement from './components/Account/test'
 // import Cart from './components/Cart/Cart';
+import SignUp from './components/SignUp/Signup';
 
 const App = () => {
     // const [typeUser, settypeUser] = useState(0);
@@ -28,7 +29,7 @@ const App = () => {
                 <Route exact path="/signup">
                     <Narbar />
                     <div style={{ marginTop: '170px' }}>
-                        Giao diện đăng ký
+                        <SignUp/>
                     </div>
                 </Route>
                 <Route exact path="/cart">
