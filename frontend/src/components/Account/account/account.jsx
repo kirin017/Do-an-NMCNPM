@@ -1,90 +1,28 @@
-import React from 'react';
-import { Button, Typography } from '@material-ui/core';
+import React, { useState } from 'react';
 import DataTable from "react-data-table-component"
 
-// Function to manage user accounts
-// function manageAccount(userId, action) {
-//     // Check if user is an admin
-//     if (isAdmin(userId)) {
-//         // Perform action based on provided action parameter
-//         switch (action) {
-//             case 'create':
-//                 // Logic to create a new user account
-//                 console.log('Creating a new user account...');
-//                 break;
-//             case 'delete':
-//                 // Logic to delete a user account
-//                 console.log('Deleting the user account...');
-//                 break;
-//             case 'block':
-//                 // Logic to block a user account
-//                 console.log('Blocking the user account...');
-//                 break;
-//             case 'unblock':
-//                 // Logic to unblock a user account
-//                 console.log('Unblocking the user account...');
-//                 break;
-//             default:
-//                 console.log('Invalid action specified.');
-//                 break;
-//         }
-//     } else {
-//         console.log('Access denied. You must be an admin to manage user accounts.');
-//     }
-// }
 
-// // Function to check if user is an admin
-// function isAdmin(userId) {
-//     // Logic to determine if user is an admin based on user ID
-//     // Replace with your own implementation
-//     // For simplicity, let's assume admin user IDs are 'admin001', 'admin002', etc.
-//     return userId.startsWith('admin');
-// }
-
-// function AccountManagementButton({ userId, action, label }) {
-//     const handleAccountManagement = () => {
-//         manageAccount(userId, action);
-//     };
-
-//     return (
-//         <Button variant="contained" onClick={handleAccountManagement}>
-//             {label}
-//         </Button>
-//     );
-// }
-
-// function AccountManagement() {
-//     return (
-//         <div>
-//             <Typography variant="h2">Account Management</Typography>
-//             <AccountManagementButton
-//                 userId="admin001"
-//                 action="create"
-//                 label="Create User Account"
-//             />
-//             <AccountManagementButton
-//                 userId="admin002"
-//                 action="delete"
-//                 label="Delete User Account"
-//             />
-//         </div>
-//     );
-// }
-
-// export default AccountManagement;
 function AccountManagement() {
     const columns = [
         {
             name: 'Name',
-            selector: row => row.name
+            selector: row => row.name,
+            sortable: true
         },
         {
             name: "Email",
-            selector: row => row.email
+            selector: row => row.email,
+            sortable: true
         },
         {
             name: "Age",
-            selector: row => row.age
+            selector: row => row.age,
+            sortable: true
+        },
+        {
+            name: "Gender",
+            selector: row => row.gender,
+            sortable: true
         }
     ];
     const data = [
@@ -92,20 +30,118 @@ function AccountManagement() {
             id: 1,
             name: 'zascf',
             email: 'zascf@gmail.com',
-            age: '23'
+            age: '23',
+            gender: 'male'
         },
         {
             id: 2,
             name: 'huy',
             email: 'huy@gmail.com',
-            age: '20'
+            age: '20',
+            gender: 'female'
+        },
+        {
+            id: 3,
+            name: 'zascf3',
+            email: 'zascf@gmail.com',
+            age: '26',
+            gender: 'male'
+        },
+        {
+            id: 4,
+            name: 'zascf4',
+            email: 'zascf@gmail.com',
+            age: '28',
+            gender: 'female'
+        },
+        {
+            id: 5,
+            name: 'zascf5',
+            email: 'zascf4@gmail.com',
+            age: '29',
+            gender: 'male'
+        },
+        {
+            id: 6,
+            name: 'test6',
+            email: 'test6@gmail.com',
+            age: '13',
+            gender: 'female'
+        },
+        {
+            id: 7,
+            name: 'test7',
+            email: 'test7@gmail.com',
+            age: '33',
+            gender: 'male'
+        },
+        {
+            id: 1,
+            name: 'zascf',
+            email: 'zascf@gmail.com',
+            age: '23',
+            gender: 'female'
+        },
+        {
+            id: 2,
+            name: 'huy',
+            email: 'huy@gmail.com',
+            age: '20',
+            gender: 'female'
+        },
+        {
+            id: 3,
+            name: 'zascf3',
+            email: 'zascf@gmail.com',
+            age: '26',
+            gender: 'male'
+        },
+        {
+            id: 4,
+            name: 'zascf4',
+            email: 'zascf@gmail.com',
+            age: '28',
+            gender: 'female'
+        },
+        {
+            id: 5,
+            name: 'zascf5',
+            email: 'zascf4@gmail.com',
+            age: '29',
+            gender: 'male'
+        },
+        {
+            id: 6,
+            name: 'test6',
+            email: 'test6@gmail.com',
+            age: '13',
+            gender: 'female'
+        },
+        {
+            id: 7,
+            name: 'test7',
+            email: 'test7@gmail.com',
+            age: '33',
+            gender: 'male'
         }
     ]
+
+    const [records, setRecords] = useState(data);
+    function handleFilter(event) {
+        const newData = data.filter(row => {
+            return row.name.toLowerCase().includes(event.target.value.toLowerCase())
+        })
+        setRecords(newData)
+    }
     return (
         <div className='container mt-5'>
+            <div className='text-end'><input type="text" onChange={handleFilter} /></div>
             <DataTable
                 columns={columns}
-                data={data}
+                data={records}
+                selectableRows
+                fixedHeader
+                pagination
             ></DataTable>
         </div>
     )
