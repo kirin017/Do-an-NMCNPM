@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^1.4.0",
     "react": "^16.13.1",
+    "react-data-table-component": "^7.5.3",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.11.5",
     "react-router": "^5.2.0",

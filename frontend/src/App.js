@@ -1,11 +1,11 @@
-import React  from 'react';
+import React from 'react';
 import Products from './components/Products/Products';
 import Narbar from './components/Narbar/Narbar';
 import SideBar from './components/SideBar/SideBar';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
-import AccountManagement from './components/Account/test'
+import AccountManagement from './components/Account/account/account'
 import Cart from './components/Cart/Cart';
 import SignUp from './components/SignUp/Signup';
 
@@ -29,7 +29,7 @@ const App = () => {
                 <Route exact path="/signup">
                     <Narbar />
                     <div style={{ marginTop: '170px' }}>
-                        <SignUp/>
+                        <SignUp />
                     </div>
                 </Route>
                 <Route exact path="/cart">
