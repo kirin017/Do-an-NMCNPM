@@ -59,7 +59,7 @@ const App = () => {
                 <Route exact path="/admin/order">
                     <SideBar></SideBar>
                     <div style={{ marginTop: '120px', marginLeft: '250px' }}>
-                        Giao diện các đơn hàng cho admin
+                        <Bills></Bills>
                     </div>
                 </Route>
                 <Route exact path="/admin/account">
