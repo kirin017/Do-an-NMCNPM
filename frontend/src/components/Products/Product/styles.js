@@ -11,11 +11,13 @@ export default makeStyles(() => ({
     },
     cardActions: {
         display: 'flex',
+        color: 'black',
         // justifyContent: 'flex-end'
     },
     cardContent: {
         display: 'flex',
         justifyContent: 'space-between',
+        color: 'black',
     },
     cardNameAndDescription: {
         whiteSpace: 'nowrap',
