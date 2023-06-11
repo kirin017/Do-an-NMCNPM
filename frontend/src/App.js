@@ -8,7 +8,7 @@ import Login from './components/Login/Login';
 import AccountManagement from './components/Account/account/account'
 import Cart from './components/Cart/Cart';
 import SignUp from './components/SignUp/Signup';
-
+import Dashboard from './dashboard/Dashboard';
 const App = () => {
     // const [typeUser, settypeUser] = useState(0);
     return (
@@ -71,7 +71,7 @@ const App = () => {
                 <Route exact path="/admin/statistic">
                     <SideBar></SideBar>
                     <div style={{ marginTop: '120px', marginLeft: '250px' }}>
-                        Giao diện các thống kê tổng sản phẩm, doanh thu
+                        <Dashboard />
                     </div>
                 </Route>
             </Switch>
