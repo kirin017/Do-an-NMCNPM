@@ -19,10 +19,11 @@ export default makeStyles((theme) => ({
     flexGrow: 1,
   },
   button: {
-    background: '#6FCCF5',
+    background: 'white',
     height: '50px',
     width: '150px',
     marginTop: '30px',
     marginLeft: '30px',
+    border: '1px solid #000',
   },
 }));

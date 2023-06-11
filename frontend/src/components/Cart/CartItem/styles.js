@@ -16,6 +16,7 @@ export default makeStyles(() => ({
     cardContent: {
         display: 'flex',
         justifyContent: 'space-between',
+        color: 'black',
     },
     cardNameAndDescription: {
         whiteSpace: 'nowrap',
@@ -24,7 +25,11 @@ export default makeStyles(() => ({
         maxWidth: 250,
     },
     button: {
+        minWidth: 'unset',
         marginLeft: '5px', 
         border: '1px solid #000',
+        height: '30px',
+        width: '30px',
+        fontSize: '20px',
     }
 }));
