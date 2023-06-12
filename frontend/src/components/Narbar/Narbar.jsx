@@ -12,15 +12,19 @@ const Narbar = () => {
         <>
             <AppBar position='fixed' className={classes.appBar} color='inherit'>
                 <Toolbar>
-                    <Typography variant='h6' className={classes.title} color='inherit'>
-                        <img src='https://static.vecteezy.com/system/resources/previews/011/598/887/original/ecommerce-logo-icon-free-vector.jpg' alt="Commerce.js" height='25px' className={classes.image} />
-                        Shop
+                    <Typography variant='h6' className={classes.title} color='inherit' >
+                        
+                        
+                        <Button  component={Link} to="/" style={{ fontSize: '40px' ,  fontFamily: 'cursive', color : '#1E90FF',   fontWeight: 'bold'}}>
+                        <img src='https://upload.wikimedia.org/wikipedia/en/thumb/f/fb/Miami_Heat_logo.svg/1200px-Miami_Heat_logo.svg.png' alt="Commerce.js" height='100px' className={classes.image} />
+                        MIAMI HEAT      
+                        </Button>
                     </Typography>
                     <div className={classes.grow} />
-                    <Button component={Link} to="/login" style={{ marginRight: "20px" }}>
+                    <Button variant="outlined" component={Link} to="/login" style={{ marginRight: "20px" }}>
                         Đăng nhập
                     </Button>
-                    <Button component={Link} to="/signup" style={{ marginRight: "20px" }}>
+                    <Button variant="outlined" component={Link} to="/signup" style={{ marginRight: "20px" }}>
                         Đăng ký
                     </Button>
                     <div className={classes.button} style={{ marginRight: "10px" }}>
@@ -29,12 +33,14 @@ const Narbar = () => {
                                 <ShoppingCart/>
                         </IconButton>
                     </div>
-                    <Button>
+                    <Button variant="outlined" >
                         Đăng xuất
                     </Button>
                 </Toolbar>
-                <Toolbar>
-                    <div style={{ marginLeft: "30px" }}/>
+                <Toolbar
+                style = {{ backgroundColor: '#E8E8E8'}}
+                >
+                    <div style={{ marginLeft: "30px" }}/> 
                     <Button component={Link} to="/">
                         Trang chủ
                     </Button>
