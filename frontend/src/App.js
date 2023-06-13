@@ -10,6 +10,8 @@ import Cart from './components/Cart/Cart';
 import SignUp from './components/SignUp/Signup';
 import Dashboard from './dashboard/Dashboard';
 import Bills from './components/Bills/Bills'
+
+
 const App = () => {
     // const [typeUser, settypeUser] = useState(0);
     return (

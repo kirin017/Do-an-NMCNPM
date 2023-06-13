@@ -163,11 +163,16 @@ export default function Dashboard() {
                     <IconButton onClick={handleDrawerClose}>
                         <ChevronLeftIcon />
                     </IconButton>
+                </div >
+                {/* <div style={{
+                    top: 0
+                }}>
+                    <List>{mainListItems}</List>
+                    <Divider />
+                    <List>{secondaryListItems}</List>
                 </div>
-                <Divider />
-                <List>{mainListItems}</List>
-                <Divider />
-                <List>{secondaryListItems}</List>
+                <Divider /> */}
+
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
