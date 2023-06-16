@@ -9,6 +9,9 @@ import AccountManagement from './components/Account/account/account'
 import Cart from './components/Cart/Cart';
 import SignUp from './components/SignUp/Signup';
 import Dashboard from './dashboard/Dashboard';
+import Bills from './components/Bills/Bills'
+
+
 const App = () => {
     // const [typeUser, settypeUser] = useState(0);
     return (
@@ -16,7 +19,7 @@ const App = () => {
             <Switch>
                 <Route exact path="/">
                     <Narbar />
-                    <div style={{ marginTop: '60px' }}>
+                    <div style={{ marginTop: '100px' }}>
                         <Products />
                     </div>
                 </Route>
@@ -34,7 +37,7 @@ const App = () => {
                 </Route>
                 <Route exact path="/cart">
                     <Narbar />
-                    <div style={{ marginTop: '60px' }}>
+                    <div style={{ marginTop: '100px' }}>
                         <Cart></Cart>
                     </div>
                 </Route>
@@ -59,7 +62,7 @@ const App = () => {
                 <Route exact path="/admin/order">
                     <SideBar></SideBar>
                     <div style={{ marginTop: '120px', marginLeft: '250px' }}>
-                        Giao diện các đơn hàng cho admin
+                        <Bills></Bills>
                     </div>
                 </Route>
                 <Route exact path="/admin/account">
