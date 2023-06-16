@@ -23,8 +23,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         primaryKey: true,
       },
-    month: DataTypes.INTEGER,
-    year: DataTypes.INTEGER,
     revenue: DataTypes.FLOAT,
     billCount: DataTypes.INTEGER,
   }, {
