@@ -4,7 +4,8 @@ let hanldeLogin = (username, password) => {
     new Promise(async(resolve, reject) => {
         try {
             let userData = {};
-            let isExist = await checkUsername(username);
+            // resolve(userData)
+            let isExist =  checkUsername(username);
             if (isExist){
                 // user already exist
                 let user = await db.User.findOne({
@@ -38,7 +39,7 @@ let hanldeLogin = (username, password) => {
 }
 
 let checkUsername = (username) => {
-    return new Promise(async (resolve, reject) => {
+    new Promise(async (resolve, reject) => {
             try {
                 let user = await db.User.findOne({
                     where: { username : username }
