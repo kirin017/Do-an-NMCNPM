@@ -16,7 +16,7 @@ function Copyright(props) {
   );
 }
 
-export default function SignIn() {
+export default function SignIn({setUserName, setTypeUser}) {
     const classes = useStyles();
     const history = useHistory();
     const [email, setEmail] = useState('');
@@ -35,8 +35,17 @@ export default function SignIn() {
         axios.post('http://localhost:6969/api/login', dataLogin)
         .then(response => {
           console.log('response: ', response.data)
-          if (response.data.errCode===0)
-            history.push('/');
+          if (response.data.errCode===0){
+            setUserName(email)
+            if (response.data.userData.role===0){
+              setTypeUser(0);
+              history.push('/');
+            }
+            else{
+              setTypeUser(1);
+              history.push('/admin')
+            } 
+          }
           else if (response.data.errCode===1)
             setWarning('Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!');
           else if (response.data.errCode===2)

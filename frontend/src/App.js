@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import Products from './components/Products/Products';
 import Narbar from './components/Narbar/Narbar';
 import SideBar from './components/SideBar/SideBar';
@@ -15,36 +16,37 @@ import Orders from './components/Orders/Orders';
 
 
 const App = () => {
-    // const [typeUser, settypeUser] = useState(0);
+    const [typeUser, setTypeUser] = useState(-1);
+    const [userName, setUserName] = useState('');
     return (
         <Router>
             <Switch>
                 <Route exact path="/">
-                    <Narbar />
+                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser}/>
                     <div style={{ marginTop: '100px' }}>
                         <Products />
                     </div>
                 </Route>
                 <Route exact path="/login">
-                    <Narbar />
+                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser}/>
                     <div style={{ marginTop: '170px' }}>
-                        <Login />
+                        <Login setUserName={setUserName} setTypeUser={setTypeUser}/>
                     </div>
                 </Route>
                 <Route exact path="/signup">
-                    <Narbar />
+                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser}/>
                     <div style={{ marginTop: '170px' }}>
                         <SignUp />
                     </div>
                 </Route>
                 <Route exact path="/cart">
-                    <Narbar />
+                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser}/>
                     <div style={{ marginTop: '100px' }}>
                         <Cart></Cart>
                     </div>
                 </Route>
                 <Route exact path="/product/:id">
-                    <Narbar />
+                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser}/>
                     <div style={{ marginTop: '170px' }}>
                         <ProductDetail></ProductDetail>
                     </div>

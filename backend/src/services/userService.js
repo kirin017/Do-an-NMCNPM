@@ -16,6 +16,7 @@ let hanldeLogin = (username, password) => {
                         userData.errCode = 0;
                         userData.errMessage = 'OK';
                         userData.name = user.name;
+                        userData.role = user.typeUser
                     }else{
                         userData.errCode = 3;
                         userData.errMessage = 'Sai mật khẩu';
