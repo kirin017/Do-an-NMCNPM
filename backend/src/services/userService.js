@@ -24,10 +24,9 @@ let hanldeLogin = (username, password) => {
                     userData.errCode = 2;
                     userData.errMessage = 'Tên đăng nhập không tồn tại!.'
                 }
-                
             }else{
                 // return error
-                userData.errCode = 1;
+                userData.errCode = 2;
                 userData.errMessage = 'Tên đăng nhập không tồn tại!.'
             }
             resolve(userData)
@@ -54,6 +53,17 @@ let checkUsername = (username) => {
     })
 }
 
+let getProducts = () => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            let data = await db.Product.findAll();
+            resolve(data)
+        } catch (e){
+            reject(e)
+        }
+    })
+}
 module.exports = {
-    hanldeLogin: hanldeLogin
+    hanldeLogin: hanldeLogin,
+    getProducts: getProducts
 }

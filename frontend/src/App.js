@@ -66,7 +66,7 @@ const App = () => {
                     <Narbar />
                     <SideBar></SideBar>
                     <div style={{ marginTop: '120px', marginLeft: '250px' }}>
-                        {/* <Bills></Bills> */}
+                        <Orders />
                     </div>
                 </Route>
                 <Route exact path="/admin/account">
