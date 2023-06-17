@@ -164,14 +164,14 @@ export default function Dashboard() {
                         <ChevronLeftIcon />
                     </IconButton>
                 </div >
-                {/* <div style={{
+                <div style={{
                     top: 0
                 }}>
                     <List>{mainListItems}</List>
                     <Divider />
                     <List>{secondaryListItems}</List>
                 </div>
-                <Divider /> */}
+                <Divider />
 
             </Drawer>
             <main className={classes.content}>

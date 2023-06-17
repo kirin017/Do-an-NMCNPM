@@ -9,8 +9,9 @@ export default makeStyles((theme) => ({
         flexShrink: 0,
     },
     drawerPaper: {
-        marginTop: "64px",
+        marginTop: "200px",
         backgroundColor: 'inherit',
+
     },
     button: {
         fontSize: '16px',

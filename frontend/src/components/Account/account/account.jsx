@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DataTable from "react-data-table-component"
-import { Box, TextareaAutosize } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+
 
 function AccountManagement() {
     const columns = [
@@ -145,7 +145,26 @@ function AccountManagement() {
             gender: 'male'
         }
     ]
+    const tableStyle = {
+        borderCollapse: 'collapse',
+    };
 
+    const headerCellStyle = {
+        backgroundColor: '#f5f5f5',
+        borderBottom: '1px solid #ddd',
+    };
+
+    const rowCellStyle = {
+        borderBottom: '1px solid #ddd',
+    };
+
+    const evenRowStyle = {
+        backgroundColor: '#f2f2f2',
+    };
+
+    // const hoverRowStyle = {
+    //     backgroundColor: '#f5f5f5',
+    // };
     const [records, setRecords] = useState(data);
     function handleFilter(event) {
         const newData = data.filter(row => {
@@ -153,6 +172,7 @@ function AccountManagement() {
         })
         setRecords(newData)
     }
+
     return (
         <div className='container mt-5'>
             <SearchIcon />
@@ -162,9 +182,19 @@ function AccountManagement() {
                 data={records}
                 selectableRows
                 fixedHeader
+                highlightOnHover
                 pagination
+                style={tableStyle}
+                customStyles={{
+                    headRow: { style: headerCellStyle },
+                    rows: { style: rowCellStyle },
+                    rowsEven: { style: evenRowStyle },
+                    rowsSelected: {},
+                    rowCursor: {},
+                    pagination: {},
+                }}
             ></DataTable>
-        </div>
+        </div >
     )
 }
 export default AccountManagement
