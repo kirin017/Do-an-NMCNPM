@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { useState } from 'react';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Avatar, Button, CssBaseline, TextField,Link,Grid, Box,Typography, Container } from '@material-ui/core'
 import useStyles from './styles'
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -13,42 +16,46 @@ function Copyright(props) {
   );
 }
 
-
 export default function SignIn() {
     const classes = useStyles();
-
+    const history = useHistory();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [warning, setWarning] = useState('');
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-        });
+        // const data = new FormData(event.currentTarget);
+        // setEmail(data.get('email'))
+        // setPassword(data.get('password')) 
+
+        const dataLogin = {
+          username: email,
+          password: password,
+        };
+        axios.post('http://localhost:6969/api/login', dataLogin)
+        .then(response => {
+          console.log('response: ', response.data)
+          if (response.data.errCode===0)
+            history.push('/');
+          else if (response.data.errCode===1)
+            setWarning('Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!');
+          else if (response.data.errCode===2)
+            setWarning('Tên đăng nhập không tồn tại!');
+          else if (response.data.errCode===3)
+            setWarning('Sai mật khẩu!');
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });    
+
     };
 
     return (
         <Container className={classes.margin} component="main" maxWidth="xs">
             <CssBaseline />
-            <Box
-            style = {{
-              border: '1px solid rgba(0, 0, 0, 0.12)',
-              boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
-              width: '1000px',
-              height: '700px',
-              marginLeft: '-270px',
-            }}
-             >
-              <Box
-              sx={{
-                  marginTop: 100,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-              }}
-              >
-                <Avatar 
-                style={{ color: 'white', backgroundColor: '#0099FF'}}
-                sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Box className={classes.box}>
+              <Box sx={{marginTop: 100, display: 'flex', flexDirection: 'column', alignItems: 'center',}}>
+                <Avatar style={{ color: 'white', backgroundColor: '#0099FF'}} sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
@@ -64,6 +71,8 @@ export default function SignIn() {
                     name="email"
                     autoComplete="email"
                     autoFocus
+                    value={email}
+                    onChange={e=>setEmail(e.target.value)}
                     />
                     <TextField
                     margin="normal"
@@ -74,7 +83,10 @@ export default function SignIn() {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    value={password}
+                    onChange={e=>setPassword(e.target.value)}
                     />
+                    <div style={{ color: 'red' }}>{warning}</div>
                     <Button
                     style={{ marginTop: '50px', color: 'white', backgroundColor: '#0099FF'}}
                     type="submit"
@@ -102,7 +114,6 @@ export default function SignIn() {
                     </Grid>
                 </Box>
             </Box>
-          
             <Copyright 
             style={{ marginTop: '40px'}}
             sx={{ mt: 8, mb: 4 }} />

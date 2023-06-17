@@ -9,7 +9,7 @@ import AccountManagement from './components/Account/account/account'
 import Cart from './components/Cart/Cart';
 import SignUp from './components/SignUp/Signup';
 import Dashboard from './dashboard/Dashboard';
-import Bills from './components/Bills/Bills'
+// import Bills from './components/Bills/Bills'
 
 
 const App = () => {
@@ -62,7 +62,7 @@ const App = () => {
                 <Route exact path="/admin/order">
                     <SideBar></SideBar>
                     <div style={{ marginTop: '120px', marginLeft: '250px' }}>
-                        <Bills></Bills>
+                        {/* <Bills></Bills> */}
                     </div>
                 </Route>
                 <Route exact path="/admin/account">
