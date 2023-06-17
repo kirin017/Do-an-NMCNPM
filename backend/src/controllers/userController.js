@@ -17,6 +17,9 @@ let hanldeLogin = async (req, res) => {
         userData
     })
 }
+let hanldeSignUp = async (req, res) => {
+    
+}
 
 module.exports = {
     hanldeLogin: hanldeLogin
