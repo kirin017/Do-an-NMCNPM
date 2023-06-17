@@ -10,6 +10,8 @@ import Cart from './components/Cart/Cart';
 import SignUp from './components/SignUp/Signup';
 import Dashboard from './dashboard/Dashboard';
 // import Bills from './components/Bills/Bills'
+import Orders from './components/Orders/Orders';
+
 
 
 const App = () => {
@@ -54,26 +56,31 @@ const App = () => {
                     </div>
                 </Route>
                 <Route exact path="/admin/product">
+                    <Narbar />
                     <SideBar></SideBar>
-                    <div style={{ marginTop: '40px', marginLeft: '190px' }}>
+                    <div style={{ marginTop: '140px', marginLeft: '190px' }}>
                         <Products></Products>
                     </div>
                 </Route>
                 <Route exact path="/admin/order">
+                    <Narbar />
                     <SideBar></SideBar>
                     <div style={{ marginTop: '120px', marginLeft: '250px' }}>
                         {/* <Bills></Bills> */}
                     </div>
                 </Route>
                 <Route exact path="/admin/account">
-                    <SideBar></SideBar>
-                    <div style={{ marginTop: '120px', marginLeft: '250px' }}>
+                    <Narbar />
+                    <div style={{ marginTop: '200px' }}>
+                        <SideBar></SideBar>
+                    </div>
+                    <div style={{ marginTop: '180px', marginLeft: '250px' }}>
                         <AccountManagement />
                     </div>
                 </Route>
                 <Route exact path="/admin/statistic">
                     <SideBar></SideBar>
-                    <div style={{ marginTop: '120px', marginLeft: '250px' }}>
+                    <div style={{ marginTop: '170px', marginLeft: '250px' }}>
                         <Dashboard />
                     </div>
                 </Route>
