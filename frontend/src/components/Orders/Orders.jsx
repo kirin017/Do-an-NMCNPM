@@ -132,6 +132,22 @@ function OrderManagement() {
     })
     setRecords(newData)
   }
+  const tableStyle = {
+    borderCollapse: 'collapse',
+  };
+
+  const headerCellStyle = {
+    backgroundColor: '#f5f5f5',
+    borderBottom: '1px solid #ddd',
+  };
+
+  const rowCellStyle = {
+    borderBottom: '1px solid #ddd',
+  };
+
+  const evenRowStyle = {
+    backgroundColor: '#f2f2f2',
+  };
   return (
     <div className='container mt-5'>
       <div className='text-end'><input type="text" onChange={handleFilter} /></div>
@@ -141,8 +157,20 @@ function OrderManagement() {
         // selectableRows
         fixedHeader
         pagination
+        selectableRows
+        highlightOnHover
+        TextareaAutosize
+        style={tableStyle}
+        customStyles={{
+          headRow: { style: headerCellStyle },
+          rows: { style: rowCellStyle },
+          rowsEven: { style: evenRowStyle },
+          rowsSelected: {},
+          rowCursor: {},
+          pagination: {},
+        }}
       ></DataTable>
-    </div>
+    </div >
   )
 }
 export default OrderManagement
