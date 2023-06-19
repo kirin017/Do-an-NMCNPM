@@ -14,7 +14,6 @@ let createNewUser = async (data) =>{
         email: data.email,
         gender:
           data.gender == 1 ? "female" : data.gender == 0 ? "male" : "other",
-        typeUser: data.typeUser,
       });
       resolve("create new user succeeded");
     } catch (e) {

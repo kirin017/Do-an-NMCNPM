@@ -2,7 +2,7 @@ import db from '../models/index'
 import bcrypt from "bcryptjs";
 var salt = bcrypt.genSaltSync(10);
 
-let hanldeLogin = (username, password) => {
+let handleLogin = (username, password) => {
     return new Promise(async(resolve, reject) => {
         try {
             let userData = {};    
@@ -40,6 +40,40 @@ let hanldeLogin = (username, password) => {
     })
 }
 
+let hanldeSignUp = (data) => {
+    return new Promise(async(resolve, reject) => {
+        try {
+            let userData = {};    
+            let isExist = await checkUsername(data.username);
+            if (!isExist){
+                // user not already exist
+                let hashPasswordFromBcrypt = await hashUserPassword(data.password);
+                await db.User.create({
+                    name: data.name,
+                    username: data.username,
+                    password: hashPasswordFromBcrypt,
+                    phoneNumber: data.phoneNumber,
+                    email: data.email,
+                    gender:
+                      data.gender == 1 ? "female" : data.gender == 0 ? "male" : "other",
+                    typeUser : 0,
+                  });
+                userData.errCode = 0;
+                userData.errMessage = 'OK';
+                userData.name = data.name;
+                userData.role = data.typeUser
+            }else{
+                // return error
+                userData.errCode = 2;
+                userData.errMessage = 'Tên đăng nhập đã tồn tại!.'
+            }
+            resolve(userData)
+        } catch(e){
+            reject(e)
+        }
+    })
+}
+
 let checkUsername = (username) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -67,7 +101,19 @@ let getProducts = () => {
         }
     })
 }
+let hashUserPassword = (password) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+          let hashPassword = await bcrypt.hashSync(password, salt);
+          resolve(hashPassword);
+        } catch (e) {
+          reject(e);
+        }
+      });
+
+};
 module.exports = {
-    hanldeLogin: hanldeLogin,
-    getProducts: getProducts
+    handleLogin: handleLogin,
+    getProducts: getProducts,
+    hanldeSignUp: hanldeSignUp
 }
