@@ -5,7 +5,7 @@ import useStyles from './styles';
 import SubMenu from './Menu/SubMenu';
 import { Link } from 'react-router-dom';
 
-const Narbar = () => {
+const Narbar = ({userName, typeUser, setUserName, setTypeUser}) => {
     const classes = useStyles();
 
     return (
@@ -13,29 +13,36 @@ const Narbar = () => {
             <AppBar position='fixed' className={classes.appBar} color='inherit'>
                 <Toolbar>
                     <Typography variant='h6' className={classes.title} color='inherit' >
-                        
-                        
                         <Button  component={Link} to="/" style={{ fontSize: '40px' ,  fontFamily: 'cursive', color : '#1E90FF',   fontWeight: 'bold'}}>
                         <img src='https://upload.wikimedia.org/wikipedia/en/thumb/f/fb/Miami_Heat_logo.svg/1200px-Miami_Heat_logo.svg.png' alt="Commerce.js" height='100px' className={classes.image} />
                         MIAMI HEAT      
                         </Button>
                     </Typography>
                     <div className={classes.grow} />
-                    <Button variant="outlined" component={Link} to="/login" style={{ marginRight: "20px" }}>
-                        Đăng nhập
-                    </Button>
-                    <Button variant="outlined" component={Link} to="/signup" style={{ marginRight: "20px" }}>
-                        Đăng ký
-                    </Button>
-                    <div className={classes.button} style={{ marginRight: "10px" }}>
-                        <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-                            <Badge badgeContent={2} color='secondary'></Badge>
-                                <ShoppingCart/>
-                        </IconButton>
-                    </div>
-                    <Button variant="outlined" >
-                        Đăng xuất
-                    </Button>
+                    {typeUser < 0 ? (
+                        <>
+                            <Button variant="outlined" component={Link} to="/login" style={{ marginRight: "20px" }}>
+                                Đăng nhập
+                            </Button>
+                            <Button variant="outlined" component={Link} to="/signup" style={{ marginRight: "20px" }}>
+                                Đăng ký
+                            </Button>    
+                        </>
+                    ):(
+                        <>
+                            <div style={{ marginRight: "10px", fontSize: 20 }} >{userName}</div>
+                            <div className={classes.button} style={{ marginRight: "10px" }}>
+                                <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
+                                    <Badge badgeContent={2} color='secondary'></Badge>
+                                    <ShoppingCart />
+                                </IconButton>
+                            </div>
+                            <Button variant="outlined"
+                                onClick={()=>{setTypeUser(-1); setUserName('');}}>
+                                Đăng xuất
+                            </Button>
+                        </>
+                    )}  
                 </Toolbar>
                 <Toolbar
                 style = {{ backgroundColor: '#E8E8E8'}}

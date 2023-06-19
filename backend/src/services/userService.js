@@ -1,11 +1,10 @@
-import db from '../models/user'
+import db from '../models/index'
 
 let hanldeLogin = (username, password) => {
-    new Promise(async(resolve, reject) => {
+    return new Promise(async(resolve, reject) => {
         try {
-            let userData = {};
-            // resolve(userData)
-            let isExist =  checkUsername(username);
+            let userData = {};    
+            let isExist = await checkUsername(username);
             if (isExist){
                 // user already exist
                 let user = await db.User.findOne({
@@ -16,7 +15,8 @@ let hanldeLogin = (username, password) => {
                     if (password === user.password){
                         userData.errCode = 0;
                         userData.errMessage = 'OK';
-                        userData.user = user.name;
+                        userData.name = user.name;
+                        userData.role = user.typeUser
                     }else{
                         userData.errCode = 3;
                         userData.errMessage = 'Sai mật khẩu';
@@ -25,10 +25,9 @@ let hanldeLogin = (username, password) => {
                     userData.errCode = 2;
                     userData.errMessage = 'Tên đăng nhập không tồn tại!.'
                 }
-                
             }else{
                 // return error
-                userData.errCode = 1;
+                userData.errCode = 2;
                 userData.errMessage = 'Tên đăng nhập không tồn tại!.'
             }
             resolve(userData)
@@ -39,22 +38,33 @@ let hanldeLogin = (username, password) => {
 }
 
 let checkUsername = (username) => {
-    new Promise(async (resolve, reject) => {
-            try {
-                let user = await db.User.findOne({
-                    where: { username : username }
-                });
-                if (user) {
-                    resolve(true)
-                }else{
-                    resolve(false)
-                }
-            } catch (e) {
-                reject(e);
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.User.findOne(
+                { where: { username: username }}
+            );
+            if (user) {
+                resolve(true)
+            }else{
+                resolve(false)
             }
+        } catch (e) {
+            reject(e);
+        }
     })
 }
 
+let getProducts = () => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            let data = await db.Product.findAll();
+            resolve(data)
+        } catch (e){
+            reject(e)
+        }
+    })
+}
 module.exports = {
-    hanldeLogin: hanldeLogin
+    hanldeLogin: hanldeLogin,
+    getProducts: getProducts
 }

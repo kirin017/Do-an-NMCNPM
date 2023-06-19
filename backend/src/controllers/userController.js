@@ -6,10 +6,11 @@ let hanldeLogin = async (req, res) => {
     if (!username || !password){
         return res.status(200).json({
             errCode: 1,
-            message: 'Missing input parameter!'
+            message: 'Missing input parameter!',
+            user: username,
+            pw: password,
         })
     }
-
     let userData = await userService.hanldeLogin(username, password);
     return res.status(200).json({
         errCode: userData.errCode,
@@ -17,7 +18,16 @@ let hanldeLogin = async (req, res) => {
         userData
     })
 }
-
+let hanldeSignUp = async (req, res) => {
+    
+}
+let getallProducts = async (req, res) => {
+        productData = await userService.getProducts();
+        return res.status(200).json({
+            productData
+        })
+}
 module.exports = {
-    hanldeLogin: hanldeLogin
+    hanldeLogin: hanldeLogin,
+    getallProducts: getallProducts
 }
