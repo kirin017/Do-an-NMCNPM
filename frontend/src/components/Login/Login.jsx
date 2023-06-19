@@ -27,12 +27,12 @@ export default function SignIn({setUserName, setTypeUser}) {
         // const data = new FormData(event.currentTarget);
         // setEmail(data.get('email'))
         // setPassword(data.get('password')) 
-
+      
         const dataLogin = {
           username: email,
           password: password,
         };
-        axios.post('http://localhost:6969/api/login', dataLogin)
+        axios.post('http://localhost:8081/api/login', dataLogin)
         .then(response => {
           console.log('response: ', response.data)
           if (response.data.errCode===0){

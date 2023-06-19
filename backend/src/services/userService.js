@@ -1,4 +1,6 @@
 import db from '../models/index'
+import bcrypt from "bcryptjs";
+var salt = bcrypt.genSaltSync(10);
 
 let hanldeLogin = (username, password) => {
     return new Promise(async(resolve, reject) => {
@@ -12,7 +14,8 @@ let hanldeLogin = (username, password) => {
                 });
                 if (user) {
                     // compare password
-                    if (password === user.password){
+                    let check = await bcrypt.compareSync(password, user.password);
+                    if (check){
                         userData.errCode = 0;
                         userData.errMessage = 'OK';
                         userData.name = user.name;
@@ -22,7 +25,7 @@ let hanldeLogin = (username, password) => {
                         userData.errMessage = 'Sai mật khẩu';
                     }
                 } else{
-                    userData.errCode = 2;
+                    userData.errCode = 2; 
                     userData.errMessage = 'Tên đăng nhập không tồn tại!.'
                 }
             }else{
