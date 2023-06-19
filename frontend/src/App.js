@@ -22,31 +22,31 @@ const App = () => {
         <Router>
             <Switch>
                 <Route exact path="/">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser}/>
+                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
                     <div style={{ marginTop: '100px' }}>
                         <Products />
                     </div>
                 </Route>
                 <Route exact path="/login">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser}/>
+                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
                     <div style={{ marginTop: '170px' }}>
-                        <Login setUserName={setUserName} setTypeUser={setTypeUser}/>
+                        <Login setUserName={setUserName} setTypeUser={setTypeUser} />
                     </div>
                 </Route>
                 <Route exact path="/signup">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser}/>
+                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
                     <div style={{ marginTop: '170px' }}>
                         <SignUp />
                     </div>
                 </Route>
                 <Route exact path="/cart">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser}/>
+                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
                     <div style={{ marginTop: '100px' }}>
                         <Cart></Cart>
                     </div>
                 </Route>
                 <Route exact path="/product/:id">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser}/>
+                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
                     <div style={{ marginTop: '170px' }}>
                         <ProductDetail></ProductDetail>
                     </div>
@@ -67,7 +67,7 @@ const App = () => {
                 <Route exact path="/admin/order">
                     <Narbar />
                     <SideBar></SideBar>
-                    <div style={{ marginTop: '120px', marginLeft: '250px' }}>
+                    <div style={{ marginTop: '200px', marginLeft: '250px' }}>
                         <Orders />
                     </div>
                 </Route>
@@ -81,8 +81,7 @@ const App = () => {
                     </div>
                 </Route>
                 <Route exact path="/admin/statistic">
-                    <SideBar></SideBar>
-                    <div style={{ marginTop: '170px', marginLeft: '250px' }}>
+                    <div style={{ marginTop: '170px', marginLeft: '50px' }}>
                         <Dashboard />
                     </div>
                 </Route>
