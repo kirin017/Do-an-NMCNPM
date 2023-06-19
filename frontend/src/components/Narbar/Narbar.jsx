@@ -1,10 +1,9 @@
 import React from 'react';
-import { AppBar, Toolbar, IconButton, Badge,  Typography, Button } from '@material-ui/core';
-import { ShoppingCart } from '@material-ui/icons';
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
 import useStyles from './styles';
 import SubMenu from './Menu/SubMenu';
 import { Link } from 'react-router-dom';
-
+import AccountMenu from'./Menu/AccountMenu'
 const Narbar = ({userName, typeUser, setUserName, setTypeUser}) => {
     const classes = useStyles();
 
@@ -30,7 +29,8 @@ const Narbar = ({userName, typeUser, setUserName, setTypeUser}) => {
                         </>
                     ):(
                         <>
-                            <div style={{ marginRight: "10px", fontSize: 20 }} >{userName}</div>
+                        <AccountMenu userName={userName} setUserName={setUserName} setTypeUser={setTypeUser}></AccountMenu>
+                            {/* <div style={{ marginRight: "10px", fontSize: 20 }} >{userName}</div>
                             <div className={classes.button} style={{ marginRight: "10px" }}>
                                 <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
                                     <Badge badgeContent={2} color='secondary'></Badge>
@@ -40,7 +40,7 @@ const Narbar = ({userName, typeUser, setUserName, setTypeUser}) => {
                             <Button variant="outlined"
                                 onClick={()=>{setTypeUser(-1); setUserName('');}}>
                                 Đăng xuất
-                            </Button>
+                            </Button> */}       
                         </>
                     )}  
                 </Toolbar>
