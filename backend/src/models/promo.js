@@ -18,13 +18,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
       },
-    statusName: DataTypes.STRING,
     startDate: DataTypes.DATE,
     endDate: DataTypes.DATE,
     promoValue: DataTypes.FLOAT,
   }, {
     sequelize,
     modelName: 'Promo',
+    tableName: 'Promo'
   });
   return Promo;
 };

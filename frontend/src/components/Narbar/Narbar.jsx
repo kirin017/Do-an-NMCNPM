@@ -29,18 +29,8 @@ const Narbar = ({userName, typeUser, setUserName, setTypeUser}) => {
                         </>
                     ):(
                         <>
-                        <AccountMenu userName={userName} setUserName={setUserName} setTypeUser={setTypeUser}></AccountMenu>
-                            {/* <div style={{ marginRight: "10px", fontSize: 20 }} >{userName}</div>
-                            <div className={classes.button} style={{ marginRight: "10px" }}>
-                                <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
-                                    <Badge badgeContent={2} color='secondary'></Badge>
-                                    <ShoppingCart />
-                                </IconButton>
-                            </div>
-                            <Button variant="outlined"
-                                onClick={()=>{setTypeUser(-1); setUserName('');}}>
-                                Đăng xuất
-                            </Button> */}       
+                        <AccountMenu userName={userName} setUserName={setUserName} setTypeUser={setTypeUser}>
+                        </AccountMenu>     
                         </>
                     )}  
                 </Toolbar>
