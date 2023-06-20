@@ -6,7 +6,6 @@ export default makeStyles(() => ({
         boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
         width: '1000px',
         height: 'auto',
-        marginLeft: '20vh'
     },
     root: {
         border: 'none',

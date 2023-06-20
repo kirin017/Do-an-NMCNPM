@@ -31,8 +31,9 @@ function ProductDetail() {
 
 
     return (
+        <div style={{display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
         <Box className={classes.box}>
-            <Grid container spacing={5} styles={{  }}>
+            <Grid container spacing={5}>
             <Grid item xs={6}>
                 <Card className={classes.root}
                 style={{display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
@@ -60,6 +61,7 @@ function ProductDetail() {
             </Grid>
             </Grid>
         </Box>
+        </div>
     );
 }
 

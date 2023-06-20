@@ -47,7 +47,7 @@ const App = () => {
                 </Route>
                 <Route exact path="/product/:id">
                     <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
-                    <div style={{ marginTop: '170px' }}>
+                    <div style={{ marginTop: '230px' }}>
                         <ProductDetail></ProductDetail>
                     </div>
                 </Route>

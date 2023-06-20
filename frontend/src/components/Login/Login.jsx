@@ -34,7 +34,7 @@ export default function SignIn({setUserName, setTypeUser}) {
         };
         axios.post('http://localhost:8081/api/login', dataLogin)
         .then(response => {
-          console.log('response: ', response.data)
+          // console.log('response: ', response.data)
           if (response.data.errCode===0){
             setUserName(email)
             if (response.data.userData.role===0){

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp({ setTypeUser}) {
+export default function SignUp() {
   const classes = useStyles();
   const history = useHistory();
   const [email, setEmail] = useState('');
@@ -56,11 +56,9 @@ export default function SignUp({ setTypeUser}) {
     };
     axios.post('http://localhost:8081/api/signup', dataSignUp)
         .then(response => {
-          console.log('response: ', response.data)
+          // console.log('response: ', response.data.errCode)
           if (response.data.errCode===0){
-            setTypeUser(0);
-            history.push('/');
-            
+            history.push('/login');
           }
           else if (response.data.errCode===1)
             setWarning('Vui lòng nhập đầy đủ thông tin!');
