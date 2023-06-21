@@ -149,12 +149,18 @@ function OrderManagement() {
   };
   return (
     <div className='container mt-5'>
-      <div className='text-end' style={{
-        display: 'flex',
-        alignItems: 'center',
-        border: '0.5px',
-        padding: '3px',
-      }}><input type="text" placeholder='Search...' onChange={handleFilter} /><SearchOutlined /></div>
+            <div className='text-end' style={{
+                display: 'flex',
+                alignItems: 'center',
+                border: '0.5px solid lightgray',
+                padding: '3px',
+                maxWidth: '190px'
+            }}><input type="text" placeholder='Search...' onChange={handleFilter} style={{
+                border: 'none',
+                outline: 'none',
+                backgroundColor: 'transparent'
+            }} /><SearchOutlined />
+            </div>
       <DataTable
         columns={columns}
         data={records}
