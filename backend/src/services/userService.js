@@ -91,16 +91,6 @@ let checkUsername = (username) => {
     })
 }
 
-let getProducts = () => {
-    return new Promise (async (resolve, reject) => {
-        try {
-            let data = await db.Product.findAll();
-            resolve(data)
-        } catch (e){
-            reject(e)
-        }
-    })
-}
 let hashUserPassword = (password) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -114,6 +104,5 @@ let hashUserPassword = (password) => {
 };
 module.exports = {
     handleLogin: handleLogin,
-    getProducts: getProducts,
-    hanldeSignUp: hanldeSignUp
+    hanldeSignUp: hanldeSignUp,
 }

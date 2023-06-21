@@ -40,14 +40,8 @@ let hanldeSignUp = async (req, res) => {
     })
     
 }
-let getallProducts = async (req, res) => {
-        productData = await userService.getProducts();
-        return res.status(200).json({
-            productData
-        })
-}
+
 module.exports = {
     handleLogin: handleLogin,
-    getallProducts: getallProducts,
-    hanldeSignUp: hanldeSignUp
+    hanldeSignUp: hanldeSignUp,
 }
