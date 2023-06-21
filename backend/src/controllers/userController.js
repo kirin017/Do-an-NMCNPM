@@ -43,5 +43,5 @@ let hanldeSignUp = async (req, res) => {
 
 module.exports = {
     handleLogin: handleLogin,
-    hanldeSignUp: hanldeSignUp,
+    hanldeSignUp: hanldeSignUp, 
 }
