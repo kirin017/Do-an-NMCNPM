@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DataTable from "react-data-table-component"
-import SearchIcon from '@material-ui/icons/Search';
+import { SearchOutlined } from '@material-ui/icons';
 
 
 function AccountManagement() {
@@ -175,8 +175,12 @@ function AccountManagement() {
 
     return (
         <div className='container mt-5'>
-            <SearchIcon />
-            <div className='text-end'><input type="text" onChange={handleFilter} /></div>
+            <div className='text-end' style={{
+                display: 'flex',
+                alignItems: 'center',
+                border: '0.5px',
+                padding: '3px',
+            }}><input type="text" placeholder='Search...' onChange={handleFilter} /><SearchOutlined /></div>
             <DataTable
                 columns={columns}
                 data={records}

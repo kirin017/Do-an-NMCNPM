@@ -9,10 +9,10 @@ import Login from './components/Login/Login';
 import AccountManagement from './components/Account/account/account'
 import Cart from './components/Cart/Cart';
 import SignUp from './components/SignUp/Signup';
-import Dashboard from './dashboard/Dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 // import Bills from './components/Bills/Bills'
 import Orders from './components/Orders/Orders';
-
+import Topbar from './components/admin/Topbar'
 
 
 const App = () => {
@@ -65,18 +65,18 @@ const App = () => {
                     </div>
                 </Route>
                 <Route exact path="/admin/order">
-                    <Narbar />
+                    <Topbar></Topbar>
                     <SideBar></SideBar>
-                    <div style={{ marginTop: '200px', marginLeft: '250px' }}>
+                    <div style={{ marginTop: '50px', marginLeft: '250px' }}>
                         <Orders />
                     </div>
                 </Route>
                 <Route exact path="/admin/account">
-                    <Narbar />
-                    <div style={{ marginTop: '200px' }}>
+                    <Topbar></Topbar>
+                    <div style={{ marginTop: '50px' }}>
                         <SideBar></SideBar>
                     </div>
-                    <div style={{ marginTop: '180px', marginLeft: '250px' }}>
+                    <div style={{ marginTop: '10px', marginLeft: '250px' }}>
                         <AccountManagement />
                     </div>
                 </Route>

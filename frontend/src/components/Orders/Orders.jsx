@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import DataTable from "react-data-table-component"
-import styled from 'styled-components';
-import { Box, TextareaAutosize } from '@material-ui/core';
-
+import { Box } from '@material-ui/core';
+import { SearchOutlined } from '@material-ui/icons';
 function OrderManagement() {
   const columns = [
     {
@@ -150,7 +149,12 @@ function OrderManagement() {
   };
   return (
     <div className='container mt-5'>
-      <div className='text-end'><input type="text" onChange={handleFilter} /></div>
+      <div className='text-end' style={{
+        display: 'flex',
+        alignItems: 'center',
+        border: '0.5px',
+        padding: '3px',
+      }}><input type="text" placeholder='Search...' onChange={handleFilter} /><SearchOutlined /></div>
       <DataTable
         columns={columns}
         data={records}
