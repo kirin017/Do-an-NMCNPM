@@ -4,7 +4,31 @@ import useStyles from './styles';
 import SubMenu from './Menu/SubMenu';
 import { Link } from 'react-router-dom';
 import AccountMenu from'./Menu/AccountMenu'
-const Narbar = ({userName, typeUser, setUserName, setTypeUser}) => {
+
+function getCookieValue(cookieName) {
+    // Tách các cookie thành một mảng
+    var cookies = document.cookie.split(';');
+  
+    // Lặp qua từng cookie
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+  
+      // Kiểm tra nếu tên cookie trùng khớp
+      if (cookie.indexOf(cookieName + '=') === 0) {
+        // Trích xuất giá trị của cookie và trả về
+        return cookie.substring(cookieName.length + 1);
+      }
+    }
+  
+    // Trả về null nếu không tìm thấy cookie
+    return null;
+  }
+
+var typeUserValue = getCookieValue('role');
+// var UserNameValue = getCookieValue('username');
+
+
+const Narbar = () => {
     const classes = useStyles();
 
     return (
@@ -18,7 +42,8 @@ const Narbar = ({userName, typeUser, setUserName, setTypeUser}) => {
                         </Button>
                     </Typography>
                     <div className={classes.grow} />
-                    {typeUser < 0 ? (
+
+                    {typeUserValue === null ? (
                         <>
                             <Button variant="outlined" component={Link} to="/login" style={{ marginRight: "20px" }}>
                                 Đăng nhập
@@ -27,12 +52,13 @@ const Narbar = ({userName, typeUser, setUserName, setTypeUser}) => {
                                 Đăng ký
                             </Button>    
                         </>
-                    ):(
-                        <>
-                        <AccountMenu userName={userName} setUserName={setUserName} setTypeUser={setTypeUser}>
-                        </AccountMenu>     
-                        </>
-                    )}  
+                    ) : (
+                        typeUserValue === '0' || typeUserValue === '1' ? (
+                            <>
+                                <AccountMenu />
+                            </>
+                        ) : null
+                    )}
                 </Toolbar>
                 <Toolbar
                 style = {{ backgroundColor: '#E8E8E8'}}

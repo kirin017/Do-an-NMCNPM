@@ -12,6 +12,39 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import { useHistory } from 'react-router-dom';
 
+function deleteAllCookies() {
+  var cookies = document.cookie.split(';');
+
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i];
+    var eqPos = cookie.indexOf('=');
+    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+  }
+}
+
+function getCookieValue(cookieName) {
+  // Tách các cookie thành một mảng
+  var cookies = document.cookie.split(';');
+
+  // Lặp qua từng cookie
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i].trim();
+
+    // Kiểm tra nếu tên cookie trùng khớp
+    if (cookie.indexOf(cookieName + '=') === 0) {
+      // Trích xuất giá trị của cookie và trả về
+      return cookie.substring(cookieName.length + 1);
+    }
+  }
+
+  // Trả về null nếu không tìm thấy cookie
+  return null;
+}
+
+// var typeUserValue = getCookieValue('role');
+var userName = getCookieValue('username');
+
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
@@ -43,7 +76,7 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-export default function CustomizedMenus( {userName, setUserName, setTypeUser}) {
+export default function CustomizedMenus( ) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const history = useHistory();
   const handleClick = (event) => {
@@ -76,7 +109,7 @@ export default function CustomizedMenus( {userName, setUserName, setTypeUser}) {
         <ListItem
                 button
                 onClick={()=>{
-                    history.push('/cart');
+                    history.push('/accountsetting');
                 }}
                 >
                 <ListItemIcon>
@@ -115,9 +148,9 @@ export default function CustomizedMenus( {userName, setUserName, setTypeUser}) {
           <ListItem
                 button
                 onClick={()=>{
-                    setTypeUser(-1); 
-                    setUserName('');
+                    deleteAllCookies();
                     history.push('/');
+                    history.go(0);
                 }}
                 >
                 <ListItemIcon>

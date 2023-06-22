@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import Products from './components/Products/Products';
 import Narbar from './components/Narbar/Narbar';
 import SideBar from './components/SideBar/SideBar';
@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import AccountManagement from './components/Account/account/account'
 import Cart from './components/Cart/Cart';
 import SignUp from './components/SignUp/Signup';
+import AccountSetting from './components/Account/account/AccountSetting'
 import Dashboard from './components/dashboard/Dashboard';
 // import Bills from './components/Bills/Bills'
 import Orders from './components/Orders/Orders';
@@ -16,42 +17,47 @@ import Topbar from './components/admin/Topbar'
 
 
 const App = () => {
-    const [typeUser, setTypeUser] = useState(-1);
-    const [userName, setUserName] = useState('');
     return (
         <Router>
             <Switch>
                 <Route exact path="/">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
+                    <Narbar  />
                     <div style={{ marginTop: '100px' }}>
                         <Products />
                     </div>
                 </Route>
                 <Route exact path="/login">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
+                    <Narbar  />
                     <div style={{ marginTop: '170px' }}>
-                        <Login setUserName={setUserName} setTypeUser={setTypeUser} />
+                        <Login />
                     </div>
                 </Route>
                 <Route exact path="/signup">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
+                    <Narbar  />
                     <div style={{ marginTop: '170px' }}>
                         <SignUp />
                     </div>
                 </Route>
+                <Route exact path="/accountsetting">
+                    <Narbar />
+                    <div style={{ marginTop: '170px' }}>
+                        <AccountSetting />
+                    </div>
+                </Route>
                 <Route exact path="/cart">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
+                    <Narbar  />
                     <div style={{ marginTop: '100px' }}>
                         <Cart></Cart>
                     </div>
                 </Route>
                 <Route exact path="/product/:id">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
+                    <Narbar />
                     <div style={{ marginTop: '230px' }}>
                         <ProductDetail></ProductDetail>
                     </div>
                 </Route>
                 <Route exact path="/admin">
+                    <Narbar />
                     <SideBar></SideBar>
                     <div style={{ marginTop: '120px', marginLeft: '250px' }}>
                         Giao diện trang chủ admin

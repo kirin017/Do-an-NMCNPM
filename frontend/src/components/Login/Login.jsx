@@ -16,7 +16,7 @@ function Copyright(props) {
   );
 }
 
-export default function SignIn({setUserName, setTypeUser}) {
+export default function SignIn() {
     const classes = useStyles();
     const history = useHistory();
     const [email, setEmail] = useState('');
@@ -32,26 +32,40 @@ export default function SignIn({setUserName, setTypeUser}) {
           username: email,
           password: password,
         };
-        axios.post('http://localhost:8081/api/login', dataLogin)
+        axios.post('http://localhost:8081/api/login', dataLogin, {withCredentials: true})
         .then(response => {
-          // console.log('response: ', response.data)
-          if (response.data.errCode===0){
-            setUserName(email)
-            if (response.data.userData.role===0){
-              setTypeUser(0);
-              history.push('/');
-            }
-            else{
-              setTypeUser(1);
-              history.push('/admin')
-            } 
+          if(!response.data.succeed) setWarning(response.data.message)
+          
+
+          if (response.data.data.role===0){
+            history.push('/');
+            history.go(0);
           }
-          else if (response.data.errCode===1)
-            setWarning('Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!');
-          else if (response.data.errCode===2)
-            setWarning('Tên đăng nhập không tồn tại!');
-          else if (response.data.errCode===3)
-            setWarning('Sai mật khẩu!');
+          else{
+            history.push('/admin')
+            history.go(0);
+          } 
+
+
+
+          // // console.log('response: ', response.data)
+          // if (response.data.errCode===0){
+          //   setUserName(response.data.data.username)
+          //   if (response.data.userData.role===0){
+          //     setTypeUser(0);
+          //     history.push('/');
+          //   }
+          //   else{
+          //     setTypeUser(1);
+          //     history.push('/admin')
+          //   } 
+          // }
+          // else if (response.data.errCode===1)
+          //   setWarning('Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!');
+          // else if (response.data.errCode===2)
+          //   setWarning('Tên đăng nhập không tồn tại!');
+          // else if (response.data.errCode===3)
+          //   setWarning('Sai mật khẩu!');
         })
         .catch(error => {
           console.error('Error:', error);

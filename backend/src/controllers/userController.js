@@ -7,17 +7,24 @@ let handleLogin = async (req, res) => {
         return res.status(200).json({
             errCode: 1,
             message: 'Missing input parameter!',
-            user: username,
-            pw: password,
         })
     }
+
     let userData = await userService.handleLogin(username, password);
-    return res.status(200).json({
-        errCode: userData.errCode,
-        message: userData.errMessage,
-        userData
+
+    if(!userData.succeed) return res.json({message: 'Login failed'})
+
+    res.cookie('username', userData.data.username, {
+        maxAge: 24*60*60*1000 // 24h
     })
+
+    res.cookie('role', userData.data.role, {
+        maxAge: 24*60*60*1000 // 24h
+    })
+
+    return res.status(200).json(userData)
 }
+
 let hanldeSignUp = async (req, res) => {
     let data = req.body
     if (!data.username || !data.name || !data.password || !data.phoneNumber|| !data.email|| data.gender == undefined){
@@ -40,8 +47,24 @@ let hanldeSignUp = async (req, res) => {
     })
     
 }
+let handleGetUser = async(req, res ) => {
+    let user = await userService.getUser(req.username)
+    return res.status(200).json({
+        succeed: true,
+        message: 'ok',
+        data: user
+    })
+}
+
+let handleLogout = async (req, res) =>  {
+    res.cookie('username', '', {maxAge: 0})
+    res.cookie('role', '', {maxAge: 0})
+    res.json({msg: 'Log out successfully'})
+}
 
 module.exports = {
     handleLogin: handleLogin,
     hanldeSignUp: hanldeSignUp, 
+    handleGetUser: handleGetUser,
+    handleLogout
 }
