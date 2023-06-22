@@ -1,6 +1,6 @@
 import React from 'react';
 // import { useEffect, useState } from 'react';
-import { Grid, Box, Button } from '@material-ui/core';
+import { Grid, Box, Button, Typography } from '@material-ui/core';
 import CartItem from './CartItem/CartItem'
 import useStyles from './styles';
 // import axios from 'axios';
@@ -13,7 +13,7 @@ const products = [
 { id: 5, name: 'Áo Adidas Juventus', description: 'Áo bóng đá nam Adidas Juventus Home Jersey', price:'199.000', image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6a8e5ed538544c6d9ffbaa250114e25e_9366/Ao_djau_san_nha_Juventus_DJen_DW5455_01_laydown.jpg' },
 ];
 
-const Products = () => { 
+const Cart = ({ typeUser }) => { 
   const classes = useStyles()
 
   // const [products, setproducts] = useState([]);
@@ -32,26 +32,37 @@ const Products = () => {
   
 
   return (
-    <main className={classes.content}>
-      <div className={classes.toolbar} />
-      <div className={classes.boxContent}>
-      <Box className={classes.box}>
-          <Grid container justifyContent="center" spacing={2}>
-            { products.length > 0 &&
-              products.map((product) => (
-              <Grid item key={product.id} xs={12} sm={6} md={4} lg={4}>
-                <CartItem product={product} />
+    <>
+      {(typeUser===0) ? (
+        <main className={classes.content}>
+          <Typography className={classes.typo}>
+            Giỏ hàng của bạn
+          </Typography>
+          <div className={classes.boxContent}>
+          
+            <Box className={classes.box}>
+              <Grid container justifyContent="center" spacing={2}>
+                { products.length > 0 &&
+                  products.map((product) => (
+                  <Grid item key={product.id} xs={12} sm={6} md={4} lg={4}>
+                    <CartItem product={product} />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-        </Box>
-        <div>
-            <Button className={classes.button}>Xóa tất cả</Button>
-            <Button className={classes.button}>Thanh toán</Button>      
-        </div>
-      </div>
-    </main>
+            </Box>
+            <div>
+                <Button className={classes.button}>Xóa tất cả</Button>
+                <Button className={classes.button}>Thanh toán</Button>      
+            </div>
+          </div>
+        </main>
+      ):(
+        <Typography className={classes.typo}>
+          Vui lòng đăng nhập để xem giỏ hàng.
+        </Typography>
+      )}
+    </>
   );
 };
 
-export default Products;
+export default Cart;

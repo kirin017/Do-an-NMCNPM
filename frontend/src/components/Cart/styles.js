@@ -9,7 +9,6 @@ export default makeStyles((theme) => ({
     alignItems: 'center', 
     justifyContent: 'center',
   },
-  toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
@@ -25,5 +24,9 @@ export default makeStyles((theme) => ({
     marginTop: '30px',
     marginLeft: '30px',
     border: '1px solid #000',
+  },
+  typo:{
+    fontSize: 30,
+    marginBottom: 40,
   },
 }));

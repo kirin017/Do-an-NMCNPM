@@ -41,8 +41,8 @@ const App = () => {
                 </Route>
                 <Route exact path="/cart">
                     <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
-                    <div style={{ marginTop: '100px' }}>
-                        <Cart></Cart>
+                    <div style={{ marginTop: '190px' }}>
+                        <Cart typeUser={typeUser}></Cart>
                     </div>
                 </Route>
                 <Route exact path="/product/:id">

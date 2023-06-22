@@ -6,6 +6,7 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
+import Toast from '../Toast/Toast';
 
 function Copyright(props) {
   return (
@@ -37,6 +38,7 @@ export default function SignUp() {
   const [gender, setGenDer] = useState('');
   const [username, setUserName] = useState('');
   const [warning, setWarning] = useState('');
+  const [showToast, setShowToast] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
     // const data = new FormData(event.currentTarget);
@@ -58,6 +60,7 @@ export default function SignUp() {
         .then(response => {
           // console.log('response: ', response.data.errCode)
           if (response.data.errCode===0){
+            setShowToast(true)
             history.push('/login');
           }
           else if (response.data.errCode===1)
@@ -225,6 +228,7 @@ export default function SignUp() {
           style={{ marginTop: '40px'}}
           sx={{ mt: 5 }} />
         </Box>
+        {(showToast) ? (<Toast message={"Đăng ký tài khoản thành công"}/>) : (<></>)}
       </Container>
   );
 }
