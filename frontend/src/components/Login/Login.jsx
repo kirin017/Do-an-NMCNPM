@@ -5,6 +5,7 @@ import { Avatar, Button, CssBaseline, TextField,Link,Grid, Box,Typography, Conta
 import useStyles from './styles'
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import Toast from '../Toast/Toast';
 
 function Copyright(props) {
   return (
@@ -22,12 +23,13 @@ export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [warning, setWarning] = useState('');
+    const [showToast, setShowToast] = useState(false);
     const handleSubmit = (event) => {
         event.preventDefault();
         // const data = new FormData(event.currentTarget);
         // setEmail(data.get('email'))
         // setPassword(data.get('password')) 
-      
+        
         const dataLogin = {
           username: email,
           password: password,
@@ -141,6 +143,7 @@ export default function SignIn() {
             style={{ marginTop: '40px'}}
             sx={{ mt: 8, mb: 4 }} />
             </Box>
+            {(showToast) ? (<Toast message={"Đăng nhập thành công"}/>) : (<></>)}
         </Container>
     );
 }

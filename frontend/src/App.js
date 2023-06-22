@@ -14,7 +14,7 @@ import Dashboard from './components/dashboard/Dashboard';
 // import Bills from './components/Bills/Bills'
 import Orders from './components/Orders/Orders';
 import Topbar from './components/admin/Topbar'
-
+import HistoryOrders from './components/HistoryOrders/HistoryOrders';
 
 const App = () => {
     return (
@@ -54,6 +54,12 @@ const App = () => {
                     <Narbar />
                     <div style={{ marginTop: '230px' }}>
                         <ProductDetail></ProductDetail>
+                    </div>
+                </Route>
+                <Route exact path="/historyOrder">
+                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
+                    <div style={{ marginTop: '190px', marginLeft: '40px' }}>
+                        <HistoryOrders typeUser={typeUser}/>
                     </div>
                 </Route>
                 <Route exact path="/admin">
