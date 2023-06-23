@@ -35,8 +35,10 @@ function SubMenu() {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <Button>Giày</Button>
-            <Button>Áo quần đá bóng</Button>
+            <Button>Phụ kiện thể thao</Button>
+            <Button>Áo thể thao</Button>
+            <Button>Quần thể thao</Button>
+            <Button>Giày thể thao</Button>
         </div>
       </Popover>
     </div>
