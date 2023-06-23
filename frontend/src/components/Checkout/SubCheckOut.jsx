@@ -240,15 +240,6 @@ export default function SubCheckOut() {
                         >
                             Submit
                         </Button>
-                        <Grid container>
-                            <Grid item
-                                style={{ marginTop: '20px' }}
-                            >
-                                <Link href="/login" variant="body2">
-                                    {"Already have an account? Log in"}
-                                </Link>
-                            </Grid>
-                        </Grid>
                     </Box>
                 </Box>
                 <Copyright
