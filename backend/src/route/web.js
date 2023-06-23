@@ -1,8 +1,9 @@
 import express from "express";
 import homeController from "../controllers/homeController";
-import userController from "../controllers/userController"
-import productController from "../controllers/productController"
-import cartController from "../controllers/cartController"
+import userController from "../controllers/userController";
+import productController from "../controllers/productController";
+import cartController from "../controllers/cartController";
+import orderController from "../controllers/orderController";
 
 let router = express.Router()
 
@@ -35,7 +36,11 @@ let initWebRoutes = (app) => {
     router.post('/api/productsCart/changequantity', cartController.updateProductQuantCart);
     router.post('/api/productsCart/delete', cartController.deleteProductCart)
     router.post('/api/productsCart/deleteAll', cartController.deleteAllProductCart)
-    
+    router.post('/api/productsCart/sumprice', cartController.SumPrice)
+    // API cho đơn hàng
+    router.post('/api/order', orderController.Order)
+    router.post('/api/getallorder', orderController.getOrders)
+
     router.get('/crud', homeController.getCRUD);
     router.post('/post-crud', homeController.postCRUD)
     router.get('/get-crud', homeController.displayGetCRUD); 
