@@ -30,58 +30,103 @@ class ProductActionPage extends Component {
     render() {
         var { txtName, txtPrice, txtCategory, txtImage, chkbStatus } = this.state;
         return (
-            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6" style={{
+            <div className="add-product-page" style={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginTop: '300px'
+                marginTop: '200px',
+                background: '#fff',
+                boxShadow: '0px 0px 21px rgb(0 0 0 / 20%)',
+                width: '400px',
+                height: ' 500px',
             }}>
-                <form onSubmit={this.onSave}>
-                    <div className="form-group">
-                        <label>Tên Sản Phẩm: </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="txtName"
-                            value={txtName}
-                            onChange={this.onChange} />
-                    </div>
-                    <div className="form-group">
-                        <label>Loại sản phẩm: </label>
-                        <input type="text"
-                            className="form-control"
-                            name="txtCategory"
-                            value={txtCategory}
-                            onChange={this.onChange} />
-                    </div>
-                    <div className="form-group">
-                        <label>Giá: </label>
-                        <input type="number"
-                            className="form-control"
-                            name="txtPrice"
-                            value={txtPrice}
-                            onChange={this.onChange} />
-                    </div>
-                    <div className="form-group">
-                        <label>Ảnh: </label>
-                        <input type="link"
-                            className="form-control"
-                            name="txtImage"
-                            value={txtImage}
-                            onChange={this.onChange} />
-                    </div>
-                    <div className="form-group">
-                        <label>Trạng thái:</label>
-                    </div>
-                    <div className="checkbox">
-                        <label>
-                            <input type="checkbox" name="chkbStatus" value={chkbStatus} onChange={this.onChange} />
-                            Còn hàng
-                        </label>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Lưu lại</button>
-                </form>
+                <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6" style={{
+                }}>
+                    <h3 className="title" style={{ position: 'relative', justifyContent: 'center' }}>Thêm sản phẩm</h3>
+                    <form onSubmit={this.onSave}>
+                        <div className="form-group">
+                            <label style={{
+                                width: '100%',
+                                display: 'block',
+                            }}>Tên Sản Phẩm: </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="txtName"
+                                value={txtName}
+                                onChange={this.onChange}
+                                style={{
+                                    height: '15px',
+                                    display: 'block',
+                                    width: '100%',
+                                    padding: '6px 8px',
+                                }} />
+                        </div>
+                        <div className="form-group">
+                            <label style={{
+                                width: '100%',
+                                display: 'block',
+                            }}>Loại sản phẩm: </label>
+                            <input type="text"
+                                className="form-control"
+                                name="txtCategory"
+                                value={txtCategory}
+                                onChange={this.onChange}
+                                style={{
+                                    height: '15px',
+                                    display: 'block',
+                                    width: '100%',
+                                    padding: '6px 8px',
+                                }} />
+                        </div>
+                        <div className="form-group">
+                            <label style={{
+                                width: '100%',
+                                display: 'block',
+                            }}>Giá: </label>
+                            <input type="number"
+                                className="form-control"
+                                name="txtPrice"
+                                value={txtPrice}
+                                onChange={this.onChange}
+                                style={{
+                                    height: '15px',
+                                    display: 'block',
+                                    width: '100%',
+                                    padding: '6px 8px',
+                                }} />
+                        </div>
+                        <div className="form-group">
+                            <label style={{
+                                width: '100%',
+                                display: 'block',
+                            }}>Ảnh: </label>
+                            <input type="link"
+                                className="form-control"
+                                name="txtImage"
+                                value={txtImage}
+                                onChange={this.onChange}
+                                style={{
+                                    height: '15px',
+                                    display: 'block',
+                                    width: '100%',
+                                    padding: '6px 8px',
+                                }} />
+                        </div>
+                        <div className="form-group">
+                            <label>Trạng thái:</label>
+                        </div>
+                        <div className="checkbox">
+                            <label>
+                                <input type="checkbox" name="chkbStatus" value={chkbStatus} onChange={this.onChange} />
+                                Còn hàng
+                            </label>
+                        </div>
+                        <button type="submit" className="btn btn-primary">Lưu lại</button>
+                    </form>
+                </div>
             </div>
+
         )
     }
 }
