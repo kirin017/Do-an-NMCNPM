@@ -8,7 +8,7 @@ import AccountMenu from'./Menu/AccountMenu'
 function getCookieValue(cookieName) {
     // Tách các cookie thành một mảng
     var cookies = document.cookie.split(';');
-  
+
     // Lặp qua từng cookie
     for (var i = 0; i < cookies.length; i++) {
       var cookie = cookies[i].trim();
