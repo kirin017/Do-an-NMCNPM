@@ -7,6 +7,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { makeStyles } from '@material-ui/core/styles';
 import { MenuItem, InputLabel, FormControl, Select } from '@material-ui/core'
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
+
 const useStyles = makeStyles((theme) => ({
     button: {
         display: 'block',
@@ -24,6 +27,21 @@ export default function AddressForm() {
     const [FullName, setFullName] = useState('');
     const [phone, setPhoneNumber] = useState('');
     const [promo, setpromo] = useState('');
+    const [cookies] = useCookies([]);
+    const handleOrder = async() => {
+        let sumCost = await axios.post("http://localhost:8081/api/productsCart/sumprice", {userID : cookies.id})
+        let data = {
+            userID : cookies.id,
+            customerName: FullName,
+            phoneNumber: phone,
+            address: address,
+            paymentType: 1,
+            shipCost: 0,
+            totalCost: sumCost.data.sum,
+            note: '',
+        };
+        await axios.post("http://localhost:8081/api/order", data)
+      }
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>

@@ -49,7 +49,7 @@ let getAllUserOrder = (data) => {
     return new Promise (async(resolve, reject) => {
         try{
             const products = await db.sequelize.query(
-                `SELECT productName, productImage, Product.ProductID, count, date
+                `SELECT productName, productImage, Product.ProductID, count, date, productPrice
                 FROM Bill INNER JOIN BillDetail ON Bill.billID = BillDetail.BillID 
                     INNER JOIN Product ON Product.ProductID = BillDetail.ProductID
                 WHERE Bill.id = :userID;`,

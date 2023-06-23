@@ -13,17 +13,17 @@ function HistoryOrder({product}) {
                 <ListItem>
                     <Card className={classes.root}
                         style={{display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
-                        <img className={classes.image} src={product.image} alt='Ảnh'/>
+                        <img className={classes.image} src={product.productImage} alt='Ảnh'/>
                     </Card>
                     <Card className={classes.root} style={{ marginLeft: 80}}>
                         <Typography className={classes.productname} variant="body1">
-                            {product.name}
+                            {product.productName}
                         </Typography>
                         <Typography className={classes.text}>
-                            <div>Số lượng: {product.quantity}</div>
+                            <div>Số lượng: {product.count}</div>
                         </Typography>
                         <Typography className={classes.text}>
-                            Tổng tiền: ${product.price*product.quantity}
+                            Tổng tiền: {product.productPrice*product.count}vnđ
                         </Typography>
                         <Typography className={classes.text}>
                             Trạng thái: 
