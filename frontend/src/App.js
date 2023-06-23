@@ -15,25 +15,25 @@ import Dashboard from './components/dashboard/Dashboard';
 import Orders from './components/Orders/Orders';
 import Topbar from './components/admin/Topbar'
 import HistoryOrders from './components/HistoryOrders/HistoryOrders';
-
+import ProductActionPage from './components/ProductActionPage/ProductActionPage';
 const App = () => {
     return (
         <Router>
             <Switch>
                 <Route exact path="/">
-                    <Narbar  />
+                    <Narbar />
                     <div style={{ marginTop: '100px' }}>
                         <Products />
                     </div>
                 </Route>
                 <Route exact path="/login">
-                    <Narbar  />
+                    <Narbar />
                     <div style={{ marginTop: '170px' }}>
                         <Login />
                     </div>
                 </Route>
                 <Route exact path="/signup">
-                    <Narbar  />
+                    <Narbar />
                     <div style={{ marginTop: '170px' }}>
                         <SignUp />
                     </div>
@@ -45,7 +45,7 @@ const App = () => {
                     </div>
                 </Route>
                 <Route exact path="/cart">
-                    <Narbar  />
+                    <Narbar />
                     <div style={{ marginTop: '100px' }}>
                         <Cart></Cart>
                     </div>
@@ -61,7 +61,7 @@ const App = () => {
                     <div style={{ marginTop: '190px', marginLeft: '40px' }}>
                         <HistoryOrders />   
                     </div>
-                </Route>
+                </Route> */}
                 <Route exact path="/admin">
                     <Narbar />
                     <SideBar></SideBar>
@@ -82,6 +82,11 @@ const App = () => {
                     <div style={{ marginTop: '50px', marginLeft: '250px' }}>
                         <Orders />
                     </div>
+                </Route>
+                <Route exact path="/admin/order/add">
+                    <Narbar />
+                    <SideBar />
+                    <ProductActionPage />
                 </Route>
                 <Route exact path="/admin/account">
                     <Topbar></Topbar>
