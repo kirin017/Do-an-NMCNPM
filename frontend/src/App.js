@@ -16,7 +16,12 @@ import Orders from './components/Orders/Orders';
 import Topbar from './components/admin/Topbar'
 import HistoryOrders from './components/HistoryOrders/HistoryOrders';
 import ProductActionPage from './components/ProductActionPage/ProductActionPage';
+import { useCookies } from 'react-cookie';
+import AdminProducts from './components/AdminProducts/AdminProducts';
+import AddProduct from './components/AddProduct/AddProduct';
+
 const App = () => {
+    const [cookies] = useCookies([]);
     return (
         <Router>
             <Switch>
@@ -62,46 +67,57 @@ const App = () => {
                         <HistoryOrders/>
                     </div>
                 </Route>
-                <Route exact path="/admin">
-                    <Narbar />
-                    <SideBar></SideBar>
-                    <div style={{ marginTop: '120px', marginLeft: '250px' }}>
-                        Giao diện trang chủ admin
-                    </div>
-                </Route>
-                <Route exact path="/admin/product">
-                    <Narbar />
-                    <SideBar></SideBar>
-                    <div style={{ marginTop: '140px', marginLeft: '190px' }}>
-                        <Products></Products>
-                    </div>
-                </Route>
-                <Route exact path="/admin/order">
-                    <Topbar></Topbar>
-                    <SideBar></SideBar>
-                    <div style={{ marginTop: '50px', marginLeft: '250px' }}>
-                        <Orders />
-                    </div>
-                </Route>
-                <Route exact path="/admin/order/add">
-                    <Narbar />
-                    <SideBar />
-                    <ProductActionPage />
-                </Route>
-                <Route exact path="/admin/account">
-                    <Topbar></Topbar>
-                    <div style={{ marginTop: '50px' }}>
+                {+cookies.role > 0 ? (
+                    <>
+                    <Route exact path="/admin">
+                        <Narbar />
                         <SideBar></SideBar>
-                    </div>
-                    <div style={{ marginTop: '10px', marginLeft: '250px' }}>
-                        <AccountManagement />
-                    </div>
-                </Route>
-                <Route exact path="/admin/statistic">
-                    <div style={{ marginTop: '170px', marginLeft: '50px' }}>
-                        <Dashboard />
-                    </div>
-                </Route>
+                        <div style={{ marginTop: '120px', marginLeft: '250px' }}>
+                            Giao diện trang chủ admin
+                        </div>
+                    </Route>
+                    <Route exact path="/admin/product">
+                        <Narbar />
+                        <SideBar></SideBar>
+                        <div style={{ marginTop: '190px', marginLeft: '190px' }}>
+                            <AdminProducts></AdminProducts>
+                        </div>
+                    </Route>
+                    <Route exact path="/admin/addproduct">
+                        <Narbar />
+                        <SideBar></SideBar>
+                        <div style={{ marginTop: '190px', marginLeft: '190px' }}>
+                            <AddProduct/>
+                        </div>
+                    </Route>
+                    <Route exact path="/admin/order">
+                        <Topbar></Topbar>
+                        <SideBar></SideBar>
+                        <div style={{ marginTop: '50px', marginLeft: '250px' }}>
+                            <Orders />
+                        </div>
+                    </Route>
+                    <Route exact path="/admin/order/add">
+                        <Narbar />
+                        <SideBar />
+                        <ProductActionPage />
+                    </Route>
+                    <Route exact path="/admin/account">
+                        <Topbar></Topbar>
+                        <div style={{ marginTop: '50px' }}>
+                            <SideBar></SideBar>
+                        </div>
+                        <div style={{ marginTop: '10px', marginLeft: '250px' }}>
+                            <AccountManagement />
+                        </div>
+                    </Route>
+                    <Route exact path="/admin/statistic">
+                        <div style={{ marginTop: '170px', marginLeft: '50px' }}>
+                            <Dashboard />
+                        </div>
+                    </Route>
+                    </>
+                ) : (<>Tài khoản của bạn không được phép truy cập vào trang admin</>)}
             </Switch>
         </Router>
     );

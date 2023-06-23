@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Product.hasMany(models.Cart, { foreignKey: "productID" })
     }
   };
   Product.init({
@@ -23,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     productImage: DataTypes.STRING,
     productPrice: DataTypes.FLOAT,
     productCount: DataTypes.INTEGER,
-    productInfo: DataTypes.STRING,
+    // productInfo: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Product',
