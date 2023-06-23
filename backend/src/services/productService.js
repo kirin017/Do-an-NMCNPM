@@ -15,7 +15,7 @@ let getProducts = () => {
 
 let getProduct = (productID) => {
     return new Promise (async(reslove, reject) => {
-        try {e
+        try {
             let data = await db.Product.findOne(
                 { 
                     where: {productID: productID},
@@ -38,10 +38,11 @@ let addProduct = (data) => {
                 productImage: data.productImage,
                 productPrice: data.productPrice,
                 productCount: data.productCount,
+                productInfo: data.productInfo,
             });
             resolve();
         }catch(e){
-            reject(e)
+            reject(e);
         }
     })
 }
@@ -57,7 +58,7 @@ let updateProduct = (newData) => {
                 data.productImage = newData.productImage;
                 data.productPrice = newData.productPrice;
                 data.productCount = newData.productCount;
-
+                data.productInfo = newData.productInfo;
                 await data.save();
                 resolve();
             }else{

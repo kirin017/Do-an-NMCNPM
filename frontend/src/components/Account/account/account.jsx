@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import DataTable from "react-data-table-component"
 import { SearchOutlined } from '@material-ui/icons';
-
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 function AccountManagement() {
     const columns = [
@@ -172,7 +173,6 @@ function AccountManagement() {
         })
         setRecords(newData)
     }
-
     return (
         <div className='container mt-5'>
             <div className='text-end' style={{
@@ -187,6 +187,12 @@ function AccountManagement() {
                 backgroundColor: 'transparent'
             }} /><SearchOutlined />
             </div>
+            <Button variant="outlined" color="primary" component={Link} to={`/admin/account/update`}>
+                Xóa
+            </Button>
+            <Button variant="outlined" color="primary" style={{ marginRight: '1000px' }} component={Link} to={`/admin/account/delete`}>
+                Sửa
+            </Button>
             <DataTable
                 columns={columns}
                 data={records}

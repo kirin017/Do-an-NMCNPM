@@ -103,9 +103,9 @@ const App = () => {
                         </Route>
                         <Route exact path="/admin/addproduct">
                             <Narbar />
-                            <SideBar></SideBar>
-                            <div style={{ marginTop: '190px', marginLeft: '190px' }}>
-                                <AddProduct />
+                            <SideBar />
+                            <div style={{ marginTop: '150px', marginLeft: '600px' }}>
+                                <ProductActionPage />
                             </div>
                         </Route>
                         <Route exact path="/admin/order">
@@ -119,7 +119,7 @@ const App = () => {
                         <Route exact path="/admin/order/add">
                             <Narbar />
                             <SideBar />
-                            <div style={{ marginTop: '150px' }}>
+                            <div style={{ marginTop: '150px', marginLeft: '600px' }}>
                                 <ProductActionPage />
                             </div>
                         </Route>

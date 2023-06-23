@@ -48,26 +48,29 @@ const Cart = () => {
           <Typography className={classes.typo}>
             Giỏ hàng của bạn
           </Typography>
-          <div className={classes.boxContent}>
-          
-            <Box className={classes.box}>
-              <Grid container justifyContent="center" spacing={2}>
-                { products.length > 0 &&
-                  products.map((product) => (
-                  <Grid item key={product.id} xs={12} sm={6} md={4} lg={4}>
-                    <CartItem product={product} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
-            <div>
-                <Button className={classes.button} onClick={handleAllDelete}>Xóa tất cả</Button>
-                <Button onClick={()=>{
-                    history.push('/subcheckout');
-                    history.go(0);
-                }}className={classes.button}>Thanh toán</Button>      
+          {products.length > 0 ? (
+            <div className={classes.boxContent}>
+              <Box className={classes.box}>
+                <Grid container justifyContent="center" spacing={2}>
+                    {products.length > 0 &&
+                    products.map((product) => (
+                    <Grid item key={product.id} xs={12} sm={6} md={4} lg={4}>
+                      <CartItem product={product} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+              <div>
+                  <Button className={classes.button} onClick={handleAllDelete}>Xóa tất cả</Button>
+                  <Button onClick={()=>{
+                      history.push('/subcheckout');
+                      history.go(0);
+                  }}className={classes.button}>Thanh toán</Button>      
+              </div>
             </div>
-          </div>
+          ):(
+            <Typography>Giỏ hàng đang trống</Typography>
+          )}
         </main>
       ):(
         <Typography className={classes.typo}>

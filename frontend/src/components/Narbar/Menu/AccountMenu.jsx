@@ -119,7 +119,7 @@ export default function CustomizedMenus() {
           </ListItem>
         </StyledMenuItem>
 
-        {typeUserValue === '0' ? (
+        {typeUserValue === "0" ? (
           <>
             <StyledMenuItem>
               <ListItem

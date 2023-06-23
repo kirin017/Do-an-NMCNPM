@@ -37,10 +37,20 @@ let deleteAllProductCart = async(req,res) => {
         errCode: 'Done'
     }) 
 }
+
+let SumPrice = async(req,res) => {
+    let data = req.body;
+    let sum = await cartService.SumCartPrice(data);
+    return res.status(200).json({
+        errCode: 'OK',
+        sum: sum
+    }) 
+}
 module.exports = {
     getProductCart : getProductCart,
     addProductCart : addProductCart,
     updateProductQuantCart: updateProductQuantCart,
     deleteProductCart : deleteProductCart,
     deleteAllProductCart : deleteAllProductCart,
+    SumPrice : SumPrice,
 }

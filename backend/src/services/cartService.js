@@ -93,10 +93,28 @@ let deleteAllProduct = (data) => {
         }
     })
 }
+
+let SumCartPrice = (data) => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            let products = await db.sequelize.query(
+                `SELECT SUM(productPrice * count) as TotalPrice
+                FROM Product INNER JOIN Cart ON Product.productID = Cart.productID
+                WHERE Cart.userID = :userID`,
+                { replacements: { userID: data.userID },
+                type: db.sequelize.QueryTypes.SELECT }
+              );
+            resolve(products)
+        } catch (e){
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getProductInCart : getProductInCart,
     addProductInCart : addProductInCart,
     updateProductQuantity : updateProductQuantity,
     deleteProduct : deleteProduct,
     deleteAllProduct : deleteAllProduct,
+    SumCartPrice : SumCartPrice,
 }
