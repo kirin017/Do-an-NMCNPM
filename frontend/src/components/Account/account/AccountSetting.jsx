@@ -4,11 +4,10 @@ import { Avatar, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Co
 // import SelectBox from '../Narbar/Menu/SelectBox'
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 // import Cookie from 'js-cookie'
 // const username = Cookie.get('username')
-
 
 function Copyright(props) {
   return (
@@ -31,11 +30,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function AccountSetting() {
   const classes = useStyles();
-  // const history = useHistory();
+  const history = useHistory();
   const [user, setUser] = useState(async() => {
     const user = await axios.get(`http://localhost:8081/api/getuser`, {withCredentials: true})
     setUser(user.data.data)
   })
+  const dataUser = user
+  console.log(user)
+  var genderr;
+  if (dataUser.gender === 0)
+  {
+    genderr = 'Male'
+  }
+  else if ( dataUser.gender === 1)
+  {
+    genderr = 'Female'
+  }
+  else
+  {
+    genderr = 'Other'
+  }
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [FullName, setFullName] = useState('');
@@ -50,21 +64,31 @@ export default function AccountSetting() {
     //   password: data.get('password'),
 
     // });
-    // const data = {
-    //   name: FullName,
-    //   password: password,
-    //   phoneNumber: phone,
-    //   email: email,
-    //   gender: gender,
+    const data = {
+      username :user.username,
+      FullName: FullName,
+      password: password,
+      phone: phone,
+      email: email,
+      gender: gender,
 
-    // };
+    };
+    
+    axios.put('http://localhost:8081/api/user/update', data)
+        .then(response => {
+          console.log('response: ', response.data)
+          history.push('/accountsetting');
+          history.go(0);
+        
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });    
   };
 
   
 
-  const dataUser = user
-  console.log(user)
-
+  
   return (
 
     <Container component="main" maxWidth="xs">
@@ -132,7 +156,7 @@ export default function AccountSetting() {
                   variant="outlined"
                 />
               </Grid>
-              <Grid item xs={12} sm={6} style={{ marginTop: '15px' }}>
+              <Grid item xs={12} sm={6} style={{ marginTop: '-5px' }}>
                 <TextField
                   autoComplete="given-name"
                   name="FullName"
@@ -151,7 +175,7 @@ export default function AccountSetting() {
                 <TextField
                   id="xPassword"
                   label="Password "
-                  value={dataUser.password}
+                  value='**********'
                   InputProps={{
                     readOnly: true,
                   }}
@@ -178,7 +202,7 @@ export default function AccountSetting() {
                 <TextField
                   id="xGender"
                   label="Gender"
-                  value={dataUser.gender}
+                  value={genderr}
                   InputProps={{
                     readOnly: true,
                   }}

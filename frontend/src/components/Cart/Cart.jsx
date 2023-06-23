@@ -7,7 +7,6 @@ import useStyles from './styles';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
-
 // const products = [
 // { id: 1, name: 'Shoes', description: 'Running Shoes.', price:'$5', image: 'https://cdn.shopify.com/s/files/1/0456/5070/6581/products/3023814-403-1_720x@2x.jpg?v=1638870457' },
 // { id: 2, name: 'Macbook', description: 'Apple Macbook.', price:'$10', image: 'https://macmall.vn/uploads/mba-gray-m1-202011-cover_1605259444_1606717873.png' },
@@ -42,6 +41,7 @@ const Cart = () => {
   }
 
   return (
+    
     <>
       {cookies.role==='0' ? (
         <main className={classes.content}>
@@ -62,7 +62,10 @@ const Cart = () => {
             </Box>
             <div>
                 <Button className={classes.button} onClick={handleAllDelete}>Xóa tất cả</Button>
-                <Button className={classes.button}>Thanh toán</Button>      
+                <Button onClick={()=>{
+                    history.push('/checkout');
+                    history.go(0);
+                }}className={classes.button}>Thanh toán</Button>      
             </div>
           </div>
         </main>

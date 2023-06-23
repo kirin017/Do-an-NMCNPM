@@ -143,8 +143,43 @@ let getUser = (username) => {
       });
 
 }
+
+let updateUser = (newData) => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            const data = await db.User.findOne(
+                { where: {username: newData.username}, raw: false }
+            );
+            if (data){
+                if (newData.FullName)
+                    {data.name = newData.FullName};
+                if (newData.password)
+                    
+                    {
+                        let hashPasswordFromBcrypt = await hashUserPassword(newData.password);
+                        data.password = hashPasswordFromBcrypt
+                    };
+                if (newData.gender)
+                    {data.gender = newData.gender};
+                if (newData.email)
+                    {data.email = newData.email};
+                if (newData.phone)
+                    {data.phoneNumber = newData.phone};
+
+                await data.save();
+                resolve();
+            }else{
+                resolve();
+            }
+        } catch(e){
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     handleLogin: handleLogin,
     hanldeSignUp: hanldeSignUp,
     getUser: getUser,
+    updateUser:updateUser,
 }
