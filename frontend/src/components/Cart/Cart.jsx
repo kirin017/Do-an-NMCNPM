@@ -63,7 +63,7 @@ const Cart = () => {
             <div>
                 <Button className={classes.button} onClick={handleAllDelete}>Xóa tất cả</Button>
                 <Button onClick={()=>{
-                    history.push('/checkout');
+                    history.push('/subcheckout');
                     history.go(0);
                 }}className={classes.button}>Thanh toán</Button>      
             </div>

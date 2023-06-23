@@ -15,7 +15,7 @@ let getProducts = () => {
 
 let getProduct = (productID) => {
     return new Promise (async(reslove, reject) => {
-        try {
+        try {e
             let data = await db.Product.findOne(
                 { 
                     where: {productID: productID},
