@@ -2,6 +2,7 @@ import express from "express";
 import homeController from "../controllers/homeController";
 import userController from "../controllers/userController"
 import productController from "../controllers/productController"
+import cartController from "../controllers/cartController"
 
 let router = express.Router()
 
@@ -28,7 +29,8 @@ let initWebRoutes = (app) => {
     // API cho ProductType
     router.get('/api/productType', productController.getProductType);
     router.post('/api/productType/post', productController.addProductType);
-
+    // API cho giỏ hàng
+    router.post('/api/productsCart', cartController.getProductCart);
     router.get('/crud', homeController.getCRUD);
     router.post('/post-crud', homeController.postCRUD)
     router.get('/get-crud', homeController.displayGetCRUD); 
