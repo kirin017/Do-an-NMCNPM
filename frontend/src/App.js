@@ -46,7 +46,7 @@ const App = () => {
                 </Route>
                 <Route exact path="/cart">
                     <Narbar />
-                    <div style={{ marginTop: '100px' }}>
+                    <div style={{ marginTop: '190px' }}>
                         <Cart></Cart>
                     </div>
                 </Route>
@@ -56,12 +56,12 @@ const App = () => {
                         <ProductDetail></ProductDetail>
                     </div>
                 </Route>
-                {/* <Route exact path="/historyOrder">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
+                <Route exact path="/historyOrder">
+                    <Narbar/>
                     <div style={{ marginTop: '190px', marginLeft: '40px' }}>
-                        <HistoryOrders typeUser={typeUser} />
+                        <HistoryOrders/>
                     </div>
-                </Route> */}
+                </Route>
                 <Route exact path="/admin">
                     <Narbar />
                     <SideBar></SideBar>

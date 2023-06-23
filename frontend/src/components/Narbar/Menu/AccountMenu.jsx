@@ -135,7 +135,7 @@ export default function CustomizedMenus( ) {
         <ListItem
                 button
                 onClick={()=>{
-                    history.push('/cart');
+                    history.push('/historyOrder');
                 }}
                 >
                 <ListItemIcon>

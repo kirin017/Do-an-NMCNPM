@@ -2,6 +2,7 @@ import React from 'react';
 import { List, Typography} from '@material-ui/core';
 import HistoryOrder from './HistoryOrder/HistoryOrder';
 import useStyles from './styles';
+import { useCookies } from 'react-cookie';
 
 const products = [
 { id: 1, name: 'Shoes', quantity: 2, price:'5', image: 'https://cdn.shopify.com/s/files/1/0456/5070/6581/products/3023814-403-1_720x@2x.jpg?v=1638870457' },
@@ -11,12 +12,12 @@ const products = [
 { id: 5, name: 'Áo Adidas Juventus', quantity: 2, price:'3', image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6a8e5ed538544c6d9ffbaa250114e25e_9366/Ao_djau_san_nha_Juventus_DJen_DW5455_01_laydown.jpg' },
 ];
 
-function HistoryOrders({ typeUser }) {
+function HistoryOrders() {
     const classes = useStyles();
-    
+    const [cookies] = useCookies([]);
     return (
         <div>
-            {typeUser===0 ? (
+            {cookies.role==='0' ? (
                 <div>
                     <Typography className={classes.typo}>Lịch sử mua hàng</Typography>
                     <List className={classes.list}>

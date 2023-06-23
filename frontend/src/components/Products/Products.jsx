@@ -20,8 +20,9 @@ const Products = () => {
   useEffect(() => {
     async function getData() {
       try {
-        let res = await axios.get('https://fakestoreapi.com/products/');
-        setproducts(res.data);
+        // let res = await axios.get('https://fakestoreapi.com/products/');
+        let res = await axios.get('http://localhost:8081/api/products');
+        setproducts(res.data.productsData);
       } catch (error) {
         setproducts([]) 
       } 

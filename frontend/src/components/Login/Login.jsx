@@ -24,6 +24,12 @@ export default function SignIn() {
     const [password, setPassword] = useState('');
     const [warning, setWarning] = useState('');
     const [showToast, setShowToast] = useState(false);
+    const show = () => {
+        setShowToast(true);
+        setTimeout(() => {
+          setShowToast(false);
+        }, 3000);
+      };
     const handleSubmit = (event) => {
         event.preventDefault();
         // const data = new FormData(event.currentTarget);
@@ -40,6 +46,7 @@ export default function SignIn() {
           
 
           if (response.data.data.role===0){
+            show();
             history.push('/');
             history.go(0);
           }

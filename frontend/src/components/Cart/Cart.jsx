@@ -3,6 +3,7 @@ import React from 'react';
 import { Grid, Box, Button, Typography } from '@material-ui/core';
 import CartItem from './CartItem/CartItem'
 import useStyles from './styles';
+import { useCookies } from 'react-cookie';
 // import axios from 'axios';
 
 const products = [
@@ -13,9 +14,9 @@ const products = [
 { id: 5, name: 'Áo Adidas Juventus', description: 'Áo bóng đá nam Adidas Juventus Home Jersey', price:'199.000', image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6a8e5ed538544c6d9ffbaa250114e25e_9366/Ao_djau_san_nha_Juventus_DJen_DW5455_01_laydown.jpg' },
 ];
 
-const Cart = ({ typeUser }) => { 
+const Cart = () => { 
   const classes = useStyles()
-
+  const [cookies] = useCookies([]);
   // const [products, setproducts] = useState([]);
 
   // useEffect(() => {
@@ -33,7 +34,7 @@ const Cart = ({ typeUser }) => {
 
   return (
     <>
-      {(typeUser===0) ? (
+      {cookies.role==='0' ? (
         <main className={classes.content}>
           <Typography className={classes.typo}>
             Giỏ hàng của bạn
