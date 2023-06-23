@@ -26,6 +26,9 @@ function HistoryOrder({product}) {
                             Tổng tiền: {product.productPrice*product.count}vnđ
                         </Typography>
                         <Typography className={classes.text}>
+                            Ngày đặt: {product.date} 
+                        </Typography>
+                        <Typography className={classes.text}>
                             Trạng thái: 
                         </Typography>
                         <Button className={classes.button}>Hủy đơn hàng</Button>

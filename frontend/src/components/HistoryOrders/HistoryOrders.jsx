@@ -22,7 +22,7 @@ function HistoryOrders() {
           try {
             // let res = await axios.get('https://fakestoreapi.com/products/');
             let res = await axios.post('http://localhost:8081/api/getallorder', {userID : cookies.id});
-            setproducts(res.data);
+            setproducts(res.data.products);
           } catch (error) {
             setproducts([]) 
           } 

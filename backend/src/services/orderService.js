@@ -38,6 +38,9 @@ let makeOrderDetail = (data, billID) => {
                 WHERE userID = :userID;`,
                 { replacements: { userID: data.userID, billID: billID },}
             );
+            await db.Cart.destroy({ 
+                where : {userID: data.userID},
+            })
             resolve()
         }catch(e){
             reject(e)
@@ -52,7 +55,8 @@ let getAllUserOrder = (data) => {
                 `SELECT productName, productImage, Product.ProductID, count, date, productPrice
                 FROM Bill INNER JOIN BillDetail ON Bill.billID = BillDetail.BillID 
                     INNER JOIN Product ON Product.ProductID = BillDetail.ProductID
-                WHERE Bill.id = :userID;`,
+                WHERE Bill.id = :userID
+                ORDER BY date DESC;`,
                 { replacements: { userID: data.userID }, type: db.sequelize.QueryTypes.SELECT}
             );
             resolve(products)
