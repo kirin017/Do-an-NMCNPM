@@ -4,17 +4,17 @@ import Alert from '@material-ui/lab/Alert';
 import { useState } from 'react';
 
 
-function Toast({ message }) {
-    const [open, setOpen] = useState(true);
+const Toast = ({ message, open }) => {
+    const [isopen, setisOpen] = useState(open);
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
         return;
         }
-        setOpen(false);
+        setisOpen(false);
     };
     return (
-        <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+        <Snackbar open={isopen} autoHideDuration={2000} onClose={handleClose}>
             <Alert style={{ fontSize: 20 }}>
                 {message}
             </Alert>
