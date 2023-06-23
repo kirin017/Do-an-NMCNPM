@@ -29,12 +29,12 @@ const App = () => {
                 <Route exact path="/">
                     <Narbar />
                     <div style={{ marginTop: '120px' }}>
-                    <Post></Post>
+                        <Post></Post>
                         <Products />
-                        
+
                     </div>
-                    
-                
+
+
                 </Route>
                 <Route exact path="/login">
                     <Narbar />
@@ -73,11 +73,11 @@ const App = () => {
                     </div>
                 </Route>
                 <Route exact path="/checkout">
-                        <Narbar />
-                            <div style={{ marginTop: '170px' }}>
-                                <Checkout></Checkout>
-                            </div>
-                    </Route>
+                    <Narbar />
+                    <div style={{ marginTop: '170px' }}>
+                        <Checkout></Checkout>
+                    </div>
+                </Route>
                 {+cookies.role > 0 ? (
                     <>
                         <Route exact path="/admin">
@@ -96,9 +96,9 @@ const App = () => {
                         </Route>
                         <Route exact path="/admin/addproduct">
                             <Narbar />
-                            <SideBar></SideBar>
-                            <div style={{ marginTop: '190px', marginLeft: '190px' }}>
-                                <AddProduct />
+                            <SideBar />
+                            <div style={{ marginTop: '150px', marginLeft: '600px' }}>
+                                <ProductActionPage />
                             </div>
                         </Route>
                         <Route exact path="/admin/order">
@@ -112,7 +112,7 @@ const App = () => {
                         <Route exact path="/admin/order/add">
                             <Narbar />
                             <SideBar />
-                            <div style={{ marginTop: '150px' }}>
+                            <div style={{ marginTop: '150px', marginLeft: '600px' }}>
                                 <ProductActionPage />
                             </div>
                         </Route>

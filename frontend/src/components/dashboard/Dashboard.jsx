@@ -109,7 +109,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
+    const [open] = React.useState(true);
     const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     return (
