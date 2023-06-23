@@ -13,40 +13,40 @@ import axios from 'axios';
 //{ id: 5, name: 'Áo Adidas Juventus', description: 'Áo bóng đá nam Adidas Juventus Home Jersey', price:'199.000', image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6a8e5ed538544c6d9ffbaa250114e25e_9366/Ao_djau_san_nha_Juventus_DJen_DW5455_01_laydown.jpg' },
 //];
 
-const AdminProducts = () => { 
+const AdminProducts = () => {
     const classes = useStyles()
 
     const [products, setproducts] = useState([]);
 
     useEffect(() => {
         async function getData() {
-        try {
-            // let res = await axios.get('https://fakestoreapi.com/products/');
-            let res = await axios.get('http://localhost:8081/api/products');
-            setproducts(res.data.productsData);
-        } catch (error) {
-            setproducts([]) 
-        } 
+            try {
+                // let res = await axios.get('https://fakestoreapi.com/products/');
+                let res = await axios.get('http://localhost:8081/api/products');
+                setproducts(res.data.productsData);
+            } catch (error) {
+                setproducts([])
+            }
         }
         getData();
     }, [])
-  
 
-  return (
-    <main className={classes.content}>
-        <Button className={classes.button} component={Link} to={`/admin/addproduct`}> 
-            Thêm sản phẩm
-        </Button>
-        <Grid container justifyContent="center" spacing={2}>
-            { products.length > 0 &&
-            products.map((product) => (
-            <Grid item key={product.id} xs={12} sm={6} md={3} lg={3}>
-                <AdminProduct product={product} />
+
+    return (
+        <main className={classes.content}>
+            <Button className={classes.button} component={Link} to={`/admin/addproduct`}>
+                Thêm sản phẩm
+            </Button>
+            <Grid container justifyContent="center" spacing={2}>
+                {products.length > 0 &&
+                    products.map((product) => (
+                        <Grid item key={product.id} xs={12} sm={6} md={3} lg={3}>
+                            <AdminProduct product={product} />
+                        </Grid>
+                    ))}
             </Grid>
-            ))}
-        </Grid>
-    </main>
-  );
+        </main>
+    );
 };
 
 export default AdminProducts;
