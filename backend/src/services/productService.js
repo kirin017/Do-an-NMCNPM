@@ -4,7 +4,7 @@ let getProducts = () => {
     return new Promise (async (resolve, reject) => {
         try {
             let data = await db.Product.findAll({
-                attributes: ['productID','productName','productImage','productPrice','productCount']
+                attributes: ['productID','productName','productImage','productPrice','productCount', 'productInfo']
             });
             resolve(data)
         } catch (e){
@@ -19,7 +19,7 @@ let getProduct = (productID) => {
             let data = await db.Product.findOne(
                 { 
                     where: {productID: productID},
-                    attributes: ['productID','productName','productImage','productPrice','productCount']
+                    attributes: ['productID','productName','productImage','productPrice','productCount', 'productInfo']
                 }
             )
             reslove(data)

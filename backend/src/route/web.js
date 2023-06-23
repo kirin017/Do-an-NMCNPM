@@ -18,7 +18,8 @@ let initWebRoutes = (app) => {
     // API cho tài khoản user
     router.post('/api/login', userController.handleLogin);
     router.post('/api/signup', userController.hanldeSignUp);
-    router.get('/api/getuser', middleware, userController.handleGetUser)
+    router.get('/api/getuser', middleware, userController.handleGetUser);
+    router.put('/api/user/update',userController.updateUser);
     // API cho Product
     router.get('/api/products', productController.getAllProducts);
     router.get('/api/products/:id', productController.getOneProduct);

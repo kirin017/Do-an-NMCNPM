@@ -61,10 +61,17 @@ let handleLogout = async (req, res) =>  {
     res.cookie('role', '', {maxAge: 0})
     res.json({msg: 'Log out successfully'})
 }
-
+let updateUser = async(req, res) => {
+    let newData = req.body;
+    await userService.updateUser(newData);
+    return res.status(200).json({
+        errCode: 'Done'
+    }) 
+}
 module.exports = {
     handleLogin: handleLogin,
     hanldeSignUp: hanldeSignUp, 
     handleGetUser: handleGetUser,
-    handleLogout
+    handleLogout: handleLogout,
+    updateUser: updateUser,
 }

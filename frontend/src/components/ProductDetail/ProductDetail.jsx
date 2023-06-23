@@ -42,11 +42,11 @@ function ProductDetail() {
                     <Box className={classes.descriptionBox}>
                         <Typography className={classes.descriptionText}>
                             <div>Chi tiết:</div>
-                            <div>{product.description}</div>
+                            <div>{product.productInfo}</div>
                         </Typography>
                     </Box>
                     <Typography className={classes.price} variant="body1">
-                        {product.productPrice}
+                        {product.productPrice + 'đ'}
                     </Typography>
                     <Button className={classes.button}>
                         Thêm vào giỏ hàng
