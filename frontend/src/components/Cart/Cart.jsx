@@ -5,6 +5,27 @@ import CartItem from './CartItem/CartItem'
 import useStyles from './styles';
 // import axios from 'axios';
 
+function getCookieValue(cookieName) {
+  // Tách các cookie thành một mảng
+  var cookies = document.cookie.split(';');
+
+  // Lặp qua từng cookie
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i].trim();
+
+    // Kiểm tra nếu tên cookie trùng khớp
+    if (cookie.indexOf(cookieName + '=') === 0) {
+      // Trích xuất giá trị của cookie và trả về
+      return cookie.substring(cookieName.length + 1);
+    }
+  }
+
+  // Trả về null nếu không tìm thấy cookie
+  return null;
+}
+
+var typeUser = getCookieValue('role');
+// var UserNameValue = getCookieValue('username');
 const products = [
 { id: 1, name: 'Shoes', description: 'Running Shoes.', price:'$5', image: 'https://cdn.shopify.com/s/files/1/0456/5070/6581/products/3023814-403-1_720x@2x.jpg?v=1638870457' },
 { id: 2, name: 'Macbook', description: 'Apple Macbook.', price:'$10', image: 'https://macmall.vn/uploads/mba-gray-m1-202011-cover_1605259444_1606717873.png' },
@@ -13,7 +34,7 @@ const products = [
 { id: 5, name: 'Áo Adidas Juventus', description: 'Áo bóng đá nam Adidas Juventus Home Jersey', price:'199.000', image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6a8e5ed538544c6d9ffbaa250114e25e_9366/Ao_djau_san_nha_Juventus_DJen_DW5455_01_laydown.jpg' },
 ];
 
-const Cart = ({ typeUser }) => { 
+const Cart = () => { 
   const classes = useStyles()
 
   // const [products, setproducts] = useState([]);
@@ -33,7 +54,7 @@ const Cart = ({ typeUser }) => {
 
   return (
     <>
-      {(typeUser===0) ? (
+      {(typeUser==='0') ? (
         <main className={classes.content}>
           <Typography className={classes.typo}>
             Giỏ hàng của bạn

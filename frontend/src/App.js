@@ -57,9 +57,9 @@ const App = () => {
                     </div>
                 </Route>
                 <Route exact path="/historyOrder">
-                    <Narbar userName={userName} typeUser={typeUser} setUserName={setUserName} setTypeUser={setTypeUser} />
+                    <Narbar  />
                     <div style={{ marginTop: '190px', marginLeft: '40px' }}>
-                        <HistoryOrders typeUser={typeUser}/>
+                        <HistoryOrders />   
                     </div>
                 </Route>
                 <Route exact path="/admin">

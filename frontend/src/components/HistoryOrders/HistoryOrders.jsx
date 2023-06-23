@@ -11,7 +11,28 @@ const products = [
 { id: 5, name: 'Áo Adidas Juventus', quantity: 2, price:'3', image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6a8e5ed538544c6d9ffbaa250114e25e_9366/Ao_djau_san_nha_Juventus_DJen_DW5455_01_laydown.jpg' },
 ];
 
-function HistoryOrders({ typeUser }) {
+function getCookieValue(cookieName) {
+    // Tách các cookie thành một mảng
+    var cookies = document.cookie.split(';');
+  
+    // Lặp qua từng cookie
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+  
+      // Kiểm tra nếu tên cookie trùng khớp
+      if (cookie.indexOf(cookieName + '=') === 0) {
+        // Trích xuất giá trị của cookie và trả về
+        return cookie.substring(cookieName.length + 1);
+      }
+    }
+  
+    // Trả về null nếu không tìm thấy cookie
+    return null;
+  }
+
+var typeUser = getCookieValue('role');
+// var UserNameValue = getCookieValue('username');
+function HistoryOrders() {
     const classes = useStyles();
     
     return (
