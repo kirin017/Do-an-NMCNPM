@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Avatar, Button, CssBaseline, TextField,Link,Grid, Box,Typography, Container } from '@material-ui/core'
 import useStyles from './styles'
@@ -24,6 +25,7 @@ export default function SignIn() {
     const [password, setPassword] = useState('');
     const [warning, setWarning] = useState('');
     const [showToast, setShowToast] = useState(false);
+    const [, setCookie] = useCookies([]);
     const show = () => {
         setShowToast(true);
         setTimeout(() => {
@@ -43,7 +45,7 @@ export default function SignIn() {
         axios.post('http://localhost:8081/api/login', dataLogin, {withCredentials: true})
         .then(response => {
           if(!response.data.succeed) setWarning(response.data.message)
-          
+          else setCookie('id',response.data.data.id)
 
           if (response.data.data.role===0){
             show();

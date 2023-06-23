@@ -3,10 +3,22 @@ import { Card, CardContent, CardActions, Typography, IconButton } from '@materia
 import { AddShoppingCart } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import useStyles from './styles';   
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
+
 
 const Product = ({ product }) => {
     const classes = useStyles();
+    const [cookies] = useCookies([]);
     // const location = useLocation();
+    const addProductToCart = async() => {
+        let data = {
+            productID : product.productID,
+            userID : cookies.id,
+            count : 1,
+        };
+        await axios.post("http://localhost:8081/api/productsCart/add", data);
+    }
 
     return (
         <Card className={classes.root}>
@@ -20,18 +32,20 @@ const Product = ({ product }) => {
                             {product.productName}
                         </Typography>
                     </div>
-                    <Typography className={classes.cardNameAndDescription} variant='body1' color='textSecondary'>{product.description}</Typography>
+                    <Typography className={classes.cardNameAndDescription} variant='body1' color='textSecondary'>{product.productInfo}</Typography>
                 </CardContent>
             </Link> 
             <CardActions disableSpacing className={classes.cardActions}>
                 <Typography variant='h8' style={{ width: '120px', textAlign: 'right' }}>
                         {product.productPrice}
                 </Typography>
-                <IconButton aria-label='Add to Cart'>
-                    <AddShoppingCart/>
-                </IconButton>
+                {cookies.role==='0' ? (
+                    <IconButton aria-label='Add to Cart' onClick={()=>addProductToCart()}>
+                        <AddShoppingCart/>
+                    </IconButton>
+                ):(<></>)}
+                
             </CardActions>
-                 
         </Card>
     );
 };
