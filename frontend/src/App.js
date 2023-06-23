@@ -79,15 +79,12 @@ const App = () => {
                         <Checkout></Checkout>
                     </div>
                 </Route>
-<<<<<<< HEAD
-=======
                 <Route exact path="/subcheckout">
                     <Narbar />
                     <div style={{ marginTop: '170px' }}>
                         <SubCheckOut></SubCheckOut>
                     </div>
                 </Route>
->>>>>>> e17ee8fae7afe23d8cb63f946afc8bb9036dfe0c
                 {+cookies.role > 0 ? (
                     <>
                         <Route exact path="/admin">
