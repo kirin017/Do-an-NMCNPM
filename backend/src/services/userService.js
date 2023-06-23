@@ -14,6 +14,7 @@ let handleLogin = async (username, password) => {
         succeed: true,
         message: 'OK',
         data: {
+            id: existedUser.id,
             name: existedUser.name,
             role: existedUser.typeUser,
             username: existedUser.username

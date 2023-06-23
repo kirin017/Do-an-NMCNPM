@@ -19,7 +19,8 @@ import ProductActionPage from './components/ProductActionPage/ProductActionPage'
 import { useCookies } from 'react-cookie';
 import AdminProducts from './components/AdminProducts/AdminProducts';
 import AddProduct from './components/AddProduct/AddProduct';
-
+import Checkout from './components/Checkout/Checkout';
+import Post from './components/Narbar/Post/post';
 const App = () => {
     const [cookies] = useCookies([]);
     return (
@@ -27,9 +28,13 @@ const App = () => {
             <Switch>
                 <Route exact path="/">
                     <Narbar />
-                    <div style={{ marginTop: '100px' }}>
+                    <div style={{ marginTop: '120px' }}>
+                    <Post></Post>
                         <Products />
+                        
                     </div>
+                    
+                
                 </Route>
                 <Route exact path="/login">
                     <Narbar />
@@ -67,6 +72,12 @@ const App = () => {
                         <HistoryOrders />
                     </div>
                 </Route>
+                <Route exact path="/checkout">
+                        <Narbar />
+                            <div style={{ marginTop: '170px' }}>
+                                <Checkout></Checkout>
+                            </div>
+                    </Route>
                 {+cookies.role > 0 ? (
                     <>
                         <Route exact path="/admin">

@@ -31,6 +31,11 @@ let initWebRoutes = (app) => {
     router.post('/api/productType/post', productController.addProductType);
     // API cho giỏ hàng
     router.post('/api/productsCart', cartController.getProductCart);
+    router.post('/api/productsCart/add', cartController.addProductCart);
+    router.post('/api/productsCart/changequantity', cartController.updateProductQuantCart);
+    router.post('/api/productsCart/delete', cartController.deleteProductCart)
+    router.post('/api/productsCart/deleteAll', cartController.deleteAllProductCart)
+    
     router.get('/crud', homeController.getCRUD);
     router.post('/post-crud', homeController.postCRUD)
     router.get('/get-crud', homeController.displayGetCRUD); 
