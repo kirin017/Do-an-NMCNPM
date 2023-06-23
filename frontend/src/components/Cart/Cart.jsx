@@ -5,7 +5,7 @@ import CartItem from './CartItem/CartItem'
 import useStyles from './styles';
 import { useCookies } from 'react-cookie';
 // import axios from 'axios';
-
+import { useHistory } from 'react-router-dom';
 
 const products = [
 { id: 1, name: 'Shoes', description: 'Running Shoes.', price:'$5', image: 'https://cdn.shopify.com/s/files/1/0456/5070/6581/products/3023814-403-1_720x@2x.jpg?v=1638870457' },
@@ -18,6 +18,7 @@ const products = [
 const Cart = () => { 
   const classes = useStyles()
   const [cookies] = useCookies([]);
+  const history = useHistory();
   // const [products, setproducts] = useState([]);
 
   // useEffect(() => {
@@ -34,6 +35,7 @@ const Cart = () => {
   
 
   return (
+    
     <>
       {cookies.role==='0' ? (
         <main className={classes.content}>
@@ -54,7 +56,10 @@ const Cart = () => {
             </Box>
             <div>
                 <Button className={classes.button}>Xóa tất cả</Button>
-                <Button className={classes.button}>Thanh toán</Button>      
+                <Button onClick={()=>{
+                    history.push('/checkout');
+                    history.go(0);
+                }}className={classes.button}>Thanh toán</Button>      
             </div>
           </div>
         </main>
