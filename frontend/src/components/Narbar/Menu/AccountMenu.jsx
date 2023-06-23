@@ -42,7 +42,7 @@ function getCookieValue(cookieName) {
   return null;
 }
 
-// var typeUserValue = getCookieValue('role');
+var typeUserValue = getCookieValue('role');
 var userName = getCookieValue('username');
 
 const StyledMenu = withStyles({
@@ -76,7 +76,7 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-export default function CustomizedMenus( ) {
+export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const history = useHistory();
   const handleClick = (event) => {
@@ -94,9 +94,9 @@ export default function CustomizedMenus( ) {
         aria-haspopup="true"
         variant="contained"
         style={{ backgroundColor: '#E8E8E8' }}
-        onClick={handleClick}   
+        onClick={handleClick}
       >
-         😼 {userName}
+        😼 {userName}
       </Button>
       <StyledMenu
         id="customized-menu"
@@ -106,58 +106,64 @@ export default function CustomizedMenus( ) {
         onClose={handleClose}
       >
         <StyledMenuItem>
-        <ListItem
-                button
-                onClick={()=>{
-                    history.push('/accountsetting');
-                }}
-                >
-                <ListItemIcon>
-                    <AssignmentIndIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary="Tài khoản của tôi" />
-           </ListItem>  
+          <ListItem
+            button
+            onClick={() => {
+              history.push('/accountsetting');
+            }}
+          >
+            <ListItemIcon>
+              <AssignmentIndIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Tài khoản của tôi" />
+          </ListItem>
         </StyledMenuItem>
-        <StyledMenuItem>
-        <ListItem
+
+        {typeUserValue === 0 ? (
+          <>
+            <StyledMenuItem>
+              <ListItem
                 button
-                onClick={()=>{
-                    history.push('/cart');
+                onClick={() => {
+                  history.push('/cart');
                 }}
-                >
+              >
                 <ListItemIcon>
-                    <ShoppingCartIcon fontSize="small" />
+                  <ShoppingCartIcon fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Giỏ hàng" />
-           </ListItem>  
-        </StyledMenuItem>
-        <StyledMenuItem>
-        <ListItem
+              </ListItem>
+            </StyledMenuItem>
+
+            <StyledMenuItem>
+              <ListItem
                 button
-                onClick={()=>{
-                    history.push('/historyOrder');
+                onClick={() => {
+                  history.push('/historyOrder');
                 }}
-                >
+              >
                 <ListItemIcon>
-                    <ShoppingBasketIcon fontSize="small" />
+                  <ShoppingBasketIcon fontSize="small" />
                 </ListItemIcon>
                 <ListItemText primary="Đơn hàng" />
-           </ListItem>  
-        </StyledMenuItem>
+              </ListItem>
+            </StyledMenuItem>
+          </>
+        ) : (<></>)}
         <StyledMenuItem>
           <ListItem
-                button
-                onClick={()=>{
-                    deleteAllCookies();
-                    history.push('/');
-                    history.go(0);
-                }}
-                >
-                <ListItemIcon>
-                    <ExitToAppIcon fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary="Đăng xuất" />
-           </ListItem>
+            button
+            onClick={() => {
+              deleteAllCookies();
+              history.push('/');
+              history.go(0);
+            }}
+          >
+            <ListItemIcon>
+              <ExitToAppIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Đăng xuất" />
+          </ListItem>
         </StyledMenuItem>
       </StyledMenu>
     </div>

@@ -20,6 +20,7 @@ import { useCookies } from 'react-cookie';
 import AdminProducts from './components/AdminProducts/AdminProducts';
 import AddProduct from './components/AddProduct/AddProduct';
 import Checkout from './components/Checkout/Checkout';
+import Post from './components/Narbar/Post/post';
 const App = () => {
     const [cookies] = useCookies([]);
     return (
@@ -27,9 +28,13 @@ const App = () => {
             <Switch>
                 <Route exact path="/">
                     <Narbar />
-                    <div style={{ marginTop: '100px' }}>
+                    <div style={{ marginTop: '120px' }}>
+                    <Post></Post>
                         <Products />
+                        
                     </div>
+                    
+                
                 </Route>
                 <Route exact path="/login">
                     <Narbar />
@@ -62,9 +67,9 @@ const App = () => {
                     </div>
                 </Route>
                 <Route exact path="/historyOrder">
-                    <Narbar/>
+                    <Narbar />
                     <div style={{ marginTop: '190px', marginLeft: '40px' }}>
-                        <HistoryOrders/>
+                        <HistoryOrders />
                     </div>
                 </Route>
                 <Route exact path="/checkout">
@@ -75,53 +80,65 @@ const App = () => {
                     </Route>
                 {+cookies.role > 0 ? (
                     <>
-                    <Route exact path="/admin">
-                        <Narbar />
-                        <SideBar></SideBar>
-                        <div style={{ marginTop: '120px', marginLeft: '250px' }}>
-                            Giao diện trang chủ admin
-                        </div>
-                    </Route>
-                    <Route exact path="/admin/product">
-                        <Narbar />
-                        <SideBar></SideBar>
-                        <div style={{ marginTop: '190px', marginLeft: '190px' }}>
-                            <AdminProducts></AdminProducts>
-                        </div>
-                    </Route>
-                    <Route exact path="/admin/addproduct">
-                        <Narbar />
-                        <SideBar></SideBar>
-                        <div style={{ marginTop: '190px', marginLeft: '190px' }}>
-                            <AddProduct/>
-                        </div>
-                    </Route>
-                    <Route exact path="/admin/order">
-                        <Topbar></Topbar>
-                        <SideBar></SideBar>
-                        <div style={{ marginTop: '50px', marginLeft: '250px' }}>
-                            <Orders />
-                        </div>
-                    </Route>
-                    <Route exact path="/admin/order/add">
-                        <Narbar />
-                        <SideBar />
-                        <ProductActionPage />
-                    </Route>
-                    <Route exact path="/admin/account">
-                        <Topbar></Topbar>
-                        <div style={{ marginTop: '50px' }}>
+                        <Route exact path="/admin">
+                            <Narbar />
                             <SideBar></SideBar>
-                        </div>
-                        <div style={{ marginTop: '10px', marginLeft: '250px' }}>
-                            <AccountManagement />
-                        </div>
-                    </Route>
-                    <Route exact path="/admin/statistic">
-                        <div style={{ marginTop: '170px', marginLeft: '50px' }}>
-                            <Dashboard />
-                        </div>
-                    </Route>
+                            <div style={{ marginTop: '120px', marginLeft: '250px' }}>
+                                Giao diện trang chủ admin
+                            </div>
+                        </Route>
+                        <Route exact path="/admin/product">
+                            <Narbar />
+                            <SideBar></SideBar>
+                            <div style={{ marginTop: '190px', marginLeft: '190px' }}>
+                                <AdminProducts></AdminProducts>
+                            </div>
+                        </Route>
+                        <Route exact path="/admin/addproduct">
+                            <Narbar />
+                            <SideBar></SideBar>
+                            <div style={{ marginTop: '190px', marginLeft: '190px' }}>
+                                <AddProduct />
+                            </div>
+                        </Route>
+                        <Route exact path="/admin/order">
+                            <Narbar />
+                            <Topbar></Topbar>
+                            <SideBar></SideBar>
+                            <div style={{ marginTop: '150px', marginLeft: '250px' }}>
+                                <Orders />
+                            </div>
+                        </Route>
+                        <Route exact path="/admin/order/add">
+                            <Narbar />
+                            <SideBar />
+                            <div style={{ marginTop: '150px' }}>
+                                <ProductActionPage />
+                            </div>
+                        </Route>
+                        <Route exact path="/admin/account">
+                            <Narbar />
+                            <Topbar></Topbar>
+                            <div style={{ marginTop: '150px' }}>
+                                <SideBar></SideBar>
+                            </div>
+                            <div style={{ marginTop: '10px', marginLeft: '250px' }}>
+                                <AccountManagement />
+                            </div>
+                        </Route>
+                        <Route exact path="/admin/statistic">
+                            <Narbar />
+                            <div style={{ marginTop: '170px', marginLeft: '150px' }}>
+                                <SideBar></SideBar>
+                            </div>
+                            <div className='dash-board' style={{
+                                marginLeft: '250px',
+                                marginTop: '50px'
+                            }}>
+                                <Dashboard />
+                            </div>
+
+                        </Route>
                     </>
                 ) : (<>Tài khoản của bạn không được phép truy cập vào trang admin</>)}
             </Switch>

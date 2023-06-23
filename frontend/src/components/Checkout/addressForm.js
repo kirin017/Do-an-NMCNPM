@@ -6,6 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { makeStyles } from '@material-ui/core/styles';
 import { MenuItem, InputLabel, FormControl, Select } from '@material-ui/core'
+import { useState } from 'react';
 const useStyles = makeStyles((theme) => ({
     button: {
         display: 'block',
@@ -18,6 +19,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function AddressForm() {
     const classes = useStyles();
+    const [payment, setPayment] = useState('');
+    const [address, setAddress] = useState('');
+    const [FullName, setFullName] = useState('');
+    const [phone, setPhoneNumber] = useState('');
+    const [promo, setpromo] = useState('');
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -26,32 +32,40 @@ export default function AddressForm() {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <TextField
-                        required
-                        id="FullName"
-                        name="FullName"
-                        label="Full name"
-                        fullWidth
                         autoComplete="given-name"
+                        name="FullName"
+                        required
+                        fullWidth
+                        id="FullName"
+                        label="FullName"
+                        autoFocus
+                        value={FullName}
+                        onChange={e=>setFullName(e.target.value)}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
+                        autoComplete="address"
+                        name="Address"
                         required
+                        fullWidth
                         id="address"
-                        name="address"
-                        label="Address"
-                        fullWidth
-                        autoComplete="shipping address"
+                        label="address"
+                        autoFocus
+                        value={address}
+                        onChange={e=>setAddress(e.target.value)}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
                         required
-                        id="phone"
-                        name="phone"
-                        label="Phone Number"
                         fullWidth
+                        id="phone"
+                        label="Phone Number"
+                        name="phone"
                         autoComplete="phone"
+                        value={phone}
+                        onChange={e=>setPhoneNumber(e.target.value)}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -84,6 +98,8 @@ export default function AddressForm() {
                             labelId="payment"
                             id="payment"
                             required
+                            value={payment}
+                            onChange={e=>setPayment(e.target.value)}
                         >
                             <MenuItem value={0}>Cash Payment</MenuItem>
                         </Select>
@@ -96,6 +112,8 @@ export default function AddressForm() {
                         label="Promo Code"
                         fullWidth
                         autoComplete="promo"
+                        value={promo}
+                        onChange={e=>setpromo(e.target.value)}
                     />
                 </Grid>
                 <Grid item xs={12}>

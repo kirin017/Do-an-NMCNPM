@@ -12,7 +12,7 @@ import axios from 'axios';
 //{ id: 5, name: 'Áo Adidas Juventus', description: 'Áo bóng đá nam Adidas Juventus Home Jersey', price:'199.000', image: 'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6a8e5ed538544c6d9ffbaa250114e25e_9366/Ao_djau_san_nha_Juventus_DJen_DW5455_01_laydown.jpg' },
 //];
 
-const Products = () => { 
+const Products = (type) => { 
   const classes = useStyles()
 
   const [products, setproducts] = useState([]);
@@ -39,6 +39,7 @@ const Products = () => {
           products.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={3} lg={3}>
             <Product product={product} />
+
           </Grid>
         ))}
       </Grid>

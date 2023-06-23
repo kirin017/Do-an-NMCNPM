@@ -19,7 +19,7 @@ let getProduct = (productID) => {
             let data = await db.Product.findOne(
                 { 
                     where: {productID: productID},
-                    attributes: ['productID','productName','productImage','productPrice','productCount','productInfo']
+                    attributes: ['productID','productTypeID', 'productName','productImage','productPrice','productCount','productInfo']
                 }
             )
             reslove(data)
