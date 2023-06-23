@@ -21,6 +21,7 @@ import AdminProducts from './components/AdminProducts/AdminProducts';
 import AddProduct from './components/AddProduct/AddProduct';
 import Checkout from './components/Checkout/Checkout';
 import Post from './components/Narbar/Post/post';
+import SubCheckOut from './components/Checkout/SubCheckOut';
 const App = () => {
     const [cookies] = useCookies([]);
     return (
@@ -29,12 +30,12 @@ const App = () => {
                 <Route exact path="/">
                     <Narbar />
                     <div style={{ marginTop: '120px' }}>
-                    <Post></Post>
+                        <Post></Post>
                         <Products />
-                        
+
                     </div>
-                    
-                
+
+
                 </Route>
                 <Route exact path="/login">
                     <Narbar />
@@ -73,11 +74,17 @@ const App = () => {
                     </div>
                 </Route>
                 <Route exact path="/checkout">
-                        <Narbar />
-                            <div style={{ marginTop: '170px' }}>
-                                <Checkout></Checkout>
-                            </div>
-                    </Route>
+                    <Narbar />
+                    <div style={{ marginTop: '170px' }}>
+                        <Checkout></Checkout>
+                    </div>
+                </Route>
+                <Route exact path="/subcheckout">
+                    <Narbar />
+                    <div style={{ marginTop: '170px' }}>
+                        <SubCheckOut></SubCheckOut>
+                    </div>
+                </Route>
                 {+cookies.role > 0 ? (
                     <>
                         <Route exact path="/admin">
