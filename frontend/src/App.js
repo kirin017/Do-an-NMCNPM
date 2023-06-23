@@ -61,7 +61,7 @@ const App = () => {
                     <div style={{ marginTop: '190px', marginLeft: '40px' }}>
                         <HistoryOrders />   
                     </div>
-                </Route> */}
+                </Route> 
                 <Route exact path="/admin">
                     <Narbar />
                     <SideBar></SideBar>
