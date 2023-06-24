@@ -40,7 +40,7 @@ let initWebRoutes = (app) => {
     // API cho đơn hàng
     router.post('/api/order', orderController.Order)
     router.post('/api/getallorder', orderController.getOrders)
-
+    // API
     router.get('/crud', homeController.getCRUD);
     router.post('/post-crud', homeController.postCRUD)
     router.get('/get-crud', homeController.displayGetCRUD); 
