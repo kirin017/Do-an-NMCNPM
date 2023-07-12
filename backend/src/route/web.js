@@ -4,6 +4,7 @@ import userController from "../controllers/userController";
 import productController from "../controllers/productController";
 import cartController from "../controllers/cartController";
 import orderController from "../controllers/orderController";
+import accountController from "../controllers/accountController"
 
 let router = express.Router()
 
@@ -40,6 +41,8 @@ let initWebRoutes = (app) => {
     // API cho đơn hàng
     router.post('/api/order', orderController.Order)
     router.post('/api/getallorder', orderController.getOrders)
+    // API cho quản lý tài khoản 
+    router.get('/api/accounts', accountController.getAllAccounts)
 
     router.get('/crud', homeController.getCRUD);
     router.post('/post-crud', homeController.postCRUD)
