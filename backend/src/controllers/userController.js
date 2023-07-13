@@ -55,7 +55,14 @@ let handleGetUser = async(req, res ) => {
         data: user
     })
 }
-
+let handleGetAllUser = async(req, res ) => {
+    let user = await userService.getAllUser()
+    return res.status(200).json({
+        succeed: true,
+        message: 'ok',
+        data: user
+    })
+}
 let handleLogout = async (req, res) =>  {
     res.cookie('username', '', {maxAge: 0})
     res.cookie('role', '', {maxAge: 0})
@@ -74,4 +81,5 @@ module.exports = {
     handleGetUser: handleGetUser,
     handleLogout: handleLogout,
     updateUser: updateUser,
+    handleGetAllUser:handleGetAllUser,
 }

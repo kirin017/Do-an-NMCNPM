@@ -143,7 +143,21 @@ let getUser = (username) => {
       });
 
 }
+let getAllUser = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.User.findAll();
+            if (user) {
+                resolve(user)
+            }else{
+                resolve(null)
+            }
+        } catch (e) {
+          reject(e);
+        }
+      });
 
+}
 let updateUser = (newData) => {
     return new Promise (async(resolve, reject) => {
         try{
@@ -182,4 +196,5 @@ module.exports = {
     hanldeSignUp: hanldeSignUp,
     getUser: getUser,
     updateUser:updateUser,
+    getAllUser:getAllUser,
 }

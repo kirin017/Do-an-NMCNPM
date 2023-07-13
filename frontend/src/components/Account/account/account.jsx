@@ -4,16 +4,27 @@ import { SearchOutlined } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
+import axios from 'axios';
 function AccountManagement() {
     const columns = [
         {
-            name: 'Customer Name',
+            name: 'Name',
             selector: row => row.name,
             sortable: true
         },
         {
-            name: "Age",
-            selector: row => row.age,
+            name: "Username",
+            selector: row => row.username,
+            sortable: true
+        },
+        {
+            name: "PhoneNumber",
+            selector: row => row.phoneNumber,
+            sortable: true
+        },
+        {
+            name: "Email",
+            selector: row => row.email,
             sortable: true
         },
         {
@@ -22,20 +33,21 @@ function AccountManagement() {
             sortable: true
         },
         {
-            name: "Phone",
-            selector: row => row.phone,
-            sortable: true
-        },
-        {
-            name: "Email",
-            selector: row => row.email,
+            name: "TypeUser",
+            selector: row => row.typeUser,
             sortable: true
         }
     ];
+    const [user, setUser] = useState(async () => {
+        const user = await axios.get(`http://localhost:8081/api/getAllUser`)
+        setUser(user.data)
+    })
+    const dataUser = user
+    console.log(dataUser)
     const data = [
         {
             id: 1,
-            name: 'zascf',
+            name: dataUser[0],
             email: 'zascf@gmail.com',
             phone: '0885132150',
             age: '23',
@@ -174,6 +186,7 @@ function AccountManagement() {
         setRecords(newData)
     }
     return (
+        
         <div className='container mt-5'>
             <div className='text-end' style={{
                 display: 'flex',

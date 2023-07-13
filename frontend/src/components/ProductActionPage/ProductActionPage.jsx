@@ -28,7 +28,7 @@ class ProductActionPage extends Component {
     }
 
     render() {
-        var { txtName, txtPrice, txtCategory, txtImage, chkbStatus } = this.state;
+        var { txtName, txtPrice, txtCategory, txtImage,txtCount } = this.state;
         return (
             <div className="add-product-page" style={{
                 display: 'flex',
@@ -114,15 +114,25 @@ class ProductActionPage extends Component {
                                 }} />
                         </div>
                         <div className="form-group">
-                            <label>Trạng thái:</label>
+                            <label style={{
+                                width: '100%',
+                                display: 'block',
+                            }}>Số lượng: </label>
+                            <input type="link"
+                                className="form-control"
+                                name="txtCount"
+                                value={txtCount}
+                                onChange={this.onChange}
+                                style={{
+                                    height: '15px',
+                                    display: 'block',
+                                    width: '100%',
+                                    padding: '6px 8px',
+                                }} />
                         </div>
-                        <div className="checkbox">
-                            <label>
-                                <input type="checkbox" name="chkbStatus" value={chkbStatus} onChange={this.onChange} />
-                                Còn hàng
-                            </label>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Lưu lại</button>
+                        <button style={{
+                                marginTop : '20px'
+                            }} type="submit" className="btn btn-primary">Lưu lại</button>
                     </form>
                 </div>
             </div>

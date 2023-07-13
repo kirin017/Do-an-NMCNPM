@@ -18,7 +18,7 @@ import HistoryOrders from './components/HistoryOrders/HistoryOrders';
 import ProductActionPage from './components/ProductActionPage/ProductActionPage';
 import { useCookies } from 'react-cookie';
 import AdminProducts from './components/AdminProducts/AdminProducts';
-import AddProduct from './components/AddProduct/AddProduct';
+// import AddProduct from './components/AddProduct/AddProduct';
 import Checkout from './components/Checkout/Checkout';
 import Post from './components/Narbar/Post/post';
 import SubCheckOut from './components/Checkout/SubCheckOut';
@@ -91,7 +91,7 @@ const App = () => {
                             <Narbar />
                             <SideBar></SideBar>
                             <div style={{ marginTop: '120px', marginLeft: '250px' }}>
-                                Giao diện trang chủ admin
+                                <Post></Post>
                             </div>
                         </Route>
                         <Route exact path="/admin/product">
