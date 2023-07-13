@@ -22,6 +22,7 @@ import AdminProducts from './components/AdminProducts/AdminProducts';
 import Checkout from './components/Checkout/Checkout';
 import Post from './components/Narbar/Post/post';
 import SubCheckOut from './components/Checkout/SubCheckOut';
+import ReviseProduct from './components/ReviseProduct/ReviseProduct';
 const App = () => {
     const [cookies] = useCookies([]);
     return (
@@ -106,6 +107,13 @@ const App = () => {
                             <SideBar />
                             <div style={{ marginTop: '150px', marginLeft: '600px' }}>
                                 <ProductActionPage />
+                            </div>
+                        </Route>
+                        <Route exact path="/admin/reviseproduct">
+                            <Narbar />
+                            <SideBar />
+                            <div style={{ marginTop: '150px', marginLeft: '600px' }}>
+                                <ReviseProduct />
                             </div>
                         </Route>
                         <Route exact path="/admin/order">

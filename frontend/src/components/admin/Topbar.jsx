@@ -1,6 +1,4 @@
 import React from 'react';
-import { Typography, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import useStyles from './style';
 
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
