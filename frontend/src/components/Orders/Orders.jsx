@@ -180,7 +180,7 @@ function OrderManagement() {
           pagination: {},
         }}
       ></DataTable>
-    </div >
+    </div>
   )
 }
 export default OrderManagement

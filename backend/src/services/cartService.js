@@ -28,7 +28,7 @@ let addProductInCart = (data) => {
     return new Promise (async(resolve, reject) => {
         try{
             let ktProduct = await db.Cart.findOne({ 
-                    where : {productID: data.productID},
+                    where : {productID: data.productID, userID: data.userID},
                     raw : false,
                 }) 
             if (!ktProduct){
