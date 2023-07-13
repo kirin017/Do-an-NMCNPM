@@ -1,9 +1,11 @@
 import db from '../models/index'
+import cartService from "./cartService"
 
 let userOrder = (data) => {
     return new Promise (async(resolve, reject) => {
         try{
             const currentDate = new Date();
+            const totalCost = await cartService.SumCartPrice({userID: data.userID});
             const newBill = await db.Bill.create({
                 id: data.userID,
                 customerName: data.customerName,
@@ -12,7 +14,7 @@ let userOrder = (data) => {
                 date: currentDate,
                 paymentType: data.paymentType,
                 shipCost: data.shipCost,
-                totalCost: data.totalCost,
+                totalCost: totalCost[0].TotalPrice,
                 statusID: 0,
                 note: data.note
             });
@@ -20,6 +22,7 @@ let userOrder = (data) => {
                 where : {date: newBill.date, id: newBill.id}
             })
             // console.log(newBillID.billID)
+            await updateWareHouse(data.userID)
             await makeOrderDetail(data, newBillID.billID)
             resolve();
         }catch(e){
@@ -60,6 +63,30 @@ let getAllUserOrder = (data) => {
                 { replacements: { userID: data.userID }, type: db.sequelize.QueryTypes.SELECT}
             );
             resolve(products)
+        }catch(e){
+            reject(e)
+        }
+    })
+}
+
+let updateWareHouse = (userID) => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            await db.sequelize.query(
+                `UPDATE Product
+                SET productCount = productCount - (
+                    SELECT count
+                    FROM Cart
+                    WHERE Cart.productID = Product.productID
+                    AND Cart.userID = :userID)
+                WHERE ProductID IN (
+                    SELECT ProductID
+                    FROM Cart
+                    WHERE Cart.userID = :userID
+                );`,
+                { replacements: { userID: userID }, type: db.sequelize.QueryTypes.UPDATE}
+            );
+            resolve()
         }catch(e){
             reject(e)
         }
