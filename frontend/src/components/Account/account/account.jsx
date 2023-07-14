@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DataTable from "react-data-table-component"
 import { SearchOutlined } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-import axios from 'axios';
 function AccountManagement() {
+    
+    const [user, setUser] = useState([])
+
+    useEffect(() => {
+        fetch(`http://localhost:8081/api/getAllUser`)
+            .then(response => response.json())
+            .then(data => setUser(data.data))
+    }, [])
+    console.log(user)
+    
     const columns = [
         {
             name: 'Name',
@@ -38,126 +47,7 @@ function AccountManagement() {
             sortable: true
         }
     ];
-    const [user, setUser] = useState(async () => {
-        const user = await axios.get(`http://localhost:8081/api/getAllUser`)
-        setUser(user.data)
-    })
-    const dataUser = user
-    console.log(dataUser)
-    const data = [
-        {
-            id: 1,
-            name: dataUser[0],
-            email: 'zascf@gmail.com',
-            phone: '0885132150',
-            age: '23',
-            gender: 'male'
-        },
-        {
-            id: 2,
-            name: 'huy',
-            email: 'huy@gmail.com',
-            phone: '0885132150',
-            age: '20',
-            gender: 'female'
-        },
-        {
-            id: 3,
-            name: 'zascf3',
-            email: 'zascf@gmail.com',
-            phone: '0885132150',
-            age: '26',
-            gender: 'male'
-        },
-        {
-            id: 4,
-            name: 'zascf4',
-            email: 'zascf@gmail.com',
-            phone: '0885132150',
-            age: '28',
-            gender: 'female'
-        },
-        {
-            id: 5,
-            name: 'zascf5',
-            email: 'zascf4@gmail.com',
-            phone: '0885132150',
-            age: '29',
-            gender: 'male'
-        },
-        {
-            id: 6,
-            name: 'test6',
-            email: 'test6@gmail.com',
-            phone: '0885132150',
-            age: '13',
-            gender: 'female'
-        },
-        {
-            id: 7,
-            name: 'test7',
-            email: 'test7@gmail.com',
-            phone: '0885132150',
-            age: '33',
-            gender: 'male'
-        },
-        {
-            id: 1,
-            name: 'zascf',
-            email: 'zascf@gmail.com',
-            phone: '0885132150',
-            age: '23',
-            gender: 'female'
-        },
-        {
-            id: 2,
-            name: 'huy',
-            email: 'huy@gmail.com',
-            phone: '0885132150',
-            age: '20',
-            gender: 'female'
-        },
-        {
-            id: 3,
-            name: 'zascf3',
-            email: 'zascf@gmail.com',
-            phone: '0885132150',
-            age: '26',
-            gender: 'male'
-        },
-        {
-            id: 4,
-            name: 'zascf4',
-            email: 'zascf@gmail.com',
-            phone: '0885132150',
-            age: '28',
-            gender: 'female'
-        },
-        {
-            id: 5,
-            name: 'zascf5',
-            email: 'zascf4@gmail.com',
-            phone: '0885132150',
-            age: '29',
-            gender: 'male'
-        },
-        {
-            id: 6,
-            name: 'test6',
-            email: 'test6@gmail.com',
-            phone: '0885132150',
-            age: '13',
-            gender: 'female'
-        },
-        {
-            id: 7,
-            name: 'test7',
-            email: 'test7@gmail.com',
-            phone: '0885132150',
-            age: '33',
-            gender: 'male'
-        }
-    ]
+
     const tableStyle = {
         borderCollapse: 'collapse',
     };
@@ -178,15 +68,14 @@ function AccountManagement() {
     // const hoverRowStyle = {
     //     backgroundColor: '#f5f5f5',
     // };
-    const [records, setRecords] = useState(data);
+    const [records, setRecords] = useState(user);
     function handleFilter(event) {
-        const newData = data.filter(row => {
+        const newData = records.filter(row => {
             return row.name.toLowerCase().includes(event.target.value.toLowerCase())
         })
         setRecords(newData)
     }
     return (
-        
         <div className='container mt-5'>
             <div className='text-end' style={{
                 display: 'flex',
@@ -201,14 +90,11 @@ function AccountManagement() {
             }} /><SearchOutlined />
             </div>
             <Button variant="outlined" color="primary" component={Link} to={`/admin/account/update`}>
-                Xóa
-            </Button>
-            <Button variant="outlined" color="primary" style={{ marginRight: '1000px' }} component={Link} to={`/admin/account/delete`}>
-                Sửa
+                Cấp tài khoản cho Staff
             </Button>
             <DataTable
                 columns={columns}
-                data={records}
+                data={user}
                 selectableRows
                 fixedHeader
                 highlightOnHover

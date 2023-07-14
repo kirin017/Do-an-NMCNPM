@@ -22,6 +22,7 @@ import AdminProducts from './components/AdminProducts/AdminProducts';
 import Checkout from './components/Checkout/Checkout';
 import Post from './components/Narbar/Post/post';
 import SubCheckOut from './components/Checkout/SubCheckOut';
+import AdminSignup from './components/SignUp/AdminSignup';
 const App = () => {
     const [cookies] = useCookies([]);
     return (
@@ -131,6 +132,13 @@ const App = () => {
                             </div>
                             <div style={{ marginTop: '10px', marginLeft: '250px' }}>
                                 <AccountManagement />
+                            </div>
+                        </Route>
+                        <Route exact path="/admin/account/update">
+                            <Narbar />
+                            <Topbar></Topbar>
+                            <div style={{ marginTop: '150px', marginLeft: '0px' }}>
+                                <AdminSignup />
                             </div>
                         </Route>
                         <Route exact path="/admin/statistic">

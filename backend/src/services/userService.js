@@ -96,7 +96,39 @@ let hanldeSignUp = (data) => {
         }
     })
 }
-
+let hanldeSignUpStaff = (data) => {
+    return new Promise(async(resolve, reject) => {
+        try {
+            let userData = {};    
+            let isExist = await checkUsername(data.username);
+            if (!isExist){
+                // user not already exist
+                let hashPasswordFromBcrypt = await hashUserPassword(data.password);
+                await db.User.create({
+                    name: data.name,
+                    username: data.username,
+                    password: hashPasswordFromBcrypt,
+                    phoneNumber: data.phoneNumber,
+                    email: data.email,
+                    gender:
+                      data.gender == 1 ? "female" : data.gender == 0 ? "male" : "other",
+                    typeUser : '1',
+                  });
+                userData.errCode = 0;
+                userData.errMessage = 'OK';
+                userData.name = data.name;
+                userData.role = data.typeUser
+            }else{
+                // return error
+                userData.errCode = 2;
+                userData.errMessage = 'Tên đăng nhập đã tồn tại!.'
+            }
+            resolve(userData)
+        } catch(e){
+            reject(e)
+        }
+    })
+}
 let checkUsername = (username) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -146,7 +178,7 @@ let getUser = (username) => {
 let getAllUser = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let user = await db.User.findAll();
+            let user = await db.User.findAll({attributes: ['name','phoneNumber', 'username', 'email','gender','typeUser']});
             if (user) {
                 resolve(user)
             }else{
@@ -197,4 +229,5 @@ module.exports = {
     getUser: getUser,
     updateUser:updateUser,
     getAllUser:getAllUser,
+    hanldeSignUpStaff:hanldeSignUpStaff,
 }

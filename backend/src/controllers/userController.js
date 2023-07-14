@@ -47,6 +47,28 @@ let hanldeSignUp = async (req, res) => {
     })
     
 }
+let hanldeSignUpStaff = async (req, res) => {
+    let data = req.body
+    if (!data.username || !data.name || !data.password || !data.phoneNumber|| !data.email|| data.gender == undefined){
+        return res.status(200).json({
+            errCode: 1,
+            message: 'Missing input parameter!',
+            user: data.username,
+            pw: data.password,
+            phone: data.phoneNumber,
+            name: data.name,
+            gender: data.gender,
+            email : data.email
+        })
+    }
+    let userData = await userService.hanldeSignUpStaff(data);
+    return res.status(200).json({
+        errCode: userData.errCode,
+        message: userData.errMessage,
+        userData
+    })
+    
+}
 let handleGetUser = async(req, res ) => {
     let user = await userService.getUser(req.username)
     return res.status(200).json({
@@ -82,4 +104,5 @@ module.exports = {
     handleLogout: handleLogout,
     updateUser: updateUser,
     handleGetAllUser:handleGetAllUser,
+    hanldeSignUpStaff:hanldeSignUpStaff,
 }
