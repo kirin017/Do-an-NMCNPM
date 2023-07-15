@@ -15,15 +15,17 @@ let updateDailyReport = () => {
             await db.sequelize.query(
                 `UPDATE DailyReportDetail
                 SET revenue = (
-                    SELECT Sum(totalCost)
+                    SELECT SUM(totalCost)
                     FROM Bill
                     WHERE DATE_FORMAT(Bill.date, '%Y-%m-%d') = DailyReportDetail.date
+                    AND Bill.statusID = 1
                     GROUP BY DATE_FORMAT(Bill.date, '%Y-%m-%d')
                 ),
                 billCount = (
                     SELECT Count(totalCost)
                     FROM Bill
                     WHERE DATE_FORMAT(Bill.date, '%Y-%m-%d') = DailyReportDetail.date
+                    AND Bill.statusID = 3
                     GROUP BY DATE_FORMAT(Bill.date, '%Y-%m-%d')
                 )`,
                 {type: db.sequelize.QueryTypes.UPDATE}

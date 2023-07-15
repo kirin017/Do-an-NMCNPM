@@ -15,7 +15,7 @@ let userOrder = (data) => {
                 paymentType: data.paymentType,
                 shipCost: data.shipCost,
                 totalCost: totalCost[0].TotalPrice,
-                statusID: 0,
+                statusID: 1,
                 note: data.note
             });
             const newBillID = await db.Bill.findOne({
@@ -31,6 +31,35 @@ let userOrder = (data) => {
     })
 }
 
+let cancelOrder = (data) => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            let info = await db.sequelize.query(
+                `SELECT statusName
+                FROM Status
+                WHERE statusID = (
+                    SELECT statusID
+                    FROM Bill
+                    WHERE billID = :billID
+                )`,
+                { replacements: { billID: data.billID }, type: db.sequelize.QueryTypes.SELECT}
+            );
+            if (info[0].statusName === 'Đang xử lý'){
+                await db.sequelize.query(
+                    `UPDATE Bill
+                    SET statusID = 4
+                    WHERE billID = :billID`,
+                    { replacements: { billID: data.billID }, type: db.sequelize.QueryTypes.UPDATE}
+                );
+                resolve('OK')
+            }
+            else resolve('Không thể hủy đơn này')
+        }catch(e){
+            reject(e)
+        }
+    })
+}
+
 let makeOrderDetail = (data, billID) => {
     return new Promise (async(resolve, reject) => {
         try{
@@ -39,7 +68,7 @@ let makeOrderDetail = (data, billID) => {
                 SELECT productID, count, :billID
                 FROM Cart
                 WHERE userID = :userID;`,
-                { replacements: { userID: data.userID, billID: billID },}
+                { replacements: { userID: data.userID, billID: billID } }
             );
             await db.Cart.destroy({ 
                 where : {userID: data.userID},
@@ -98,8 +127,9 @@ let getAllOrder = () => {
         try{
             const orders = await db.sequelize.query(
                 `SELECT BillID, Users.name, customerName, customerPhoneNumber, 
-                        customerAddress, date, totalCost, statusID 
-                FROM Bill LEFT JOIN Users ON Bill.id = Users.id
+                        customerAddress, date, totalCost, statusName 
+                FROM Bill LEFT JOIN Users ON Bill.id = Users.id 
+                LEFT JOIN Status ON Bill.statusID = Status.statusID 
                 ORDER BY BillID DESC`,
                 {type: db.sequelize.QueryTypes.SELECT}
             );
@@ -114,4 +144,5 @@ module.exports = {
     userOrder: userOrder,
     getAllUserOrder : getAllUserOrder,
     getAllOrder : getAllOrder,
+    cancelOrder : cancelOrder,
 }

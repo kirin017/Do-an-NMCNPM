@@ -10,9 +10,9 @@ let Order = async(req,res) => {
 
 let getUserOrders = async(req,res) => {
     let data = req.body;
-    const products = await orderServie.getAllUserOrder(data);
+    const orders = await orderServie.getAllUserOrder(data);
     return res.status(200).json({
-        products
+        orders
     }) 
 }
 
@@ -22,8 +22,17 @@ let  getAllOrders = async(req,res) => {
         orders
     }) 
 }
+
+let cancleOrder = async(req, res) => {
+    let data = req.body;
+    const errCode = await orderServie.cancelOrder(data);
+    return res.status(200).json({
+        errCode : errCode
+    }) 
+}
 module.exports = {
     Order : Order,
     getUserOrders : getUserOrders,
     getAllOrders : getAllOrders,
+    cancleOrder : cancleOrder,
 }
