@@ -4,7 +4,8 @@ let getProducts = () => {
     return new Promise (async (resolve, reject) => {
         try {
             let data = await db.Product.findAll({
-                attributes: ['productID','productName','productImage','productPrice','productCount','productInfo']
+                attributes: ['productID','productName','productImage','productPrice','productCount','productInfo'],
+                order: [['productCount', 'DESC']]   
             });
             resolve(data)
         } catch (e){
@@ -69,6 +70,24 @@ let updateProduct = (newData) => {
         }
     })
 }
+let deleteProduct = (newData) => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            const data = await db.Product.findOne(
+                { where: {productID: newData.productID}, raw: false }
+            );
+            if (data){
+                data.productCount = 0;
+                await data.save();
+                resolve();
+            }else{
+                resolve();
+            }
+        } catch(e){
+            reject(e);
+        }
+    })
+}
 
 let getProductType = () => {
     return new Promise (async(resolve, reject) => {
@@ -102,5 +121,5 @@ module.exports = {
     updateProduct : updateProduct,
     getProductType : getProductType,
     addProductType : addProductType,
-    
+    deleteProduct : deleteProduct
 }

@@ -30,6 +30,14 @@ let updateOneProduct = async(req, res) => {
     }) 
 }
 
+let deleteOneProduct = async(req, res) => {
+    let newData = req.body;
+    await productService.deleteProduct(newData);
+    return res.status(200).json({
+        errCode: 'Done'
+    }) 
+}
+
 let getProductType = async(req,res) => {
     let typeData = await productService.getProductType();
     return res.status(200).json({
@@ -49,6 +57,7 @@ module.exports = {
     getOneProduct : getOneProduct,
     addNewProduct : addNewProduct,
     updateOneProduct : updateOneProduct,
+    deleteOneProduct : deleteOneProduct,
     getProductType : getProductType,
     addProductType : addProductType,
 }
