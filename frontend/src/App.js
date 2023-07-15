@@ -14,7 +14,7 @@ import Dashboard from './components/dashboard/Dashboard';
 // import Bills from './components/Bills/Bills'
 // import Orders from './components/Orders/Orders';
 import Topbar from './components/admin/Topbar'
-import HistoryOrders from './components/HistoryOrders/HistoryOrders';
+// import HistoryOrders from './components/HistoryOrders/HistoryOrders';
 import ProductActionPage from './components/ProductActionPage/ProductActionPage';
 import { useCookies } from 'react-cookie';
 import AdminProducts from './components/AdminProducts/AdminProducts';
@@ -74,7 +74,7 @@ const App = () => {
                 <Route exact path="/historyOrder">
                     <Narbar />
                     <div style={{ marginTop: '190px', marginLeft: '40px' }}>
-                        <HistoryOrders />
+                        <Ordertable/>
                     </div>
                 </Route>
                 <Route exact path="/checkout">

@@ -39,6 +39,14 @@ let getOrderProducts = async(req, res) => {
     }) 
 }
 
+let getAllOrderOfOneUser = async(req, res) => {
+    let data = req.body;
+    let orders = await orderServie.getAllOrderOfOneUser(data);
+    return res.status(200).json({
+        orders : orders
+    }) 
+}
+
 let updateOrderStatus = async(req, res) => {
     let data = req.body;
     const products = await orderServie.updateOrderStatus(data);
@@ -54,4 +62,5 @@ module.exports = {
     cancleOrder : cancleOrder,
     getOrderProducts : getOrderProducts,
     updateOrderStatus : updateOrderStatus,
+    getAllOrderOfOneUser : getAllOrderOfOneUser,
 }

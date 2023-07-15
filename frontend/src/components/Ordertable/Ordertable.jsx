@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import OrderRow from './OrderRow/OrderRow';
 import useStyles from './styles';
+import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
 // const orders = [
@@ -13,33 +14,46 @@ import axios from 'axios';
 function Ordertable() {
   const classes = useStyles();
   const [orders, setorders] = useState([]);
+  const [cookies] = useCookies([]);
 
   useEffect(() => {
     async function getData() {
       try {
-        // let res = await axios.get('https://fakestoreapi.com/products/');
-        let res = await axios.get('http://localhost:8081/api/getAllrOrder');
+        let res
+        if (cookies.role > 0){
+          res = await axios.get('http://localhost:8081/api/getAllrOrder');
+        } else {
+          res = await axios.post('http://localhost:8081/api/userOrder', { userID: cookies.id});
+        }
         setorders(res.data.orders);
       } catch (error) {
         setorders([]) 
       } 
     }
     getData();
-  }, [])
+  }, )
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.tableCell}>ID</TableCell>
-            <TableCell className={classes.tableCell}>Tên tài khoản</TableCell>
+            {cookies.role > 0 ? (
+              <>
+                <TableCell className={classes.tableCell}>ID</TableCell>
+                <TableCell className={classes.tableCell}>Tên tài khoản</TableCell>
+              </>
+            ) : null}
             <TableCell className={classes.tableCell}>Tên người nhận</TableCell>
             <TableCell className={classes.tableCell}>SĐT</TableCell>
             <TableCell className={classes.tableCell}>Địa chỉ</TableCell>
             <TableCell className={classes.tableCell}>Ngày đặt</TableCell>
             <TableCell className={classes.tableCell}>Tổng tiền</TableCell>
             <TableCell className={classes.tableCell}>Trạng thái</TableCell>
-            <TableCell className={classes.tableCell}>Thay đổi trạng thái</TableCell>
+            {cookies.role > 0 ? (
+              <TableCell className={classes.tableCell}>Thay đổi trạng thái</TableCell>
+            ) : (
+              <TableCell className={classes.tableCell}></TableCell>
+            )}
             <TableCell className={classes.tableCell}></TableCell>
           </TableRow>
         </TableHead>

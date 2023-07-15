@@ -46,6 +46,7 @@ let initWebRoutes = (app) => {
     router.post('/api/order', orderController.Order)
     router.post('/api/getUserOrder', orderController.getUserOrders)
     router.get('/api/getAllrOrder', orderController.getAllOrders)
+    router.post('/api/userOrder', orderController.getAllOrderOfOneUser)
     router.post('/api/cancleOrder', orderController.cancleOrder)
     router.post('/api/getOrderProducts', orderController.getOrderProducts)
     router.post('/api/updateOrderStatus', orderController.updateOrderStatus)

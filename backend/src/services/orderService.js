@@ -140,6 +140,25 @@ let getAllOrder = () => {
     })
 }
 
+let getAllOrderOfOneUser = (data) => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            const orders = await db.sequelize.query(
+                `SELECT BillID, Users.name, customerName, customerPhoneNumber, 
+                        customerAddress, DATE_FORMAT(Bill.date, '%d-%m-%Y') AS date, totalCost, statusName 
+                FROM Bill LEFT JOIN Users ON Bill.id = Users.id 
+                LEFT JOIN Status ON Bill.statusID = Status.statusID
+                WHERE Bill.id = :userID
+                ORDER BY BillID DESC`,
+                { replacements: { userID: data.userID }, type: db.sequelize.QueryTypes.SELECT }
+            );
+            resolve(orders)
+        }catch(e){
+            reject(e)
+        }
+    })
+}
+
 let getOrderProducts = (data) => {
     return new Promise (async(resolve, reject) => {
         try{
@@ -184,4 +203,5 @@ module.exports = {
     cancelOrder : cancelOrder,
     getOrderProducts : getOrderProducts,
     updateOrderStatus : updateOrderStatus,
+    getAllOrderOfOneUser : getAllOrderOfOneUser,
 }
