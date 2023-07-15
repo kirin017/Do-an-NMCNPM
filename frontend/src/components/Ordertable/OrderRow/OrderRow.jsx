@@ -48,7 +48,7 @@ function OrderRow({order}) {
                 <Dialog open={open} onClose={handleClose}  maxWidth="md" maxHeight="80vh">
                     <DialogTitle>Chi tiết đơn hàng</DialogTitle>
                     <DialogContent>
-                        <OrderDetails/>
+                        <OrderDetails BillID={order.BillID}/>
                     </DialogContent>
                     <DialogActions>
                     <Button onClick={handleClose}>Close</Button>
