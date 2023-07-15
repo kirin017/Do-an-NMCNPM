@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TableCell, TableRow, Button } from '@material-ui/core';
 import { Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
-
+import OrderDetails from '../OrderDetails/OrderDetails';
 import useStyles from './styles';
 
 function OrderRow({order}) {
@@ -45,10 +45,10 @@ function OrderRow({order}) {
             </TableCell>
             <TableCell>
                 <Button className={classes.button5} variant="contained" onClick={handleOpen}>Chi tiết</Button>
-                <Dialog open={open} onClose={handleClose}>
+                <Dialog open={open} onClose={handleClose}  maxWidth="md" maxHeight="80vh">
                     <DialogTitle>Chi tiết đơn hàng</DialogTitle>
                     <DialogContent>
-                    <p>Chi tiết đơn hàng</p>
+                        <OrderDetails/>
                     </DialogContent>
                     <DialogActions>
                     <Button onClick={handleClose}>Close</Button>
