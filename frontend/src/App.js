@@ -12,7 +12,7 @@ import SignUp from './components/SignUp/Signup';
 import AccountSetting from './components/Account/account/AccountSetting'
 import Dashboard from './components/dashboard/Dashboard';
 // import Bills from './components/Bills/Bills'
-import Orders from './components/Orders/Orders';
+// import Orders from './components/Orders/Orders';
 import Topbar from './components/admin/Topbar'
 import HistoryOrders from './components/HistoryOrders/HistoryOrders';
 import ProductActionPage from './components/ProductActionPage/ProductActionPage';
@@ -24,6 +24,8 @@ import Post from './components/Narbar/Post/post';
 import SubCheckOut from './components/Checkout/SubCheckOut';
 import ReviseProduct from './components/ReviseProduct/ReviseProduct';
 import AdminSignup from './components/SignUp/AdminSignup';
+import Ordertable from './components/Ordertable/Ordertable';
+
 const App = () => {
     const [cookies] = useCookies([]);
     return (
@@ -121,8 +123,9 @@ const App = () => {
                             <Narbar />
                             <Topbar></Topbar>
                             <SideBar></SideBar>
-                            <div style={{ marginTop: '150px', marginLeft: '250px' }}>
-                                <Orders />
+                            <Narbar />
+                            <div style={{ marginTop: '180px' , marginLeft: '220px' }}>
+                                <Ordertable/>
                             </div>
                         </Route>
                         <Route exact path="/admin/order/add">
