@@ -44,7 +44,8 @@ let initWebRoutes = (app) => {
     router.post('/api/productsCart/sumprice', cartController.SumPrice)
     // API cho đơn hàng
     router.post('/api/order', orderController.Order)
-    router.post('/api/getallorder', orderController.getOrders)
+    router.post('/api/getUserOrder', orderController.getUserOrders)
+    router.get('/api/getAllrOrder', orderController.getAllOrders)
     // API cho quản lý tài khoản 
     router.get('/api/accounts', accountController.getAllAccounts)
     // API cho báo cáo thống kê

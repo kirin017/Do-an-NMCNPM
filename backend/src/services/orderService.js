@@ -93,7 +93,25 @@ let updateWareHouse = (userID) => {
     })
 }
 
+let getAllOrder = () => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            const orders = await db.sequelize.query(
+                `SELECT BillID, Users.name, customerName, customerPhoneNumber, 
+                        customerAddress, date, totalCost, statusID 
+                FROM Bill LEFT JOIN Users ON Bill.id = Users.id
+                ORDER BY BillID DESC`,
+                {type: db.sequelize.QueryTypes.SELECT}
+            );
+            resolve(orders)
+        }catch(e){
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     userOrder: userOrder,
-    getAllUserOrder : getAllUserOrder
+    getAllUserOrder : getAllUserOrder,
+    getAllOrder : getAllOrder,
 }
