@@ -38,10 +38,20 @@ let getOrderProducts = async(req, res) => {
         products : products
     }) 
 }
+
+let updateOrderStatus = async(req, res) => {
+    let data = req.body;
+    const products = await orderServie.updateOrderStatus(data);
+    return res.status(200).json({
+        errCode : 'Done'
+    }) 
+}
+
 module.exports = {
     Order : Order,
     getUserOrders : getUserOrders,
     getAllOrders : getAllOrders,
     cancleOrder : cancleOrder,
     getOrderProducts : getOrderProducts,
+    updateOrderStatus : updateOrderStatus,
 }

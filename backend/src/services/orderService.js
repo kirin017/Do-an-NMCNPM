@@ -159,10 +159,29 @@ let getOrderProducts = (data) => {
     })
 }
 
+let updateOrderStatus = (data) => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            let Order = await db.Bill.findOne({ 
+                    where : {BillID: data.BillID},
+                    raw : false,
+                })
+            if (Order){
+                Order.statusID = data.statusID;
+                await Order.save();
+            }
+            resolve();
+        }catch(e){
+            reject(e)
+        }
+    })
+} 
+
 module.exports = {
     userOrder: userOrder,
     getAllUserOrder : getAllUserOrder,
     getAllOrder : getAllOrder,
     cancelOrder : cancelOrder,
     getOrderProducts : getOrderProducts,
+    updateOrderStatus : updateOrderStatus,
 }
