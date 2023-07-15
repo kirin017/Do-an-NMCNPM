@@ -10,7 +10,7 @@ import AccountManagement from './components/Account/account/account'
 import Cart from './components/Cart/Cart';
 import SignUp from './components/SignUp/Signup';
 import AccountSetting from './components/Account/account/AccountSetting'
-import Dashboard from './components/dashboard/Dashboard';
+// import Dashboard from './components/dashboard/Dashboard';
 // import Bills from './components/Bills/Bills'
 // import Orders from './components/Orders/Orders';
 import Topbar from './components/admin/Topbar'
@@ -25,6 +25,7 @@ import SubCheckOut from './components/Checkout/SubCheckOut';
 import ReviseProduct from './components/ReviseProduct/ReviseProduct';
 import AdminSignup from './components/SignUp/AdminSignup';
 import Ordertable from './components/Ordertable/Ordertable';
+import Report from './components/Report/Report'
 
 const App = () => {
     const [cookies] = useCookies([]);
@@ -87,6 +88,12 @@ const App = () => {
                     <Narbar />
                     <div style={{ marginTop: '170px' }}>
                         <SubCheckOut></SubCheckOut>
+                    </div>
+                </Route>
+                <Route exact path="/report">
+                    <Narbar />
+                    <div style={{ marginTop: '200px' }}>
+                        <Report/>
                     </div>
                 </Route>
                 {+cookies.role > 0 ? (
@@ -152,18 +159,19 @@ const App = () => {
                                 <AdminSignup />
                             </div>
                         </Route>
-                        <Route exact path="/admin/statistic">
+                        <Route exact path="/admin/report">
                             <Narbar />
-                            <div style={{ marginTop: '170px', marginLeft: '150px' }}>
+                            <div style={{ marginTop: '200px', marginLeft: '250px' }}>
                                 <SideBar></SideBar>
+                                <Report/>
                             </div>
-                            <div className='dash-board' style={{
+                            {/* <div className='dash-board' style={{
                                 marginLeft: '250px',
                                 marginTop: '50px'
                             }}>
                                 <Dashboard />
-                            </div>
-
+                            </div> */}
+                            
                         </Route>
                     </>
                 ) : (<>Tài khoản của bạn không được phép truy cập vào trang admin</>)}
