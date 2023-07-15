@@ -140,9 +140,29 @@ let getAllOrder = () => {
     })
 }
 
+let getOrderProducts = (data) => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            const products = await db.sequelize.query(
+                `SELECT Product.productID, productName, productImage, productPrice, count
+                FROM Product JOIN (
+                    SELECT *
+                    FROM Billdetail
+                    WHERE BillID = :BillID
+                ) AS BD ON Product.productID = BD.productID`,
+                { replacements: { BillID: data.BillID }, type: db.sequelize.QueryTypes.SELECT }
+            );
+            resolve(products)
+        }catch(e){
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     userOrder: userOrder,
     getAllUserOrder : getAllUserOrder,
     getAllOrder : getAllOrder,
     cancelOrder : cancelOrder,
+    getOrderProducts : getOrderProducts,
 }

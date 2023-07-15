@@ -30,9 +30,18 @@ let cancleOrder = async(req, res) => {
         errCode : errCode
     }) 
 }
+
+let getOrderProducts = async(req, res) => {
+    let data = req.body;
+    const products = await orderServie.getOrderProducts(data);
+    return res.status(200).json({
+        products : products
+    }) 
+}
 module.exports = {
     Order : Order,
     getUserOrders : getUserOrders,
     getAllOrders : getAllOrders,
     cancleOrder : cancleOrder,
+    getOrderProducts : getOrderProducts,
 }

@@ -47,6 +47,7 @@ let initWebRoutes = (app) => {
     router.post('/api/getUserOrder', orderController.getUserOrders)
     router.get('/api/getAllrOrder', orderController.getAllOrders)
     router.post('/api/cancleOrder', orderController.cancleOrder)
+    router.post('/api/getOrderProducts', orderController.getOrderProducts)
     // API cho quản lý tài khoản 
     router.get('/api/accounts', accountController.getAllAccounts)
     // API cho báo cáo thống kê
