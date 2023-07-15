@@ -20,7 +20,7 @@ function OrderRow({order}) {
         <TableRow className={classes.a}>
         {console.log(order)}
             <TableCell>{order.BillID}</TableCell>
-            <TableCell>{order.userName}</TableCell>
+            <TableCell>{order.name}</TableCell>
             <TableCell>{order.customerName}</TableCell>
             <TableCell>{order.customerPhoneNumber}</TableCell>
             <TableCell>{order.customerAddress}</TableCell>
@@ -30,10 +30,16 @@ function OrderRow({order}) {
             <TableCell>
                 <div>
                     <Button className={classes.button1}>Đang xử lý</Button>
+                    {/* <Button className={classes.button2}>Đang vận chuyển</Button> */}
+                </div>
+                <div>
                     <Button className={classes.button2}>Đang vận chuyển</Button>
                 </div>
                 <div>
                     <Button className={classes.button3}>Đã giao hàng</Button>
+                    {/* <Button className={classes.button4}>Đã hủy đơn</Button> */}
+                </div>
+                <div>
                     <Button className={classes.button4}>Đã hủy đơn</Button>
                 </div>
             </TableCell>
@@ -50,20 +56,6 @@ function OrderRow({order}) {
                 </Dialog>
             </TableCell>
         </TableRow>
-        {/* <div>
-        <Button variant="contained" onClick={handleOpen}>
-            Open Dialog
-        </Button>
-        <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Dialog Title</DialogTitle>
-            <DialogContent>
-            <p>Dialog content goes here.</p>
-            </DialogContent>
-            <DialogActions>
-            <Button onClick={handleClose}>Close</Button>
-            </DialogActions>
-        </Dialog>
-        </div> */}
         </>
     );
 }

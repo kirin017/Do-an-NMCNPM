@@ -127,7 +127,7 @@ let getAllOrder = () => {
         try{
             const orders = await db.sequelize.query(
                 `SELECT BillID, Users.name, customerName, customerPhoneNumber, 
-                        customerAddress, date, totalCost, statusName 
+                        customerAddress, DATE_FORMAT(Bill.date, '%d-%m-%Y') AS date, totalCost, statusName 
                 FROM Bill LEFT JOIN Users ON Bill.id = Users.id 
                 LEFT JOIN Status ON Bill.statusID = Status.statusID 
                 ORDER BY BillID DESC`,
