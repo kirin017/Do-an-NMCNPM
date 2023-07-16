@@ -56,6 +56,8 @@ let initWebRoutes = (app) => {
     router.get('/api/report/updatedaily', reportController.updateDailyReport)
     router.post('/api/report/daily', reportController.DailyReport)
     router.post('/api/report/monthly', reportController.MonthlyReport)
+    router.post('/api/report/yearly', reportController.YearlyReport)
+    router.post('/api/report/monthlys', reportController.MonthlyReports)
 
     router.get('/crud', homeController.getCRUD);
     router.post('/post-crud', homeController.postCRUD)

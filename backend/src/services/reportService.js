@@ -70,8 +70,44 @@ let MonthlyReport = (data) => {
     }) 
 }
 
+let YearlyReport = (data) => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            let report = await db.sequelize.query(
+                `SELECT SUM(revenue) AS revenue, SUM(billCount) AS count
+                FROM DailyReportDetail
+                WHERE YEAR(date) = :year
+                GROUP BY YEAR(date)`,
+                {replacements: { year: data.year },type: db.sequelize.QueryTypes.SELECT}
+            );
+            resolve(report);
+        }catch(e){
+            reject(e)
+        }
+    }) 
+}
+
+let MonthlyReports = (data) => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            let report = await db.sequelize.query(
+                `SELECT MONTH(date) AS month, SUM(revenue) AS revenue, SUM(billCount) AS count
+                FROM DailyReportDetail
+                WHERE YEAR(date) = :year
+                GROUP BY MONTH(date)`,
+                {replacements: { year: data.year },type: db.sequelize.QueryTypes.SELECT}
+            );
+            resolve(report);
+        }catch(e){
+            reject(e)
+        }
+    }) 
+}
+
 module.exports = {
     updateDailyReport : updateDailyReport,
     MonthlyReport : MonthlyReport,
     DailyReport : DailyReport,
+    YearlyReport : YearlyReport,
+    MonthlyReports : MonthlyReports,
 }
