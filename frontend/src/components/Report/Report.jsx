@@ -17,7 +17,7 @@ function Report() {
     const [year, setYear] = useState(2023);
     const [revenue, setRevenue] = useState();
     const [billCount, setBillCount] = useState();
-    const [dailyReports, setdailyReports] = useState([]);
+    const [tableReports, setTableReports] = useState([]);
 
     const handleYearChange = (event) => {
         const inputValue = event.target.value;
@@ -36,10 +36,19 @@ function Report() {
                     setRevenue(0)
                     setBillCount(0)
                 }
-                let DailyReport = await axios.post('http://localhost:8081/api/report/daily', {month: month, year: year});
-                setdailyReports(DailyReport.data.response);
+                let TableReport = await axios.post('http://localhost:8081/api/report/daily', {month: month, year: year});
+                setTableReports(TableReport.data.response);
             }else{
-
+                let YearlyReport = await axios.post('http://localhost:8081/api/report/yearly', {year: year});
+                if (YearlyReport.data.response[0]){
+                    setRevenue(YearlyReport.data.response[0].revenue)
+                    setBillCount(YearlyReport.data.response[0].count)
+                }else{
+                    setRevenue(0)
+                    setBillCount(0)
+                }
+                let TableReport = await axios.post('http://localhost:8081/api/report/monthlys', {year: year});
+                setTableReports(TableReport.data.response);
             }
         }catch(e){}
     }
@@ -94,14 +103,18 @@ function Report() {
                 <Table  aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Ngày</TableCell>
+                            {month === 0 ? (
+                                <TableCell>Tháng</TableCell>
+                            ):(
+                                <TableCell>Ngày</TableCell>
+                            )}
                             <TableCell>Số đơn hàng</TableCell>
                             <TableCell>Doanh thu</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        { dailyReports.length > 0 && 
-                            dailyReports.map((report) => (<Row report={report} />))
+                        { tableReports.length > 0 && 
+                            tableReports.map((report) => (<Row report={report} />))
                         }
                     </TableBody>
                 </Table>

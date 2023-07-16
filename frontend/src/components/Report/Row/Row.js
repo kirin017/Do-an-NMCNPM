@@ -4,7 +4,7 @@ import { TableCell, TableRow } from '@material-ui/core';
 function Row({ report }) {
     return (
         <TableRow>
-            <TableCell>{report.day}</TableCell>
+            <TableCell>{report.stt}</TableCell>
             <TableCell>{report.billCount}</TableCell>
             {/* <TableCell>{report.productquantity}</TableCell> */}
             <TableCell>{report.revenue}</TableCell>

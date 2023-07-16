@@ -41,7 +41,7 @@ let DailyReport = (data) => {
     return new Promise (async(resolve, reject) => {
         try{
             let report = await db.sequelize.query(
-                `SELECT DAY(date) AS day, revenue, billCount
+                `SELECT DAY(date) AS stt, revenue, billCount
                 FROM DailyReportDetail
                 WHERE MONTH(date) = :month AND YEAR(date) = :year`,
                 {replacements: { month: data.month, year: data.year },type: db.sequelize.QueryTypes.SELECT}
@@ -91,7 +91,7 @@ let MonthlyReports = (data) => {
     return new Promise (async(resolve, reject) => {
         try{
             let report = await db.sequelize.query(
-                `SELECT MONTH(date) AS month, SUM(revenue) AS revenue, SUM(billCount) AS count
+                `SELECT MONTH(date) AS stt, SUM(revenue) AS revenue, SUM(billCount) AS billCount
                 FROM DailyReportDetail
                 WHERE YEAR(date) = :year
                 GROUP BY MONTH(date)`,
