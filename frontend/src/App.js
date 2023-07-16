@@ -36,11 +36,32 @@ const App = () => {
                     <Narbar />
                     <div style={{ marginTop: '120px' }}>
                         <Post></Post>
-                        <Products />
-
+                        <Products api={'http://localhost:8081/api/products'}/>
                     </div>
-
-
+                </Route>
+                <Route exact path="/accessory">
+                    <Narbar />
+                    <div style={{ marginTop: '120px' }}>
+                        <Products api={'http://localhost:8081/api/products/accessory'}/>
+                    </div>
+                </Route>
+                <Route exact path="/shirt">
+                    <Narbar />
+                    <div style={{ marginTop: '120px' }}>
+                        <Products api={'http://localhost:8081/api/products/shirt'}/>
+                    </div>
+                </Route>
+                <Route exact path="/shoes">
+                    <Narbar />
+                    <div style={{ marginTop: '120px' }}>
+                        <Products api={'http://localhost:8081/api/products/shoes'}/>
+                    </div>
+                </Route>
+                <Route exact path="/shorts">
+                    <Narbar />
+                    <div style={{ marginTop: '120px' }}>
+                        <Products api={'http://localhost:8081/api/products/shorts'}/>
+                    </div>
                 </Route>
                 <Route exact path="/login">
                     <Narbar />

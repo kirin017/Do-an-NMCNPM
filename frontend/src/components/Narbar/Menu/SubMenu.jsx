@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Popover } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 function SubMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -35,10 +36,10 @@ function SubMenu() {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <Button>Phụ kiện thể thao</Button>
-            <Button>Áo thể thao</Button>
-            <Button>Quần thể thao</Button>
-            <Button>Giày thể thao</Button>
+            <Button component={Link} to="/accessory">Phụ kiện thể thao</Button>
+            <Button component={Link} to="/shirt">Áo thể thao</Button>
+            <Button component={Link} to="/shorts">Quần thể thao</Button>
+            <Button component={Link} to="/shoes">Giày thể thao</Button>
         </div>
       </Popover>
     </div>
