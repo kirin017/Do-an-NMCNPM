@@ -1,25 +1,48 @@
 import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
-import { Typography, Box, Card, Button, MenuItem , InputLabel , FormControl , Select, TextField } from '@material-ui/core';
+import { Typography, Box, Card, Button, MenuItem , InputLabel , FormControl , Select, TextField, Grid } from '@material-ui/core';
 import useStyles from './styles';
 import Row from './Row/Row';
+import axios from 'axios';
 
-const reports = [
-    {date: 1, revenue: 123123, orderquatity: 12, productquantity: 20},
-    {date: 2, revenue: 123123, orderquatity: 12, productquantity: 20},
-    {date: 3, revenue: 123123, orderquatity: 12, productquantity: 20},
-]
+// const reports = [
+//     {date: 1, revenue: 123123, orderquatity: 12, productquantity: 20},
+//     {date: 2, revenue: 123123, orderquatity: 12, productquantity: 20},
+//     {date: 3, revenue: 123123, orderquatity: 12, productquantity: 20},
+// ]
 
 function Report() {
     const classes = useStyles();
     const [month, setMonth] = useState(0);
     const [year, setYear] = useState(2023);
+    const [revenue, setRevenue] = useState();
+    const [billCount, setBillCount] = useState();
+    const [dailyReports, setdailyReports] = useState([]);
+
     const handleYearChange = (event) => {
         const inputValue = event.target.value;
-        // Loại bỏ các ký tự không phải số bằng biểu thức chính quy
         const filteredValue = inputValue.replace(/[^0-9]/g, '');
         setYear(filteredValue);
-      };
+    };
+    const getReports = async() => {
+        try{
+            await axios.get('http://localhost:8081/api/report/updatedaily');
+            if (month !== 0){
+                let MonthlyReport = await axios.post('http://localhost:8081/api/report/monthly', {month: month, year: year});
+                if (MonthlyReport.data.response[0]){
+                    setRevenue(MonthlyReport.data.response[0].revenue)
+                    setBillCount(MonthlyReport.data.response[0].count)
+                }else{
+                    setRevenue(0)
+                    setBillCount(0)
+                }
+                let DailyReport = await axios.post('http://localhost:8081/api/report/daily', {month: month, year: year});
+                setdailyReports(DailyReport.data.response);
+            }else{
+
+            }
+        }catch(e){}
+    }
     return (
         <div>
             <FormControl className={classes.formControl}>
@@ -43,30 +66,42 @@ function Report() {
             <FormControl className={classes.formControl}>
                 <TextField className={classes.selectBox} label="Năm" value={year} onChange={e=>handleYearChange(e)}/>
             </FormControl>
-            <Button className={classes.button}>Xem</Button>
-            <Card className={classes.root}>
-                <Box className={classes.Box}>
-                    <Typography className={classes.typo}>
-                        <div>Doanh thu</div>
-                    </Typography>
-                    <Typography className={classes.typo}>
-                        <div>210000 vnd</div>
-                    </Typography>
-                </Box>
-            </Card>
-            <TableContainer component={Paper}>
+            <Button className={classes.button} onClick={()=>getReports()}>Xem</Button>
+            <Grid container spacing={5} className={classes.grid}>
+                <Card className={classes.root}>
+                    <Box className={classes.Box}>
+                        <Typography className={classes.typo}>
+                            <div>Số đơn hàng</div>
+                        </Typography>
+                        <Typography className={classes.typo}>
+                            <div>{billCount}</div>
+                        </Typography>
+                    </Box>
+                </Card>
+                <Card className={classes.root}>
+                    <Box className={classes.Box}>
+                        <Typography className={classes.typo}>
+                            <div>Doanh thu</div>
+                        </Typography>
+                        <Typography className={classes.typo}>
+                            <div>{revenue} vnd</div>
+                        </Typography>
+                    </Box>
+                </Card>
+            </Grid>
+            
+            <TableContainer component={Paper} style={{ maxWidth: 1200 }}>
                 <Table  aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Ngày</TableCell>
                             <TableCell>Số đơn hàng</TableCell>
-                            <TableCell>Số sản phẩm</TableCell>
                             <TableCell>Doanh thu</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        { reports.length > 0 && 
-                            reports.map((report) => (<Row report={report} />))
+                        { dailyReports.length > 0 && 
+                            dailyReports.map((report) => (<Row report={report} />))
                         }
                     </TableBody>
                 </Table>

@@ -9,6 +9,11 @@ export default makeStyles(() => ({
         marginBottom: 20,
         marginLeft: 20,
     },
+    grid: {
+        marginTop: 30,
+        marginBottom: 20,
+        marginLeft: 20,
+    },
     Box: {
         marginTop: '20px',
         marginLeft: 20,
@@ -37,6 +42,5 @@ export default makeStyles(() => ({
     },
     selectBox: {
         width: 150,
-        
     }
 }));
