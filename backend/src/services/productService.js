@@ -14,6 +14,65 @@ let getProducts = () => {
     })
 }
 
+let getAccessoryProducts = () => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            let data = await db.Product.findAll({
+                where: { productTypeID: 1},
+                attributes: ['productID','productName','productImage','productPrice','productCount','productInfo'],
+                order: [['productCount', 'DESC']]   
+            });
+            resolve(data)
+        } catch (e){
+            reject(e)
+        }
+    })
+}
+
+let getShirtProducts = () => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            let data = await db.Product.findAll({
+                where: { productTypeID: 2},
+                attributes: ['productID','productName','productImage','productPrice','productCount','productInfo'],
+                order: [['productCount', 'DESC']]   
+            });
+            resolve(data)
+        } catch (e){
+            reject(e)
+        }
+    })
+}
+
+let getShortsProducts = () => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            let data = await db.Product.findAll({
+                where: { productTypeID: 4},
+                attributes: ['productID','productName','productImage','productPrice','productCount','productInfo'],
+                order: [['productCount', 'DESC']]   
+            });
+            resolve(data)
+        } catch (e){
+            reject(e)
+        }
+    })
+}
+
+let getShoesProducts = () => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            let data = await db.Product.findAll({
+                where: { productTypeID: 3},
+                attributes: ['productID','productName','productImage','productPrice','productCount','productInfo'],
+                order: [['productCount', 'DESC']]   
+            });
+            resolve(data)
+        } catch (e){
+            reject(e)
+        }
+    })
+}
 let getProduct = (productID) => {
     return new Promise (async(reslove, reject) => {
         try {
@@ -116,10 +175,14 @@ let addProductType = (data) => {
 }
 module.exports = {
     getProducts : getProducts,
+    getAccessoryProducts : getAccessoryProducts,
+    getShirtProducts : getShirtProducts,
+    getShortsProducts : getShortsProducts,
+    getShoesProducts : getShoesProducts,
     getProduct : getProduct,
     addProduct : addProduct,
     updateProduct : updateProduct,
     getProductType : getProductType,
     addProductType : addProductType,
-    deleteProduct : deleteProduct
+    deleteProduct : deleteProduct,
 }

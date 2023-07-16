@@ -28,6 +28,10 @@ let initWebRoutes = (app) => {
     router.put('/api/user/update',userController.updateUser);
     // API cho Product
     router.get('/api/products', productController.getAllProducts);
+    router.get('/api/products/accessory', productController.getAccessoryProducts);
+    router.get('/api/products/shirt', productController.getShirtProducts);
+    router.get('/api/products/shorts', productController.getShortsProducts);
+    router.get('/api/products/shoes', productController.getShoesProducts);
     router.get('/api/products/:id', productController.getOneProduct);
     router.post('/api/products/add', productController.addNewProduct);
     router.put('/api/products/update', productController.updateOneProduct);
