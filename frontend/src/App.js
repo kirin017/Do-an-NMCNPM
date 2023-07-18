@@ -26,7 +26,7 @@ import ReviseProduct from './components/ReviseProduct/ReviseProduct';
 import AdminSignup from './components/SignUp/AdminSignup';
 import Ordertable from './components/Ordertable/Ordertable';
 import Report from './components/Report/Report'
-
+import Table from './components/Table/Table'
 const App = () => {
     const [cookies] = useCookies([]);
     return (
@@ -170,7 +170,7 @@ const App = () => {
                                 <SideBar></SideBar>
                             </div>
                             <div style={{ marginTop: '10px', marginLeft: '250px' }}>
-                                <AccountManagement />
+                                <Table />
                             </div>
                         </Route>
                         <Route exact path="/admin/account/update">

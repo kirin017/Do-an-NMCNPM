@@ -18,7 +18,7 @@ let updateDailyReport = () => {
                     SELECT SUM(totalCost)
                     FROM Bill
                     WHERE DATE_FORMAT(Bill.date, '%Y-%m-%d') = DailyReportDetail.date
-                    AND Bill.statusID = 1
+                    AND Bill.statusID = 3
                     GROUP BY DATE_FORMAT(Bill.date, '%Y-%m-%d')
                 ),
                 billCount = (

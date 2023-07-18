@@ -26,6 +26,7 @@ let initWebRoutes = (app) => {
     router.get('/api/getuser', middleware, userController.handleGetUser);
     router.get('/api/getAllUser',  userController.handleGetAllUser);
     router.put('/api/user/update',userController.updateUser);
+    router.delete('/api/user/delete',userController.handleDeleteUser);
     // API cho Product
     router.get('/api/products', productController.getAllProducts);
     router.get('/api/products/accessory', productController.getAccessoryProducts);
