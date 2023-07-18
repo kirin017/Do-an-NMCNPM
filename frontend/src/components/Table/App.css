@@ -9,8 +9,8 @@ table{
 }
 table tr{
     border-bottom: 1px solid black;
-    background-color: rgb(20, 100, 147);
-    color: white;
+    background-color: rgb(244, 247, 222);
+    color: rgb(8, 8, 8);
 }
 table tr th, table tr td {
     padding: 5px;

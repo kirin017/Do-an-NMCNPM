@@ -98,14 +98,14 @@ let updateUser = async(req, res) => {
     }) 
 }
 let handleDeleteUser = async (req, res) => {
-    if (!req.body.username) {
+    if (!req.query.username) {
       return res.status(200).json({
         errCode: 1,
         errMessage: "Missing required parameters!",
       });
     }
   
-    let message = await userService.deleteUser(req.body.username);
+    let message = await userService.deleteUser(req.query.username);
     return res.status(200).json(message);
   };
 module.exports = {

@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import './App.css'
 function Table(){
     const [data, setData] = useState([])
@@ -10,9 +13,28 @@ function Table(){
             .catch(er => console.log(er))
     }, [])
     console.log(data)
+    
+
+     const handleDelete =  (username) =>{
+        axios.delete('http://localhost:8081/api/user/delete', {
+            params: {
+              username: username
+            }
+          })
+        .then(res=>{
+            window.location.reload()
+        })
+    }   
+
+
+
     return (
+
         <div className='container'>
-            <table>
+            <Button variant="outlined" color="primary" component={Link} to={`/admin/account/update`}>
+                Cấp tài khoản cho Staff
+             </Button>
+            <table style = {{marginTop : '10px'}}>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -35,7 +57,7 @@ function Table(){
                                 <td>{user.gender}</td>
                                 <td>{user.typeUser}</td>
                                 <td>
-                                    <button>Delete</button>
+                                    <button onClick={()=>handleDelete(user.username)}>Delete</button>
                                 </td>
                             </tr>
                         ))
