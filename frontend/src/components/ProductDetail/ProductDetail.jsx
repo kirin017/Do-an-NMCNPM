@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid, Typography, Box, Card, Button } from '@material-ui/core';
 import useStyles from './styles';
+import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
 
 function ProductDetail() {
     const { id } = useParams();
     const classes = useStyles()
-
+    const [cookies] = useCookies([]);
     const [product, setproduct] = useState({});
 
     useEffect(() => {
@@ -22,7 +23,14 @@ function ProductDetail() {
       }
       getData();
     }, [id]);
-
+    const addProductToCart = async() => {
+        let data = {
+            productID : product.productID,
+            userID : cookies.id,
+            count : 1,
+        };
+        await axios.post("http://localhost:8081/api/productsCart/add", data);
+    }
 
     return (
         <div style={{display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
@@ -48,9 +56,12 @@ function ProductDetail() {
                     <Typography className={classes.price} variant="body1">
                         {product.productPrice + 'đ'}
                     </Typography>
-                    <Button className={classes.button}>
-                        Thêm vào giỏ hàng
-                    </Button>
+                    {+cookies.role >= 0 ? (
+                        <Button className={classes.button} onClick={()=>addProductToCart()}>
+                            Thêm vào giỏ hàng
+                        </Button>
+                    ):(null)}
+                    
                 </Card>
             </Grid>
             </Grid>
