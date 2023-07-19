@@ -145,7 +145,7 @@ const App = () => {
                         <Route exact path="/admin/addproduct">
                             <Narbar />
                             <SideBar />
-                            <div style={{ marginTop: '150px', marginLeft: '600px' }}>
+                            <div style={{ marginTop: '180px', marginLeft: '600px' }}>
                                 <ProductActionPage />
                             </div>
                         </Route>
