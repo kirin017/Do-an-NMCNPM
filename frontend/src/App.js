@@ -6,7 +6,7 @@ import SideBar from './components/SideBar/SideBar';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
-import AccountManagement from './components/Account/account/account'
+// import AccountManagement from './components/Account/account/account'
 import Cart from './components/Cart/Cart';
 import SignUp from './components/SignUp/Signup';
 import AccountSetting from './components/Account/account/AccountSetting'
@@ -18,7 +18,7 @@ import Topbar from './components/admin/Topbar'
 import ProductActionPage from './components/ProductActionPage/ProductActionPage';
 import { useCookies } from 'react-cookie';
 import AdminProducts from './components/AdminProducts/AdminProducts';
-// import AddProduct from './components/AddProduct/AddProduct';
+// import AddProduct from './components/AddProduct/AddProduct'; 
 import Checkout from './components/Checkout/Checkout';
 import Post from './components/Narbar/Post/post';
 import SubCheckOut from './components/Checkout/SubCheckOut';
