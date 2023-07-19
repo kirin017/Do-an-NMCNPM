@@ -6,6 +6,8 @@ import cartController from "../controllers/cartController";
 import orderController from "../controllers/orderController";
 import accountController from "../controllers/accountController"
 import reportController from "../controllers/reportController"
+import discountController from "../controllers/discountController"
+
 
 let router = express.Router()
 
@@ -63,6 +65,11 @@ let initWebRoutes = (app) => {
     router.post('/api/report/monthly', reportController.MonthlyReport)
     router.post('/api/report/yearly', reportController.YearlyReport)
     router.post('/api/report/monthlys', reportController.MonthlyReports)
+    // API cho mã khuyến mãi
+    router.get('/api/getDiscounts', discountController.getAllDiscounts)
+    router.post('/api/getDiscount', discountController.getOneDiscount)
+    router.post('/api/addDiscounts', discountController.createDiscount)
+    router.delete('/api/deleteDiscounts', discountController.deleteDiscount)
 
     router.get('/crud', homeController.getCRUD);
     router.post('/post-crud', homeController.postCRUD)
