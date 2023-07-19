@@ -37,9 +37,6 @@ const AdminProducts = () => {
             <Button className={classes.button} component={Link} to={`/admin/addproduct`}>
                 Thêm sản phẩm
             </Button>
-            <Button className={classes.button} component={Link} to={`/admin/reviseproduct`}>
-                Sửa sản phẩm
-            </Button>
             <Grid container justifyContent="center" spacing={2}>
                 {products.length > 0 &&
                     products.map((product) => (

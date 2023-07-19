@@ -114,11 +114,19 @@ let updateProduct = (newData) => {
                 { where: {productID: newData.productID}, raw: false }
             );
             if (data){
-                data.productName = newData.productName;
-                data.productImage = newData.productImage;
-                data.productPrice = newData.productPrice;
-                data.productCount = newData.productCount;
-                data.productInfo = newData.productInfo;
+                if (newData.productName)
+                    {data.productName = newData.productName};
+                if (newData.productImage)
+                    {
+                        data.productImage = newData.productImage;
+                    };
+                if (newData.productPrice)
+                    {data.productPrice = newData.productPrice;};
+                if (newData.productCount)
+                    {data.productCount = newData.productCount;};
+                if (newData.productInfo)
+                    {data.productInfo = newData.productInfo;};
+                
                 await data.save();
                 resolve();
             }else{

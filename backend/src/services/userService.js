@@ -200,7 +200,6 @@ let updateUser = (newData) => {
                 if (newData.FullName)
                     {data.name = newData.FullName};
                 if (newData.password)
-                    
                     {
                         let hashPasswordFromBcrypt = await hashUserPassword(newData.password);
                         data.password = hashPasswordFromBcrypt

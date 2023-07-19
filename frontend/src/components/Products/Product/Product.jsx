@@ -37,7 +37,10 @@ const Product = ({ product }) => {
             </Link> 
             <CardActions disableSpacing className={classes.cardActions}>
                 <Typography variant='h8' style={{ width: '120px', textAlign: 'right' }}>
-                        {product.productPrice}
+                        {'Giá : ' + product.productPrice}
+                </Typography>
+                <Typography variant='h8' style={{ width: '120px', textAlign: 'right' }}>
+                        {'Số lượng : '  + product.productCount}
                 </Typography>
                 {cookies.role==='0' ? (
                     <IconButton aria-label='Add to Cart' onClick={()=>addProductToCart()}>
