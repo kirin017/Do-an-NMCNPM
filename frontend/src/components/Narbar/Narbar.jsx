@@ -51,7 +51,7 @@ const Narbar = () => {
                             </Button>
                         </>
                     ) : (
-                        typeUserValue === '0' || typeUserValue === '1' ? (
+                        typeUserValue === '0' || typeUserValue === '1' || typeUserValue === '2'? (
                             <>
                                 <AccountMenu />
                             </>

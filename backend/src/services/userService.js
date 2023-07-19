@@ -112,7 +112,7 @@ let hanldeSignUpStaff = (data) => {
                     email: data.email,
                     gender:
                       data.gender == 1 ? "female" : data.gender == 0 ? "male" : "other",
-                    typeUser : '1',
+                    typeUser : 2,
                   });
                 userData.errCode = 0;
                 userData.errMessage = 'OK';
