@@ -1,11 +1,12 @@
 import React from 'react';
 import { TableCell, TableRow, Button } from '@material-ui/core';
 
-function Discount({}) {
+function Discount({discount}) {
     return (
         <TableRow>
-            <TableCell>1</TableCell>
-            <TableCell>1</TableCell>
+            <TableCell>{discount.code}</TableCell>
+            <TableCell>{discount.quanti}</TableCell>
+            <TableCell>{discount.promoValue}</TableCell>
             <TableCell>
                 <Button>Xóa</Button>
             </TableCell>

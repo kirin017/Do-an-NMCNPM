@@ -3,12 +3,23 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import { Typography, Button, FormControl ,TextField } from '@material-ui/core';
 import useStyles from './styles';
 import Discount from './Discount/Discount';
+import axios from 'axios';
 
 function Discounts() {
     const classes = useStyles();
     const [code, setCode] = useState('');
     const [quanti, setQuanti] = useState('');
     const [value, setValue] = useState('');
+    const [tableDiscount, setTableDiscount] = useState([]);
+    useEffect(() => {
+        async function getData() {
+            try {
+                let table = await axios.get("http://localhost:8081/api/getDiscounts");
+                setTableDiscount(table.data.data);
+            } catch (error) {} 
+        }
+        getData();
+    }, )
     const NumberOnly = (event) => {
         const inputValue = event.target.value;
         const filteredValue = inputValue.replace(/[^0-9]/g, '');
@@ -39,11 +50,14 @@ function Discounts() {
                         <TableRow>                      
                             <TableCell className={classes.tableCell}>Mã khuyến mãi</TableCell>
                             <TableCell className={classes.tableCell}>Số lượng</TableCell>
+                            <TableCell className={classes.tableCell}>Giá trị</TableCell>
                             <TableCell className={classes.tableCell}></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <Discount></Discount>
+                        { tableDiscount.length > 0 && 
+                            tableDiscount.map((discount) => (<Discount discount={discount} />))
+                        }
                     </TableBody>
                 </Table>
             </TableContainer>
