@@ -50,18 +50,23 @@ function OrderRow({order}) {
             <TableCell>{order.statusName}</TableCell>
             {cookies.role > 0 ? (
                 <TableCell>
-                    <div>
-                        <Button className={classes.button1} onClick={()=>changeStatus(1,'Đang xử lý')}>Đang xử lý</Button>
-                    </div>
-                    <div>
-                        <Button className={classes.button2} onClick={()=>changeStatus(2, 'Đang vận chuyển')}>Đang vận chuyển</Button>
-                    </div>
-                    <div>
-                        <Button className={classes.button3} onClick={()=>changeStatus(3, 'Đã giao hàng')}>Đã giao hàng</Button>
-                    </div>
-                    <div>
-                        <Button className={classes.button4} onClick={()=>changeStatus(4, 'Hủy đơn')}>Hủy đơn</Button>
-                    </div>
+                    {(order.statusName === 'Đã giao hàng' || order.statusName === 'Hủy đơn') ? (null):(
+                        <div>
+                         <div>
+                            <Button className={classes.button1} onClick={()=>changeStatus(1,'Đang xử lý')}>Đang xử lý</Button>
+                        </div>
+                        <div>
+                            <Button className={classes.button2} onClick={()=>changeStatus(2, 'Đang vận chuyển')}>Đang vận chuyển</Button>
+                        </div>
+                        <div>
+                            <Button className={classes.button3} onClick={()=>changeStatus(3, 'Đã giao hàng')}>Đã giao hàng</Button>
+                        </div>
+                        <div>
+                            <Button className={classes.button4} onClick={()=>changeStatus(4, 'Hủy đơn')}>Hủy đơn</Button>
+                        </div>   
+                        </div>
+                    )}
+                    
                 </TableCell>
             ) : (
                 <TableCell>
