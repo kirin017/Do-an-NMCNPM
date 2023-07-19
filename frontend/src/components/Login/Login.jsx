@@ -134,7 +134,7 @@ export default function SignIn() {
                     <Grid item 
                       style={{ marginTop: '20px'}}
                     xs>
-                        <Link href="#" variant="body2">
+                        <Link href="/contact" variant="body2">
                         Forgot password?
                         </Link>
                     </Grid>

@@ -67,7 +67,7 @@ const Narbar = () => {
                     </Button>
                     <SubMenu></SubMenu>
                     <Button>ABOUT US</Button>
-                    <Button>Liên hệ</Button>
+                    <Button component={Link} to="/contact">Liên hệ</Button>
                     <Button>FanPage</Button>
                 </Toolbar>
             </AppBar>

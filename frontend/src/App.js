@@ -27,6 +27,7 @@ import AdminSignup from './components/SignUp/AdminSignup';
 import Ordertable from './components/Ordertable/Ordertable';
 import Report from './components/Report/Report'
 import Table from './components/Table/Table'
+import InformationForm from './components/contact'
 const App = () => {
     const [cookies] = useCookies([]);
     return (
@@ -61,6 +62,12 @@ const App = () => {
                     <Narbar />
                     <div style={{ marginTop: '120px' }}>
                         <Products api={'http://localhost:8081/api/products/shorts'}/>
+                    </div>
+                </Route>
+                <Route exact path="/contact">
+                    <Narbar />
+                    <div style={{ marginTop: '170px' }}>
+                        <InformationForm />
                     </div>
                 </Route>
                 <Route exact path="/login">
