@@ -24,6 +24,9 @@ const NavBar = () => {
                 <Button className={classes.button} component={Link} to="/admin/account">
                     Quản lý tài khoản
                 </Button>
+                <Button className={classes.button} component={Link} to="/admin/discount">
+                    Mã khuyến mãi
+                </Button>
                 <Button className={classes.button} component={Link} to="/admin/report">
                     Thống kê
                 </Button>

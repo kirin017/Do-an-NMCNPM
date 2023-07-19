@@ -28,6 +28,8 @@ import Ordertable from './components/Ordertable/Ordertable';
 import Report from './components/Report/Report'
 import Table from './components/Table/Table'
 import InformationForm from './components/contact'
+import Discounts from './components/Discount/Discounts';
+
 const App = () => {
     const [cookies] = useCookies([]);
     return (
@@ -187,19 +189,19 @@ const App = () => {
                                 <AdminSignup />
                             </div>
                         </Route>
+                        <Route exact path="/admin/discount">
+                            <Narbar />
+                            <div style={{ marginTop: '200px', marginLeft: '250px' }}>
+                                <SideBar></SideBar>
+                                <Discounts/>
+                            </div>
+                        </Route>
                         <Route exact path="/admin/report">
                             <Narbar />
                             <div style={{ marginTop: '200px', marginLeft: '250px' }}>
                                 <SideBar></SideBar>
                                 <Report/>
-                            </div>
-                            {/* <div className='dash-board' style={{
-                                marginLeft: '250px',
-                                marginTop: '50px'
-                            }}>
-                                <Dashboard />
-                            </div> */}
-                            
+                            </div>                            
                         </Route>
                     </>
                 ) : (<>Tài khoản của bạn không được phép truy cập vào trang admin</>)}
