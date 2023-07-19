@@ -97,6 +97,17 @@ let updateUser = async(req, res) => {
         errCode: 'Done'
     }) 
 }
+let handleDeleteUser = async (req, res) => {
+    if (!req.query.username) {
+      return res.status(200).json({
+        errCode: 1,
+        errMessage: "Missing required parameters!",
+      });
+    }
+  
+    let message = await userService.deleteUser(req.query.username);
+    return res.status(200).json(message);
+  };
 module.exports = {
     handleLogin: handleLogin,
     hanldeSignUp: hanldeSignUp, 
@@ -105,4 +116,5 @@ module.exports = {
     updateUser: updateUser,
     handleGetAllUser:handleGetAllUser,
     hanldeSignUpStaff:hanldeSignUpStaff,
+    handleDeleteUser:handleDeleteUser,
 }

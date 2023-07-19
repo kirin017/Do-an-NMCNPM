@@ -15,7 +15,7 @@ function AccountManagement() {
     }, [])
     console.log(user)
     
-    const columns = [
+    const columns = [   
         {
             name: 'Name',
             selector: row => row.name,

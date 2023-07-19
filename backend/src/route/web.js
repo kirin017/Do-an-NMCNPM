@@ -6,6 +6,8 @@ import cartController from "../controllers/cartController";
 import orderController from "../controllers/orderController";
 import accountController from "../controllers/accountController"
 import reportController from "../controllers/reportController"
+import discountController from "../controllers/discountController"
+
 
 let router = express.Router()
 
@@ -26,6 +28,7 @@ let initWebRoutes = (app) => {
     router.get('/api/getuser', middleware, userController.handleGetUser);
     router.get('/api/getAllUser',  userController.handleGetAllUser);
     router.put('/api/user/update',userController.updateUser);
+    router.delete('/api/user/delete',userController.handleDeleteUser);
     // API cho Product
     router.get('/api/products', productController.getAllProducts);
     router.get('/api/products/accessory', productController.getAccessoryProducts);
@@ -62,6 +65,12 @@ let initWebRoutes = (app) => {
     router.post('/api/report/monthly', reportController.MonthlyReport)
     router.post('/api/report/yearly', reportController.YearlyReport)
     router.post('/api/report/monthlys', reportController.MonthlyReports)
+    // API cho mã khuyến mãi
+    router.get('/api/getDiscounts', discountController.getAllDiscounts)
+    router.post('/api/getDiscount', discountController.getOneDiscount)
+    router.post('/api/addDiscounts', discountController.createDiscount)
+    router.post('/api/upadteDiscounts', discountController.updateDiscount)
+    router.delete('/api/deleteDiscounts', discountController.deleteDiscount)
 
     router.get('/crud', homeController.getCRUD);
     router.post('/post-crud', homeController.postCRUD)

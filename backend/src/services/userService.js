@@ -200,7 +200,6 @@ let updateUser = (newData) => {
                 if (newData.FullName)
                     {data.name = newData.FullName};
                 if (newData.password)
-                    
                     {
                         let hashPasswordFromBcrypt = await hashUserPassword(newData.password);
                         data.password = hashPasswordFromBcrypt
@@ -222,7 +221,30 @@ let updateUser = (newData) => {
         }
     })
 }
-
+let deleteUser = (username) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let user = await db.User.findOne({
+        where: { username: username },
+      });
+      if (!user) {
+        resolve({
+          errCode: 2,
+          errMessage: `User doesn't exist`,
+        });
+      }
+      await db.User.destroy({
+        where: { username: username },
+      });
+      resolve({
+        errCode: 0,
+        errMessage: `User is deleted`,
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
     handleLogin: handleLogin,
     hanldeSignUp: hanldeSignUp,
@@ -230,4 +252,5 @@ module.exports = {
     updateUser:updateUser,
     getAllUser:getAllUser,
     hanldeSignUpStaff:hanldeSignUpStaff,
+    deleteUser:deleteUser,
 }

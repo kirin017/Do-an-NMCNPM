@@ -6,7 +6,7 @@ import SideBar from './components/SideBar/SideBar';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
-import AccountManagement from './components/Account/account/account'
+// import AccountManagement from './components/Account/account/account'
 import Cart from './components/Cart/Cart';
 import SignUp from './components/SignUp/Signup';
 import AccountSetting from './components/Account/account/AccountSetting'
@@ -18,7 +18,7 @@ import Topbar from './components/admin/Topbar'
 import ProductActionPage from './components/ProductActionPage/ProductActionPage';
 import { useCookies } from 'react-cookie';
 import AdminProducts from './components/AdminProducts/AdminProducts';
-// import AddProduct from './components/AddProduct/AddProduct';
+// import AddProduct from './components/AddProduct/AddProduct'; 
 import Checkout from './components/Checkout/Checkout';
 import Post from './components/Narbar/Post/post';
 import SubCheckOut from './components/Checkout/SubCheckOut';
@@ -26,6 +26,9 @@ import ReviseProduct from './components/ReviseProduct/ReviseProduct';
 import AdminSignup from './components/SignUp/AdminSignup';
 import Ordertable from './components/Ordertable/Ordertable';
 import Report from './components/Report/Report'
+import Table from './components/Table/Table'
+import InformationForm from './components/contact'
+import Discounts from './components/Discount/Discounts';
 
 const App = () => {
     const [cookies] = useCookies([]);
@@ -61,6 +64,12 @@ const App = () => {
                     <Narbar />
                     <div style={{ marginTop: '120px' }}>
                         <Products api={'http://localhost:8081/api/products/shorts'}/>
+                    </div>
+                </Route>
+                <Route exact path="/contact">
+                    <Narbar />
+                    <div style={{ marginTop: '170px' }}>
+                        <InformationForm />
                     </div>
                 </Route>
                 <Route exact path="/login">
@@ -140,7 +149,7 @@ const App = () => {
                                 <ProductActionPage />
                             </div>
                         </Route>
-                        <Route exact path="/admin/reviseproduct">
+                        <Route exact path="/admin/product/:id">
                             <Narbar />
                             <SideBar />
                             <div style={{ marginTop: '150px', marginLeft: '600px' }}>
@@ -170,7 +179,7 @@ const App = () => {
                                 <SideBar></SideBar>
                             </div>
                             <div style={{ marginTop: '10px', marginLeft: '250px' }}>
-                                <AccountManagement />
+                                <Table />
                             </div>
                         </Route>
                         <Route exact path="/admin/account/update">
@@ -180,19 +189,19 @@ const App = () => {
                                 <AdminSignup />
                             </div>
                         </Route>
+                        <Route exact path="/admin/discount">
+                            <Narbar />
+                            <div style={{ marginTop: '200px', marginLeft: '250px' }}>
+                                <SideBar></SideBar>
+                                <Discounts/>
+                            </div>
+                        </Route>
                         <Route exact path="/admin/report">
                             <Narbar />
                             <div style={{ marginTop: '200px', marginLeft: '250px' }}>
                                 <SideBar></SideBar>
                                 <Report/>
-                            </div>
-                            {/* <div className='dash-board' style={{
-                                marginLeft: '250px',
-                                marginTop: '50px'
-                            }}>
-                                <Dashboard />
-                            </div> */}
-                            
+                            </div>                            
                         </Route>
                     </>
                 ) : (<>Tài khoản của bạn không được phép truy cập vào trang admin</>)}

@@ -14,7 +14,8 @@ let userOrder = (data) => {
                 date: currentDate,
                 paymentType: data.paymentType,
                 shipCost: data.shipCost,
-                totalCost: totalCost[0].TotalPrice,
+                promoID: data.promoID,
+                totalCost: Math.max(0,totalCost[0].TotalPrice - data.promoValue),
                 statusID: 1,
                 note: data.note
             });
@@ -189,12 +190,35 @@ let updateOrderStatus = (data) => {
                 Order.statusID = data.statusID;
                 await Order.save();
             }
+            await updateProductAfterDelete(data);
             resolve();
         }catch(e){
             reject(e)
         }
     })
 } 
+
+let updateProductAfterDelete = (data) => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            await db.sequelize.query(
+                `UPDATE Product
+                SET productCount = productCount + (
+                    SELECT count
+                    FROM Billdetail
+                    WHERE Billdetail.productID = Product.productID AND BillID = :BillID)
+                WHERE ProductID IN (
+                    SELECT ProductID
+                    FROM Billdetail
+                    WHERE BillID = :BillID);`,
+                { replacements: { BillID: data.BillID }, type: db.sequelize.QueryTypes.UPDATE}
+            );
+            resolve();
+        }catch(e){
+            reject(e)
+        }
+    })
+}
 
 module.exports = {
     userOrder: userOrder,
