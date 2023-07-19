@@ -17,9 +17,9 @@ let getOneDiscount = async (req, res) => {
 
 let createDiscount = async(req,res) => {
     let data = req.body;
-    await discountService.CreateDisCount(data);
+    let errCode = await discountService.createDiscount(data);
     return res.status(200).json({
-        errCode: 'Done'
+        errCode: errCode
     }) 
 }
 

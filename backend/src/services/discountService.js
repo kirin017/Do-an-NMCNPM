@@ -34,14 +34,19 @@ let getOneDiscount = (req) => {
 let createDiscount = (data) => {
     return new Promise (async(resolve, reject) => {
         try{
-            await db.Promo.create({
-                code: data.code,
-                startDate: data.startDate,
-                endDate: data.endDate,
-                quanti: data.quanti,
-                promoValue: data.promoValue,
-            });
-            resolve();
+            let kt = await db.Promo.findOne({
+                where: {code : data.code}
+            })
+            if (kt){
+                resolve("Mã code đã tồn tại")
+            } else {
+                await db.sequelize.query(
+                    `INSERT INTO Promo(code, quanti, promoValue)
+                    VALUES (:code, :quanti, :promoValue)`,
+                    { replacements: { code: data.code, quanti: data.quanti, promoValue: data.promoValue }, type: db.sequelize.QueryTypes.INSERT}
+                );
+                resolve("Thêm mã thành công");
+            }
         }catch(e){
             reject(e);
         }

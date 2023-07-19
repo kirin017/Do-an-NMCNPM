@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import { Typography, Button, FormControl ,TextField } from '@material-ui/core';
 import useStyles from './styles';
 import Discount from './Discount/Discount';
@@ -10,6 +10,7 @@ function Discounts() {
     const [code, setCode] = useState('');
     const [quanti, setQuanti] = useState('');
     const [value, setValue] = useState('');
+    const [warning, setWarning] = useState('');
     const [tableDiscount, setTableDiscount] = useState([]);
     useEffect(() => {
         async function getData() {
@@ -23,10 +24,17 @@ function Discounts() {
     const NumberOnly = (event) => {
         const inputValue = event.target.value;
         const filteredValue = inputValue.replace(/[^0-9]/g, '');
-        return filteredValue
+        return filteredValue;
     };
-    const addHandle = () => {
-
+    const addHandle = async() => {
+        if (!(code && quanti && value)){
+            setWarning("Hãy nhập đủ thông tin")
+        } else {
+            try{
+                let response  = await axios.post("http://localhost:8081/api/addDiscounts", {code: code, quanti: quanti, promoValue: value});
+                setWarning(response.data.errCode);
+            } catch (error) {}
+        }
     }
     return (
         <div>
@@ -41,10 +49,10 @@ function Discounts() {
                 <TextField className={classes.textfield} label="Giá trị" value={value} onChange={e=>setValue(NumberOnly(e))}></TextField>
             </FormControl>
             <FormControl>
-                <Button className={classes.button} onClick={addHandle}>Thêm</Button>
+                <Button className={classes.button} onClick={()=>addHandle()}>Thêm</Button>
             </FormControl>
-            <Typography className={classes.textfield} style={{ color: 'red' }}>abc</Typography>
-            <TableContainer component={Paper}>
+            <Typography className={classes.textfield} style={{ color: 'red' }}>{warning}</Typography>
+            <TableContainer>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>                      

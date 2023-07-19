@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles(() => ({
     table: {
         minWidth: 650,
+        width: 1200
     },
     tableCell: {
         padding: '8px',
