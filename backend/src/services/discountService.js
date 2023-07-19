@@ -1,4 +1,5 @@
 import db from '../models/index'
+const { Op } = require('sequelize');
 
 let getAllDiscounts = () => {
     return new Promise (async (resolve, reject) => {
@@ -17,11 +18,12 @@ let getAllDiscounts = () => {
 let getOneDiscount = (req) => {
     return new Promise (async (resolve, reject) => {
         try {
-            let data = await db.Promo.findOne({
-                where: {code: req.code},
-                attributes: ['promoID','code','startDate','endDate','quanti','promoValue'],
-                order: [['endDate', 'DESC']]   
-            });
+            let data = await db.sequelize.query(
+                `SELECT promoID, quanti, promoValue
+                FROM Promo
+                WHERE code = :code`,
+                { replacements: { code: req.code }, type: db.sequelize.QueryTypes.SELECT}
+            );
             resolve(data)
         } catch (e){
             reject(e)
@@ -46,25 +48,15 @@ let createDiscount = (data) => {
     })
 }
 
-let updateDiscount = (newdata) => {
+let updateDiscount = (data) => {
     return new Promise (async(resolve, reject) => {
         try{
-            const data = await db.Promo.findOne({
-                where: {promoID: newdata.promoID}, raw: false
-            });
-            if (data){
-                if (newdata.code)
-                    {data.code = newdata.code};
-                if (newdata.startDate)
-                    {data.startDate = newdata.startDate};
-                if (newdata.endDate)
-                    {data.endDate = newdata.endDate;}
-                if (newdata.quanti)
-                    {data.quanti = newdata.quanti;};
-                if (newdata.promoValue)
-                    {data.promoValue = newdata.promoValue;};
-            }
-            await data.save();
+            await db.sequelize.query(
+                `UPDATE Promo
+                SET quanti = :quanti
+                WHERE promoID = :promoID`,
+                { replacements: { promoID: data.promoID, quanti: data.quanti }, type: db.sequelize.QueryTypes.UPDATE}
+            );
             resolve();
         }catch(e){
             reject(e);

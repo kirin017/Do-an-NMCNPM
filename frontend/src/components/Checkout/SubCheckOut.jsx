@@ -40,14 +40,13 @@ export default function SubCheckOut() {
     const [cookies] = useCookies([]);
     const handleOrder = async() => {
         let Promo = await axios.post("http://localhost:8081/api/getDiscount", {code: promo})
-        let checkPromo = Promo.data
+        let checkPromo = Promo.data.data[0]
         if (!(FullName && phone && address))
             setWarning("Vui lòng nhập đủ thông tin")
-        else if (!checkPromo && checkPromo !== ''){
+        else if (!checkPromo.quanti && promo!==''){
             setWarning("Mã khuyến mãi không đúng")
-        }
-        else{
-            let sumCost = await axios.post("http://localhost:8081/api/productsCart/sumprice", {userID : cookies.id})
+        } else{
+            // let sumCost = await axios.post("http://localhost:8081/api/productsCart/sumprice", {userID : cookies.id})
             let data = {
                 userID : cookies.id,
                 customerName: FullName,
@@ -55,13 +54,16 @@ export default function SubCheckOut() {
                 address: address,
                 paymentType: 1,
                 shipCost: 0,
-                totalCost: sumCost.data.sum,
+                promoID: checkPromo.promoID,
+                promoValue: checkPromo.promoValue,
+                // totalCost: sumCost.data.sum,
                 note: '',
-        };
-        await axios.post("http://localhost:8081/api/order", data)
-        history.push("/historyOrder")
-      }}
-
+            };
+            await axios.post("http://localhost:8081/api/order", data)
+            await axios.post("http://localhost:8081/api/upadteDiscounts", {promoID: checkPromo.promoID, quanti:checkPromo.quanti-1})
+            history.push("/historyOrder")
+        }
+    }
     return (
 
         <Container component="main" maxWidth="xs">

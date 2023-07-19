@@ -69,6 +69,7 @@ let initWebRoutes = (app) => {
     router.get('/api/getDiscounts', discountController.getAllDiscounts)
     router.post('/api/getDiscount', discountController.getOneDiscount)
     router.post('/api/addDiscounts', discountController.createDiscount)
+    router.post('/api/upadteDiscounts', discountController.updateDiscount)
     router.delete('/api/deleteDiscounts', discountController.deleteDiscount)
 
     router.get('/crud', homeController.getCRUD);

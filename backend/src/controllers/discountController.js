@@ -23,6 +23,14 @@ let createDiscount = async(req,res) => {
     }) 
 }
 
+let updateDiscount = async(req,res) => {
+    let data = req.body;
+    await discountService.updateDiscount(data);
+    return res.status(200).json({
+        errCode: 'Done'
+    }) 
+}
+
 let deleteDiscount = async(req,res) => {
     let data = req.body;
     await discountService.DeleteDiscount(data);
@@ -36,4 +44,5 @@ module.exports = {
     getOneDiscount : getOneDiscount,
     createDiscount : createDiscount,
     deleteDiscount : deleteDiscount,
+    updateDiscount : updateDiscount,
 }

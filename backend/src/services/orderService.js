@@ -14,7 +14,8 @@ let userOrder = (data) => {
                 date: currentDate,
                 paymentType: data.paymentType,
                 shipCost: data.shipCost,
-                totalCost: totalCost[0].TotalPrice,
+                promoID: data.promoID,
+                totalCost: Math.max(0,totalCost[0].TotalPrice - data.promoValue),
                 statusID: 1,
                 note: data.note
             });
