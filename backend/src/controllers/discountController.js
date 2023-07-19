@@ -33,7 +33,7 @@ let updateDiscount = async(req,res) => {
 
 let deleteDiscount = async(req,res) => {
     let data = req.body;
-    await discountService.DeleteDiscount(data);
+    await discountService.deleteDiscount(data);
     return res.status(200).json({
         errCode: 'Done'
     }) 
