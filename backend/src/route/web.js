@@ -51,6 +51,7 @@ let initWebRoutes = (app) => {
     router.post('/api/productsCart/sumprice', cartController.SumPrice)
     // API cho đơn hàng
     router.post('/api/order', orderController.Order)
+    router.post('/api/checkOrder', orderController.CheckOrder)
     router.post('/api/getUserOrder', orderController.getUserOrders)
     router.get('/api/getAllrOrder', orderController.getAllOrders)
     router.post('/api/userOrder', orderController.getAllOrderOfOneUser)

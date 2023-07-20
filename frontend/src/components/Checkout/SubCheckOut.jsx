@@ -43,25 +43,31 @@ export default function SubCheckOut() {
         let checkPromo = Promo.data.data[0]
         if (!(FullName && phone && address))
             setWarning("Vui lòng nhập đủ thông tin")
-        else if (!checkPromo.quanti && promo!==''){
+        else if ((!(checkPromo) || checkPromo.quanti<=0) && promo!==''){
             setWarning("Mã khuyến mãi không đúng")
         } else{
-            // let sumCost = await axios.post("http://localhost:8081/api/productsCart/sumprice", {userID : cookies.id})
-            let data = {
-                userID : cookies.id,
-                customerName: FullName,
-                phoneNumber: phone,
-                address: address,
-                paymentType: 1,
-                shipCost: 0,
-                promoID: checkPromo.promoID,
-                promoValue: checkPromo.promoValue,
-                // totalCost: sumCost.data.sum,
-                note: '',
-            };
-            await axios.post("http://localhost:8081/api/order", data)
-            await axios.post("http://localhost:8081/api/upadteDiscounts", {promoID: checkPromo.promoID, quanti:checkPromo.quanti-1})
-            history.push("/historyOrder")
+            let checkResponse = await axios.post("http://localhost:8081/api/checkOrder", {userID: cookies.id})
+            if (+checkResponse.data.check[0].total > 0){
+                setWarning("Một số mặt hàng đã hết. Vui lòng kiểm tra lại giỏ hàng!")
+            } else {
+                let data = {
+                    userID : cookies.id,
+                    customerName: FullName,
+                    phoneNumber: phone,
+                    address: address,
+                    paymentType: 1,
+                    shipCost: 0,
+                    promoID: checkPromo ? checkPromo.promoID : null,
+                    promoValue: checkPromo ? checkPromo.promoValue : 0,
+                    // totalCost: sumCost.data.sum,
+                    note: '',
+                };
+                await axios.post("http://localhost:8081/api/order", data)
+                if (checkPromo)
+                    await axios.post("http://localhost:8081/api/upadteDiscounts", {promoID: checkPromo.promoID, quanti:checkPromo.quanti-1})
+                history.push("/historyOrder")
+            }
+            
         }
     }
     return (

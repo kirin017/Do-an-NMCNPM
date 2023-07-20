@@ -32,6 +32,26 @@ let userOrder = (data) => {
     })
 }
 
+let CheckOrder = (data, billID) => {
+    return new Promise (async(resolve, reject) => {
+        try{
+            let check = await db.sequelize.query(
+                `SELECT Count(*) AS total
+                FROM Product JOIN (
+                    SELECT *
+                    FROM Cart
+                    WHERE userID = :userID
+                ) AS Cart ON Product.productID = Cart.productID
+                WHERE Cart.count > Product.productCount`,
+                { replacements: { userID: data.userID, billID: billID }, type: db.sequelize.QueryTypes.SELECT }
+            );
+            resolve(check)
+        }catch(e){
+            reject(e)
+        }
+    })
+}
+
 let cancelOrder = (data) => {
     return new Promise (async(resolve, reject) => {
         try{
@@ -222,6 +242,7 @@ let updateProductAfterDelete = (data) => {
 
 module.exports = {
     userOrder: userOrder,
+    CheckOrder: CheckOrder,
     getAllUserOrder : getAllUserOrder,
     getAllOrder : getAllOrder,
     cancelOrder : cancelOrder,

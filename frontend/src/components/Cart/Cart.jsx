@@ -19,6 +19,7 @@ const Cart = () => {
   const classes = useStyles()
   const [cookies] = useCookies([]);
   const [products, setproducts] = useState([]);
+  const [warning, setWarning] = useState('');
   const history = useHistory();
 
   useEffect(() => {
@@ -39,7 +40,15 @@ const Cart = () => {
     await axios.post("http://localhost:8081/api/productsCart/deleteAll", data)
     history.go(0);
   }
-
+  const handleOrder = async() => {
+    let checkResponse = await axios.post("http://localhost:8081/api/checkOrder", {userID: cookies.id})
+    if (+checkResponse.data.check[0].total > 0){
+      setWarning("Một số mặt hàng đã hết. Vui lòng kiểm tra lại giỏ hàng!")
+    }else{
+      history.push('/subcheckout');
+      history.go(0);
+    }
+  }
   return (
     
     <>
@@ -62,10 +71,8 @@ const Cart = () => {
               </Box>
               <div>
                   <Button className={classes.button} onClick={handleAllDelete}>Xóa tất cả</Button>
-                  <Button onClick={()=>{
-                      history.push('/subcheckout');
-                      history.go(0);
-                  }}className={classes.button}>Thanh toán</Button>      
+                  <Button onClick={()=>handleOrder()}className={classes.button}>Thanh toán</Button>      
+                  <Typography style={{ color: 'red' }}>{warning}</Typography>
               </div>
             </div>
           ):(

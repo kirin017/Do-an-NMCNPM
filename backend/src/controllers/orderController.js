@@ -8,6 +8,14 @@ let Order = async(req,res) => {
     }) 
 }
 
+let CheckOrder = async(req,res) => {
+    let data = req.body;
+    let check = await orderServie.CheckOrder(data);
+    return res.status(200).json({
+        check: check
+    }) 
+}
+
 let getUserOrders = async(req,res) => {
     let data = req.body;
     const orders = await orderServie.getAllUserOrder(data);
@@ -57,6 +65,7 @@ let updateOrderStatus = async(req, res) => {
 
 module.exports = {
     Order : Order,
+    CheckOrder : CheckOrder,
     getUserOrders : getUserOrders,
     getAllOrders : getAllOrders,
     cancleOrder : cancleOrder,

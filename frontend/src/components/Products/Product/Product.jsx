@@ -12,12 +12,14 @@ const Product = ({ product }) => {
     const [cookies] = useCookies([]);
     // const location = useLocation();
     const addProductToCart = async() => {
-        let data = {
+        if (product.productCount > 0){
+            let data = {
             productID : product.productID,
             userID : cookies.id,
             count : 1,
         };
         await axios.post("http://localhost:8081/api/productsCart/add", data);
+        }   
     }
 
     return (
@@ -40,13 +42,17 @@ const Product = ({ product }) => {
                         {'Giá : ' + product.productPrice}
                 </Typography>
                 <Typography variant='h8' style={{ width: '120px', textAlign: 'right' }}>
-                        {'Số lượng : '  + product.productCount}
+                    {product.productCount > 0 ? (
+                        `Số lượng : ${product.productCount}`
+                    ) : (
+                        'Hết hàng'
+                    )}
                 </Typography>
                 {cookies.role==='0' ? (
                     <IconButton aria-label='Add to Cart' onClick={()=>addProductToCart()}>
                         <AddShoppingCart/>
                     </IconButton>
-                ):(<></>)}
+                ):(<IconButton></IconButton>)}
                 
             </CardActions>
         </Card>

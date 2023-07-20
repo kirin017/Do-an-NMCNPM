@@ -28,8 +28,11 @@ const AdminProduct = ({ product }) => {
                 </div>
                 <div style={{ marginBottom: 5, marginTop: 5 }}>
                     <Typography variant='h8' style={{ width: '120px', textAlign: 'right' }}>
-                        Số lượng:
-                        {product.productCount} 
+                        {product.productCount > 0 ? (
+                            `Số lượng : ${product.productCount}`
+                        ) : (
+                            'Hết hàng'
+                        )}
                     </Typography>
                 </div>
                 <Button className={classes.button} component={Link} to={`/admin/product/${product.productID}`}>
