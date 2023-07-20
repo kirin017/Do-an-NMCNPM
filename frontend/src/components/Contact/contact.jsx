@@ -2,7 +2,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 
-class InformationForm extends React.Component {
+class Contact extends React.Component {
     render() {
         const phoneNumber = "0941218057";
         const adminTeam = ["Đào Nhật Khánh", "Cáp Hữu Anh Trí", "Nguyễn Hữu Huy", "Nguyễn Thành Đăng"];
@@ -27,4 +27,4 @@ class InformationForm extends React.Component {
       }
 }
 
-export default InformationForm;
+export default Contact;

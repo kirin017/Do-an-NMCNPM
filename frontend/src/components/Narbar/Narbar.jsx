@@ -69,7 +69,9 @@ const Narbar = () => {
                                 Trang chủ
                             </Button>
                             <SubMenu></SubMenu>
-                            <Button>ABOUT US</Button>
+                            <Button component={Link} to="/aboutus">
+                                About Us
+                            </Button>
                             <Button component={Link} to="/contact">
                                 Liên hệ
                             </Button>

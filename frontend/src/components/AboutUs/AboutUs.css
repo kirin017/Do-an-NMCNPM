@@ -1,0 +1,82 @@
+.about-us {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .left-column,
+  .right-column {
+    flex: 1;
+    max-width: 50%;
+    position: relative;
+  }
+  
+  .image-left {
+    background-image: url("https://baodongkhoi.vn/image/fckeditor/upload/2022/20221023/images/messi.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  
+  .image-right {
+    background-image: url("https://baodongkhoi.vn/image/fckeditor/upload/2022/20221023/images/messi.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    padding: 20px;
+    margin: 0 20px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .content {
+    position: relative;
+  }
+  
+  .card h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #4285f4; /* Google blue */
+  }
+  
+  .card h2 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .card h3 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .card ul {
+    padding-left: 20px;
+  }
+  
+  .card li {
+    list-style: circle;
+    margin-bottom: 5px;
+  }
+  
+  .card p {
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .card strong {
+    font-weight: bold;
+  }
+  

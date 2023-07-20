@@ -27,9 +27,10 @@ import AdminSignup from './components/SignUp/AdminSignup';
 import Ordertable from './components/Ordertable/Ordertable';
 import Report from './components/Report/Report'
 import Table from './components/Table/Table'
-import InformationForm from './components/contact'
+//import InformationForm from './components/Contact/contact'
 import Discounts from './components/Discount/Discounts';
 import AboutUs from './components/AboutUs/AboutUs';
+import Contact from './components/Contact/contact'
 const App = () => {
     const [cookies] = useCookies([]);
     return (
@@ -69,7 +70,7 @@ const App = () => {
                 <Route exact path="/contact">
                     <Narbar />
                     <div style={{ marginTop: '170px' }}>
-                        <InformationForm />
+                        <Contact/>
                     </div>
                 </Route>
                 <Route exact path="/aboutus">
