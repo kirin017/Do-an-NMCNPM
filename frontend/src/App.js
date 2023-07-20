@@ -29,7 +29,7 @@ import Report from './components/Report/Report'
 import Table from './components/Table/Table'
 import InformationForm from './components/contact'
 import Discounts from './components/Discount/Discounts';
-
+import AboutUs from './components/AboutUs/AboutUs';
 const App = () => {
     const [cookies] = useCookies([]);
     return (
@@ -70,6 +70,12 @@ const App = () => {
                     <Narbar />
                     <div style={{ marginTop: '170px' }}>
                         <InformationForm />
+                    </div>
+                </Route>
+                <Route exact path="/aboutus">
+                    <Narbar />
+                    <div style={{ marginTop: '170px' }}>
+                        <AboutUs />
                     </div>
                 </Route>
                 <Route exact path="/login">

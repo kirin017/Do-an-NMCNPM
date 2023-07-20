@@ -18,20 +18,31 @@ const Footer = () => {
                     </ul>
 
                     <ul>
+                        <h3>Help</h3>
+                        <li><a href="/">Order Status</a></li>
+                        <li><a href="/">Delivery</a></li>
+                        <li><a href="/">Returns</a></li>
+                        <li><a href="/">Payment Options</a></li>
+                        <li><a href="/">About Us</a></li>
+                    </ul>
+
+                    <ul>
                         <h3>Careers</h3>
                         <li><a href="/">Apply Online</a></li>
                         <li><a href="/">Available Positions</a></li>
                     </ul>
 
                     <ul>
-                        <h3>About Us</h3>
-                        <li><a href="/">Zalo</a></li>
-                        <li><a href="/">Email</a></li>
-                        <li><a href="/">Facebook</a></li>
+                        <h3>Contact</h3>
+                        <li><a href="https://www.youtube.com/@mazuong2k">Youtube</a></li>
+                        <li><a href="https://www.instagram.com/miamiheat/">Instagram</a></li>
+                        <li><a href="https://www.facebook.com/MiamiHeat">Facebook</a></li>
                     </ul>
+                    
                 </div>
                 <div class="newsletter">
                     <h3>Stay in Touch</h3>
+                    <h5>Sign your email to get newest discount from us</h5>
                     <form>
                         <input
                             type="email"
