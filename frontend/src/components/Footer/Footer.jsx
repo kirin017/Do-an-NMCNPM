@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./style.css"
+import "./FooterStyle.css"
 
 
 const Footer = () => {
@@ -53,7 +53,7 @@ const Footer = () => {
             </div>
             <div class="info">
                 <div class="legal">
-                    <a href="#">Terms & Conditions</a><a href="#">Privacy Policy</a>
+                    <a href="/">Terms & Conditions</a><a href="/">Privacy Policy</a>
                 </div>
             </div>
         </footer>

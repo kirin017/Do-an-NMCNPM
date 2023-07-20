@@ -51,7 +51,7 @@ const Narbar = () => {
                             </Button>
                         </>
                     ) : (
-                        typeUserValue === '0' || typeUserValue === '1' || typeUserValue === '2'? (
+                        typeUserValue === '0' || typeUserValue === '1' || typeUserValue === '2' ? (
                             <>
                                 <AccountMenu />
                             </>
@@ -62,16 +62,32 @@ const Narbar = () => {
                     style={{ backgroundColor: '#E8E8E8' }}
                 >
                     <div style={{ marginLeft: "30px" }} />
-                    <Button component={Link} to="/">
+
+                    {typeUserValue === '0' || typeUserValue === null ?(
+                        <>
+                            <Button component={Link} to="/">
+                                Trang chủ
+                            </Button>
+                            <SubMenu></SubMenu>
+                            <Button>ABOUT US</Button>
+                            <Button component={Link} to="/contact">
+                                Liên hệ
+                            </Button>
+                            <Button>FanPage</Button>
+                        </>
+                    ) :(null)
+                    }
+
+                    {/* <Button component={Link} to="/">
                         Trang chủ
                     </Button>
                     <SubMenu></SubMenu>
                     <Button>ABOUT US</Button>
                     <Button component={Link} to="/contact">Liên hệ</Button>
-                    <Button>FanPage</Button>
+                    <Button>FanPage</Button> */}
                 </Toolbar>
             </AppBar>
-        
+
         </>
 
     );
